@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <HeaderUSGS></HeaderUSGS>
-    <MapBox></MapBox>
-    <FooterUSGS></FooterUSGS>
+    <HeaderUSGS />
+    <MapBox />
+    <FooterUSGS />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import MapBox from './components/MapBox'
 import FooterUSGS from './components/FooterUSGS' //this line is the module import
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     HelloWorld,
     HeaderUSGS,
