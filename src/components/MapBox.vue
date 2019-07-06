@@ -11,7 +11,7 @@ var style = {
     sources: {
         HRU: {
             type: "vector",
-            url: ''
+            "tiles": ["http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf"],
         }
     },
     layers: [
@@ -23,12 +23,44 @@ var style = {
             }
         },
         {
+            id: "HRUS2",
+            type: "fill",
+            source: "HRU",
+            "source-layer": "no_simp_prec5",
+            paint: {
+                "fill-color": {
+                  "property": "SoilMoisture",
+                  "type": 'categorical',
+                  "stops": [
+                        ["","#000000"],
+                        ["very low","#CC4C02"],
+                        ["low", "#EDAA5F"],
+                        ["average","#FED98E"],
+                        ["high","#A7B9D7"],
+                        ["very high","#144873"],
+                      ]
+                },
+                "fill-opacity": 0.5
+            }
+        },
+        {
             id: "HRUS",
             type: "line",
             source: "HRU",
-            "source-layer": "newgeo",
+            "source-layer": "no_simp_prec5",
             paint: {
-                "line-color": "#000000",
+                "line-color": {
+                  "property": "SoilMoisture",
+                  "type": 'categorical',
+                  "stops": [
+                        ["","#000000"],
+                        ["very low","#823102"],
+                        ["low", "#C28C4E"],
+                        ["average","#D0B275"],
+                        ["high","#8998B0"],
+                        ["very high","#113B5F"],
+                  ]
+                },
                 "line-width": 1
             }
         }
@@ -52,7 +84,7 @@ export default {
         style: style,
         zoom: 4,
         minZoom: 4,
-        maxZoom: 8,
+        maxZoom: 15,
         center: [-95.7129, 37.0902],
       });
 
