@@ -1,5 +1,8 @@
 <template>
-  <div id="map" />
+  <div id="viz_container">
+    <h1>{{ title }}</h1>
+    <div id="map" />
+  </div>
 </template>
 
 <script>
@@ -69,6 +72,12 @@ var style = {
 
 export default {
     name: 'MapBox',
+    props: {
+      title: {
+        type: String,
+        default: 'Add your title in App.vue or hide this with CSS'
+      }
+    },
     data() {
         return {
         }
