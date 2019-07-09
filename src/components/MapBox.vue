@@ -119,7 +119,7 @@ var style = {
       ],
       "layout": {},
       "paint": {
-        "line-color": "rgba(149,168,187, 1)"
+        "line-color": "rgba(164, 185, 207, 1)"
       }
     },
     {
@@ -132,12 +132,12 @@ var style = {
               "property": "SoilMoisture",
               "type": 'categorical',
               "stops": [
-                    ["","rgba(0,0,0,.7)"],
-                    ["very low","rgba(204,76,2,.7)"],
-                    ["low", "rgba(237,170,95,.7)"],
-                    ["average","rgba(254,217,142,.7)"],
-                    ["high","rgba(167,185,215,.7)"],
-                    ["very high","rgba(20,72,115,.7)"],
+                    ["","#000000"],
+                    ["very low","#CC4C02"],
+                    ["low", "#EDAA5F"],
+                    ["average","#FED98E"],
+                    ["high","#A7B9D7"],
+                    ["very high","#144873"],
                   ]
             },
             "fill-opacity": 0.5
