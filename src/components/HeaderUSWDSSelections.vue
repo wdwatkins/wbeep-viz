@@ -52,7 +52,7 @@
         props: {
             title: {
                 type: String,
-                default: 'Add your title in App.vue or hide this with CSS'
+                default: ''
             }
         }
     }

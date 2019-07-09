@@ -110,5 +110,8 @@ export default {
     #map{
         height: 900px;
     }
+  h1 {
+    text-align: center;
+  }
 </style>
 
