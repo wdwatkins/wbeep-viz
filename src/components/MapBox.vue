@@ -101,7 +101,6 @@ export default {
         maxZoom: 8,
         center: [-95.7129, 37.0902],
       });
-      map.addControl(new mapboxgl.FullscreenControl());
     }
   }
 }
