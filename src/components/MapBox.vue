@@ -12,6 +12,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 var style = {
     version: 8,
     sources: {
+        basemap: {
+          type: "vector",
+          url: "http://localhost:8080/data/basemap.json"
+        },
         HRU: {
             type: "vector",
             url: "http://localhost:8085/data/new2.json",
@@ -27,52 +31,140 @@ var style = {
             id: "background",
             type: "background",
             paint: {
-                "background-color": "#ddeeff" 
+                "background-color": "#c3dbf4"
             }
         },
         {
-            id: "HRUS2",
-            type: "fill",
-            source: "HRU",
-            "source-layer": "no_simp_prec5",
-            paint: {
-                "fill-color": {
-                  "property": "SoilMoisture",
-                  "type": 'categorical',
-                  "stops": [
-                        ["","#000000"],
-                        ["very low","#CC4C02"],
-                        ["low", "#EDAA5F"],
-                        ["average","#FED98E"],
-                        ["high","#A7B9D7"],
-                        ["very high","#144873"],
-                      ]
-                },
-                "fill-opacity": 0.5
-            }
-        },
-        {
-            id: "HRUS",
-            type: "line",
-            source: "HRU",
-            "source-layer": "no_simp_prec5",
-            paint: {
-                "line-color": {
-                  "property": "SoilMoisture",
-                  "type": 'categorical',
-                  "stops": [
-                        ["","#000000"],
-                        ["very low","#823102"],
-                        ["low", "#C28C4E"],
-                        ["average","#D0B275"],
-                        ["high","#8998B0"],
-                        ["very high","#113B5F"],
+      "id": "caMex",
+      "type": "fill",
+      "source": "basemap",
+      "source-layer": "basemap",
+      "filter": [
+        "none",
+        [
+          "!has",
+          "CNTRY_NAME"
+        ]
+      ],
+      "layout": {},
+      "paint": {
+        "fill-color": "rgba(231, 242, 252, 1)"
+      }
+    },
+    {
+      "id": "states",
+      "type": "fill",
+      "source": "basemap",
+      "source-layer": "basemap",
+      "filter": [
+        "all",
+        [
+          "has",
+          "STATE_ABBR"
+        ]
+      ],
+      "paint": {
+        "fill-color": "rgba(231, 242, 252, 1)"
+      }
+    },
+    {
+      "id": "statesoutline",
+      "type": "line",
+      "source": "basemap",
+      "source-layer": "basemap",
+      "filter": [
+        "all",
+        [
+          "has",
+          "STATE_ABBR"
+        ]
+      ],
+      "layout": {},
+      "paint": {
+        "line-color": "rgba(192, 218, 245, 1)"
+      }
+    },
+    {
+      "id": "counties",
+      "type": "line",
+      "source": "basemap",
+      "source-layer": "basemap",
+      "minzoom": 6,
+      "maxzoom": 9,
+      "filter": [
+        "all",
+        [
+          "has",
+          "CNTY_FIPS"
+        ]
+      ],
+      "layout": {},
+      "paint": {
+        "line-color": "rgba(149,168,187, 1)"
+      }
+    },
+    {
+      "id": "rivers",
+      "type": "line",
+      "source": "basemap",
+      "source-layer": "basemap",
+      "minzoom": 5,
+      "maxzoom": 9,
+      "filter": [
+        "all",
+        [
+          "has",
+          "MILES"
+        ]
+      ],
+      "layout": {},
+      "paint": {
+        "line-color": "rgba(149,168,187, 1)"
+      }
+    },
+    {
+        id: "HRUS2",
+        type: "fill",
+        source: "HRU",
+        "source-layer": "no_simp_prec5",
+        paint: {
+            "fill-color": {
+              "property": "SoilMoisture",
+              "type": 'categorical',
+              "stops": [
+                    ["","rgba(0,0,0,.7)"],
+                    ["very low","rgba(204,76,2,.7)"],
+                    ["low", "rgba(237,170,95,.7)"],
+                    ["average","rgba(254,217,142,.7)"],
+                    ["high","rgba(167,185,215,.7)"],
+                    ["very high","rgba(20,72,115,.7)"],
                   ]
-                },
-                "line-width": 1
-            }
+            },
+            "fill-opacity": 0.5
         }
-    ]
+    },
+    {
+        id: "HRUS",
+        type: "line",
+        source: "HRU",
+        "source-layer": "no_simp_prec5",
+        paint: {
+            "line-color": {
+              "property": "SoilMoisture",
+              "type": 'categorical',
+              "stops": [
+                    ["","#000000"],
+                    ["very low","#823102"],
+                    ["low", "#C28C4E"],
+                    ["average","#D0B275"],
+                    ["high","#8998B0"],
+                    ["very high","#113B5F"],
+              ]
+            },
+            "line-width": 1
+        }
+    }
+  ]
 }
 
 export default {
