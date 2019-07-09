@@ -21,7 +21,6 @@ export default {
     HeaderUSWDSBanner,
     HeaderUSGS,
     HeaderUSWDSSelections,
-    HeaderUSGS,
     MapBox,
     FooterUSGS
   }
