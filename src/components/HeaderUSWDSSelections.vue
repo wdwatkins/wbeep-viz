@@ -52,12 +52,21 @@
         props: {
             title: {
                 type: String,
-                default: 'Add your title in App.vue or hide this with CSS'
+                default: 'add a project name in App.vue, or make this blank'
             }
         }
     }
 </script>
 
-<style  scoped lang="sass">
-    @import '~uswds/dist/css/uswds.css'
+<style  scoped lang="scss">
+    @media (min-width: 64em) {
+        .usa-nav-container {
+            max-width: none;
+
+        }
+        nav.usa-nav {
+            width: none;
+
+        }
+    }
 </style>

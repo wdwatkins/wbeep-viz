@@ -1,6 +1,9 @@
 <template>
   <div id="viz_container">
-    <h1>{{ title }}</h1>
+    <div class="usa-prose">
+      <h2 class="title-text">{{ title }}</h2>
+    </div>
+    <hr>
     <div id="map" />
   </div>
 </template>
@@ -172,7 +175,7 @@ export default {
     props: {
       title: {
         type: String,
-        default: 'Add your title in App.vue or hide this with CSS'
+        default: 'Add your title in App.vue or make this blank'
       }
     },
     data() {
@@ -199,8 +202,16 @@ export default {
 </script>
 
 <style>
-    #map{
-        height: 900px;
-    }
+  #map{
+      height: 900px;
+  }
+  .title-text {
+    margin-left: 1.5rem;
+    padding-top: 0.5rem;
+  }
+  hr {
+    margin: 2px 0 0 0;
+    padding-bottom: 0;
+  }
 </style>
 
