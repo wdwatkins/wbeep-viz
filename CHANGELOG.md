@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+added map controls
 Deleted second mbtiles folder
 Fixed the title bar CSS at wide widths, adjusted the page title
 Added basemap mbtiles to the mbtiles directory
