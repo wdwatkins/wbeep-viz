@@ -17,7 +17,7 @@ var style = {
     sources: {
         basemap: {
           type: "vector",
-          url: "http://localhost:8080/data/basemap.json"
+          url: "http://localhost:8086/data/basemap.json"
         },
         HRU: {
             type: "vector",
@@ -184,6 +184,9 @@ export default {
     },
   mounted() {
     this.createMap();
+    this.addGeolocateControl();
+    this.addMapControls();
+    this.addFullscreenToggle();
   },
   methods: {
     createMap() {
@@ -196,6 +199,20 @@ export default {
         maxZoom: 8,
         center: [-95.7129, 37.0902],
       });
+    },
+    addGeolocateControl() {
+      this.map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      }));
+    },
+    addMapControls() {
+      this.map.addControl(new mapboxgl.NavigationControl());
+    },
+    addFullscreenToggle() {
+      this.map.addControl(new mapboxgl.FullscreenControl());
     }
   }
 }
