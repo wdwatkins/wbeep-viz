@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Dotted State lines to show its possible.
+- Added Cities to the basemap layers.
+- Changed basemap creation so  we have several source layers to avoid loading in all layers multiple times and filtering.  This way we only call the layer we want when we want
 - changed layer order so HRU layer is lowest and changed the opacity of that layer 
 - added map controls
 - Deleted second mbtiles folder
