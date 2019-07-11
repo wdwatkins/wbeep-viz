@@ -34,7 +34,7 @@
                 id: "background",
                 type: "background",
                 paint: {
-                    "background-color": "#fcfdff"
+                    "background-color": "#ebf0fa"
                 }
             },
 
@@ -48,17 +48,18 @@
                         "property": "SoilMoisture",
                         "type": 'categorical',
                         "stops": [
-                            ["", "#000000"],
-                            ["very low", "#CC4C02"],
+                            ["","#000000"],
+                            ["very low","#CC4C02"],
                             ["low", "#EDAA5F"],
-                            ["average", "#FED98E"],
-                            ["high", "#A7B9D7"],
-                            ["very high", "#144873"],
+                            ["average","#FED98E"],
+                            ["high","#A7B9D7"],
+                            ["very high","#144873"],
                         ]
                     },
-                    "fill-opacity": 0.5
+                    "fill-opacity": 1
                 }
             },
+
             {
                 id: "HRUS",
                 type: "line",
@@ -69,15 +70,15 @@
                         "property": "SoilMoisture",
                         "type": 'categorical',
                         "stops": [
-                            ["", "#000000"],
-                            ["very low", "#823102"],
+                            ["","#000000"],
+                            ["very low","#823102"],
                             ["low", "#C28C4E"],
-                            ["average", "#D0B275"],
-                            ["high", "#8998B0"],
-                            ["very high", "#113B5F"],
+                            ["average","#D0B275"],
+                            ["high","#8998B0"],
+                            ["very high","#113B5F"],
                         ]
                     },
-                    "line-width": 0
+                    "line-width": 1
                 },
             },
             {
@@ -94,7 +95,7 @@
                 ],
                 "layout": {},
                 "paint": {
-                    "fill-color": "rgba(231, 242, 252, 1)"
+                    "fill-color": "rgba(213, 218, 227, 1)"
                 }
             },
             {
