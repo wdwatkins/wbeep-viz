@@ -7,7 +7,7 @@ mbconfig=src/components/MapBox.vue
 prodbucket=wbeep-prod-website.s3-website-us-west-2.amazonaws.com
 testbucket=wbeep-test-website.s3-website-us-west-2.amazonaws.com
 qabucket=wbeep-qa-website.s3-website-us-west-2.amazonaws.com
-betabucket=wbeep-qa-website.s3-website-us-west-2.amazonaws.com
+betabucket=wbeep-beta-website.s3-website-us-west-2.amazonaws.com
 
 # common prefix/suffix for Mapbox tile URL configuration
 hruprefix='"tiles": ["http://'

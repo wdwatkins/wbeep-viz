@@ -26,7 +26,7 @@ COPY . .
 # to set the correct S3 HRU tile source in the Mapbox configuration file.
 ARG BUILDTARGET=""
 ENV E_BUILDTARGET=$BUILDTARGET
-RUN chmod +x config.sh && config.sh
+RUN chmod +x ./config.sh && ./config.sh
 
 # Build the Vue app.
 RUN npm install
