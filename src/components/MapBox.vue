@@ -11,7 +11,6 @@
 <script>
     import mapboxgl from "mapbox-gl";
     import 'mapbox-gl/dist/mapbox-gl.css';
-
     let style = {
         version: 8,
         sources: {
@@ -20,13 +19,19 @@
                 url: "http://localhost:8086/data/basemap.json"
             },
             HRU: {
-                type: "vector",
-                url: "http://localhost:8085/data/new2.json",
-                // amazon S3 "tiles": ["http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf"],
-                // locally, you can run tileserver https://www.npmjs.com/package/tileserver-gl-light
-                // host the tiles in the /tiles dir with tileserver-gl-light /path/to/repo/tiles/new2.mbtiles -p 8085
-                // then change the line above to have the map look for local tileserver instead of s3 path
-                // url: 'http://127.0.0.1:8085/data/new2.json'
+            type: "vector",
+            // Do not modify the following comment since we will look for it with awk in order to
+            // automatically configure the proper S3 hru tile source based on whether we're
+            // building for production, test or qa:
+            // HRU SOURCE INSERT
+            //
+            // The inserted source will follow this form, with <target> being prod, qa, or test:
+            // "tiles": ["http://wbeep-<target>-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf"],
+            // 
+            // If you're manually building to run locally, you can run tileserver https://www.npmjs.com/package/tileserver-gl-light 
+            // and host the tiles in the /tiles dir with tileserver-gl-light /path/to/repo/tiles/new2.mbtiles -p 8085 
+            // then uncomment the line below to have the map look for local tileserver instead of s3 path
+            // url: 'http://127.0.0.1:8085/data/new2.json'
             }
         },
         "sprite": "",
@@ -79,7 +84,6 @@
                       "fill-opacity": 1
                   }
               },
-
               {
                   id: "HRUS",
                   type: "line",
@@ -177,7 +181,6 @@
           }
         ]
     }
-
     export default {
         name: 'MapBox',
         props: {
@@ -229,15 +232,12 @@
   #map {
     height: 900px;
   }
-
   .title-text {
     margin-left: 1.5rem;
     padding-top: 0.5rem;
   }
-
   hr {
     margin: 2px 0 0 0;
     padding-bottom: 0;
   }
 </style>
-

@@ -1,0 +1,61 @@
+pipeline {
+    agent {
+        node {
+            label 'project:any'
+        }
+    }
+
+    parameters {
+        choice(choices: ['prod', 'qa', 'test', 'beta'], description: 's3 bucket that the build will target', name: 'BUILD_DEST')
+    }
+
+    stages {
+        stage('clean workspace'){
+         steps{
+            cleanWs()
+         }
+        }
+        stage('checkout'){
+            steps{
+                checkout scm
+                }
+        }
+        stage('build') {
+            steps {
+                
+                sh """
+                    docker build . --tag="dockerinstance" --build-arg BUILDTARGET=${params.BUILD_DEST}
+                    docker run dockerinstance
+                    pathtemplate=":tmp/wbeep-viz-app/dist"
+                    dockerinstanceid=\$( docker ps -l -q )
+                    docker cp  "\${dockerinstanceid}\${pathtemplate}" $WORKSPACE
+                    docker rm "\${dockerinstanceid}"            
+                """
+
+            }
+        }
+        
+        stage('send to S3') {
+            steps {
+                script {
+                    if ("${params.BUILD_DEST}" == "prod") {
+                        targetDomain = "s3://wbeep-prod-website"
+                    }
+                    else if ("${params.BUILD_DEST}" == "qa") {
+                        targetDomain = "s3://wbeep-qa-website"
+                    }
+                    else if ("${params.BUILD_DEST}" == "test") {
+                        targetDomain = "s3://wbeep-test-website"
+                    }
+                    else {
+                        targetDomain = "s3://wbeep-beta-website"
+                    }
+                }
+                sh """
+                    aws s3 rm "${targetDomain}" --recursive --exclude "mbtiles/*" --exclude "tiles/*" --exclude "basemap/*"
+                    aws s3 cp $WORKSPACE/dist "${targetDomain}" --recursive
+                """
+            }
+        }
+    }
+}
