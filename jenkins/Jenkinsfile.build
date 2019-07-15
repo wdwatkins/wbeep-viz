@@ -38,18 +38,7 @@ pipeline {
         stage('send to S3') {
             steps {
                 script {
-                    if ("${params.BUILD_DEST}" == "prod") {
-                        targetDomain = "s3://wbeep-prod-website"
-                    }
-                    else if ("${params.BUILD_DEST}" == "qa") {
-                        targetDomain = "s3://wbeep-qa-website"
-                    }
-                    else if ("${params.BUILD_DEST}" == "test") {
-                        targetDomain = "s3://wbeep-test-website"
-                    }
-                    else {
                         targetDomain = "s3://wbeep-beta-website"
-                    }
                 }
                 sh """
                     aws s3 rm "${targetDomain}" --recursive --exclude "mbtiles/*" --exclude "tiles/*" --exclude "basemap/*"
