@@ -28,7 +28,7 @@ pipeline {
                     docker run dockerinstance
                     pathtemplate=":tmp/wbeep-viz-app/dist"
                     dockerinstanceid=\$( docker ps -l -q )
-                    docker cp  "\${dockerinstanceid}\${pathtemplate}" $WORKSPACE
+                    docker cp  "\${dockerinstanceid}\${pathtemplate}" "$WORKSPACE"
                     docker rm "\${dockerinstanceid}"            
                 """
 
