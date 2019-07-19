@@ -54,10 +54,7 @@
 
 <script>
     export default {
-        name: 'HeaderUSGS',
-        props: {
-            usgsLogoPath: String
-        }
+        name: 'HeaderUSGS'
     }
 </script>
 
