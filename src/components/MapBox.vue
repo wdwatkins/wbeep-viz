@@ -1,10 +1,12 @@
 <template>
   <div id="viz_container">
     <div class="usa-prose">
-      <h2 class="title-text">{{ title }}</h2>
+      <h2 class="title-text">
+        {{ title }}
+      </h2>
     </div>
     <hr>
-    <div id="map"/>
+    <div id="map" />
   </div>
 </template>
 
