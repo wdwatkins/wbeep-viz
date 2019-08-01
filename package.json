@@ -12,7 +12,8 @@
     "dns": "^0.2.2",
     "mapbox-gl": "^1.2.0",
     "uswds": "^2.0.3",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-mapbox": "^0.4.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.2",
