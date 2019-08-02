@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Added layer toggle for all layers, and added 'showButton' property to mapStyles.js to control display of buttons
+- Moved the map styles to a separate mapStyles.js 
+- Changed application to use vue-mapbox plugin
 - Dotted State lines to show its possible.
 - Added Cities to the basemap layers.
 - Changed basemap creation so  we have several source layers to avoid loading in all layers multiple times and filtering.  This way we only call the layer we want when we want

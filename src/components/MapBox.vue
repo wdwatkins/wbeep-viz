@@ -1,185 +1,60 @@
 <template>
   <div id="viz_container">
     <div class="usa-prose">
-      <h2 class="title-text">{{ title }}</h2>
+      <h2 class="title-text">
+        {{ title }}
+      </h2>
     </div>
     <hr>
-    <div id="map"/>
+
+    <nav id="menu"></nav>
+    <MglMap id="map"
+            :container="container"
+            :mapStyle="mapStyle"
+            :zoom="zoom"
+            :minZoom="minZoom"
+            :maxZoom="maxZoom"
+            :center="center"
+            @load="onMapLoaded"
+    >
+      <MglScaleControl
+          position="bottom-right"
+          unit="imperial"
+      />
+      <MglNavigationControl
+          position="bottom-right"
+          :showCompass="false"
+      />
+      <MglGeolocateControl
+          position="bottom-right"
+      />
+      <MglFullscreenControl
+          position="bottom-right"
+      />
+    </MglMap>
+
   </div>
 </template>
 
 <script>
-    import mapboxgl from "mapbox-gl";
-    import 'mapbox-gl/dist/mapbox-gl.css';
-
-    let style = {
-        version: 8,
-        sources: {
-            basemap: {
-                type: "vector",
-                url: "http://localhost:8086/data/basemap.json"
-            },
-            HRU: {
-                type: "vector",
-                url: "http://localhost:8085/data/new2.json",
-                // amazon S3 "tiles": ["http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf"],
-                // locally, you can run tileserver https://www.npmjs.com/package/tileserver-gl-light
-                // host the tiles in the /tiles dir with tileserver-gl-light /path/to/repo/tiles/new2.mbtiles -p 8085
-                // then change the line above to have the map look for local tileserver instead of s3 path
-                // url: 'http://127.0.0.1:8085/data/new2.json'
-            }
-        },
-        "sprite": "",
-        "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
-        "layers": [
-          {
-            "id": "bg",
-            "type": "background",
-            "paint": {
-              "background-color": "rgba(202, 210, 211, 1)"
-            }
-          },
-          {
-            "id": "states",
-            "type": "fill",
-            "source": "basemap",
-            "source-layer": "states",
-            "paint": {
-              "fill-color": "rgba(246, 246, 244, 1)"
-            }
-          },
-          {
-            "id": "neighbors",
-            "type": "fill",
-            "source": "basemap",
-            "source-layer": "neighboringcountry",
-            "layout": {},
-            "paint": {
-              "fill-color": "rgba(246, 246, 244, 1)"
-            }
-          },
-          {
-                  id: "HRUS2",
-                  type: "fill",
-                  source: "HRU",
-                  "source-layer": "no_simp_prec5",
-                  paint: {
-                      "fill-color": {
-                          "property": "SoilMoisture",
-                          "type": 'categorical',
-                          "stops": [
-                              ["","#000000"],
-                              ["very low","#CC4C02"],
-                              ["low", "#EDAA5F"],
-                              ["average","#FED98E"],
-                              ["high","#A7B9D7"],
-                              ["very high","#144873"],
-                          ]
-                      },
-                      "fill-opacity": 1
-                  }
-              },
-
-              {
-                  id: "HRUS",
-                  type: "line",
-                  source: "HRU",
-                  "source-layer": "no_simp_prec5",
-                  paint: {
-                      "line-color": {
-                          "property": "SoilMoisture",
-                          "type": 'categorical',
-                          "stops": [
-                              ["","#000000"],
-                              ["very low","#823102"],
-                              ["low", "#C28C4E"],
-                              ["average","#D0B275"],
-                              ["high","#8998B0"],
-                              ["very high","#113B5F"],
-                          ]
-                      },
-                      "line-width": 1
-                  },
-              },
-          {
-            "id": "rivers",
-            "type": "line",
-            "source": "basemap",
-            "source-layer": "USA_Rivers_and_Streams",
-            "minzoom": 5,
-            "layout": {},
-            "paint": {
-              "line-color": "rgba(115, 255, 255, 1)"
-            }
-          },
-          {
-            "id": "counties",
-            "type": "line",
-            "source": "basemap",
-            "source-layer": "counties",
-            "minzoom": 6,
-            "maxzoom": 24,
-            "paint": {
-              "line-color": "rgba(115, 255, 255, 1)"
-            }
-          },
-          {
-            "id": "statesBorder",
-            "type": "line",
-            "source": "basemap",
-            "source-layer": "states",
-            "layout": {},
-            "paint": {
-              "line-color": "rgba(115, 255, 255, 1)",
-              "line-dasharray": [
-                2,
-                1.5
-              ]
-            }
-          },
-          {
-            "id": "citiesDot",
-            "type": "circle",
-            "source": "basemap",
-            "source-layer": "Cities_and_Towns_NTAD",
-            "minzoom": 6,
-            "paint": {
-              "circle-radius": 4
-            }
-          },
-          {
-            "id": "cities",
-            "type": "symbol",
-            "source": "basemap",
-            "source-layer": "Cities_and_Towns_NTAD",
-            "minzoom": 6,
-            "layout": {
-              "text-field": "{NAME}",
-              "text-font": [
-                "Roboto Regular"
-              ],
-              "text-size": 12,
-              "symbol-placement": "point",
-              "text-line-height": 1.2,
-              "text-justify": "center",
-              "text-anchor": "bottom",
-              "text-offset": [
-                0,
-                -0.5
-              ]
-            },
-            "paint": {
-              "text-color": "rgba(255,255,255, 1)",
-              "text-halo-width": 1,
-              "text-halo-blur": 1,
-              "text-halo-color": "rgba(0, 0, 0, 0.5)",
-            }
-          }
-        ]
-    }
+    import {
+        MglMap,
+        MglNavigationControl,
+        MglGeolocateControl,
+        MglFullscreenControl,
+        MglScaleControl
+    } from "vue-mapbox";
+    import mapStyles from '../assets/mapStyles/mapStyles';
 
     export default {
         name: 'MapBox',
+        components: {
+            MglMap,
+            MglNavigationControl,
+            MglGeolocateControl,
+            MglFullscreenControl,
+            MglScaleControl
+        },
         props: {
             title: {
                 type: String,
@@ -187,57 +62,87 @@
             }
         },
         data() {
-            return {}
-        },
-        mounted() {
-            this.createMap();
-            this.addGeolocateControl();
-            this.addMapControls();
-            this.addFullscreenToggle();
+            return {
+                mapStyle: mapStyles.style,
+                container: 'map',
+                zoom: 4,
+                minZoom: 4,
+                maxZoom: 8,
+                center: [-95.7129, 37.0902]
+            }
         },
         methods: {
-            createMap() {
-                // init the map
-                this.map = new mapboxgl.Map({
-                    container: 'map',
-                    style: style,
-                    zoom: 4,
-                    minZoom: 4,
-                    maxZoom: 8,
-                    center: [-95.7129, 37.0902],
-                });
-            },
-            addGeolocateControl() {
-                this.map.addControl(new mapboxgl.GeolocateControl({
-                    positionOptions: {
-                        enableHighAccuracy: true
-                    },
-                    trackUserLocation: true
-                }));
-            },
-            addMapControls() {
-                this.map.addControl(new mapboxgl.NavigationControl());
-            },
-            addFullscreenToggle() {
-                this.map.addControl(new mapboxgl.FullscreenControl());
+            onMapLoaded(event) {
+                let map = event.map; // This gives us access to the map as an object but only after the map has loaded
+
+                // Next section gives us names for the layer toggle buttons
+                let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
+                let toggleableLayerIds = []; // gives us a blank array for the layer ids
+                // Gets the ids of each layer
+                for (let index = 0; index < styleLayers.length; index++) {
+                    if (styleLayers[index].showButton === true) { // note: to NOT show a layer, change the 'showButton' property in the mapStyles.js to false
+                        toggleableLayerIds.push(styleLayers[index].id)
+                    }
+                }
+
+                // Go through each layer id that is in the array and make a button element for it
+                for (let i = 0; i < toggleableLayerIds.length; i++) {
+                    let id = toggleableLayerIds[i];
+
+                    let link = document.createElement('button');
+                    link.href = '#';
+                    link.className = 'active';
+                    link.className = 'usa-button--accent-cool'; // adds USWDS button style to element
+                    link.textContent = id;
+
+                    // Creates a click event for each button so that when clicked by the user, the visibility property
+                    // is changed as is the class (color) of the button
+                    link.onclick = function (e) {
+                        let clickedLayer = this.textContent;
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        let visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+                        if (visibility === 'visible') {
+                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                            this.className = '';
+                            this.className = 'usa-button--base'; // adds USWDS button style to element
+                        } else {
+                            this.className = 'active';
+                            this.className = 'usa-button--accent-cool';
+                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+                        }
+                    };
+
+                    // Add the toggle layer buttons to the 'menu' element
+                    let layers = document.getElementById('menu');
+                    layers.appendChild(link);
+                }
             }
         }
     }
 </script>
 
-<style>
+
+<style scoped lang="scss">
+  @import"~mapbox-gl/dist/mapbox-gl.css";
+
   #map {
     height: 900px;
   }
 
+  /* override USWDS style to prevent title from wrapping too soon */
   .title-text {
     margin-left: 1.5rem;
     padding-top: 0.5rem;
   }
 
+  /* make the line below the title stay off the title but snug up to the map */
   hr {
     margin: 2px 0 0 0;
     padding-bottom: 0;
   }
+
 </style>
 
