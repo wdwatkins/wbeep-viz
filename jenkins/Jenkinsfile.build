@@ -24,8 +24,8 @@ pipeline {
             steps {
                 
                 sh """
-                    docker build . --tag="dockerinstance" --build-arg BUILDTARGET=${params.BUILD_DEST}
-                    docker run dockerinstance
+                    docker build . --tag="wbeep-viz-docker" --build-arg BUILDTARGET=${params.BUILD_DEST}
+                    docker run wbeep-viz-docker
                     pathtemplate=":tmp/wbeep-viz-app/dist"
                     dockerinstanceid=\$( docker ps -l -q )
                     docker cp  "\${dockerinstanceid}\${pathtemplate}" "$WORKSPACE"
