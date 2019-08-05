@@ -7,32 +7,32 @@
     </div>
     <hr>
 
-    <nav id="menu"></nav>
-    <MglMap id="map"
-            :container="container"
-            :mapStyle="mapStyle"
-            :zoom="zoom"
-            :minZoom="minZoom"
-            :maxZoom="maxZoom"
-            :center="center"
-            @load="onMapLoaded"
+    <nav id="menu" />
+    <MglMap
+      id="map"
+      :container="container"
+      :map-style="mapStyle"
+      :zoom="zoom"
+      :min-zoom="minZoom"
+      :max-zoom="maxZoom"
+      :center="center"
+      @load="onMapLoaded"
     >
       <MglScaleControl
-          position="bottom-right"
-          unit="imperial"
+        position="bottom-right"
+        unit="imperial"
       />
       <MglNavigationControl
-          position="bottom-right"
-          :showCompass="false"
+        position="bottom-right"
+        :show-compass="false"
       />
       <MglGeolocateControl
-          position="bottom-right"
+        position="bottom-right"
       />
       <MglFullscreenControl
-          position="bottom-right"
+        position="bottom-right"
       />
     </MglMap>
-
   </div>
 </template>
 
@@ -68,7 +68,8 @@
                 zoom: 4,
                 minZoom: 4,
                 maxZoom: 8,
-                center: [-95.7129, 37.0902]
+                center: [-95.7129, 37.0902],
+                hoveredHRUId: null
             }
         },
         methods: {
@@ -77,8 +78,8 @@
 
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
-                let toggleableLayerIds = []; // gives us a blank array for the layer ids
-                // Gets the ids of each layer
+                let toggleableLayerIds = [];
+
                 for (let index = 0; index < styleLayers.length; index++) {
                     if (styleLayers[index].showButton === true) { // note: to NOT show a layer, change the 'showButton' property in the mapStyles.js to false
                         toggleableLayerIds.push(styleLayers[index].id)
@@ -119,6 +120,28 @@
                     let layers = document.getElementById('menu');
                     layers.appendChild(link);
                 }
+
+                let hoveredHRUId = this.hoveredHRUId;
+                map.on("mousemove", "HRUS Fill Colors", function(e) {
+                    if (e.features.length > 0) {
+                        if (hoveredHRUId) {
+                            // map.setFeatureState({source: 'HRU', sourceLayer: 'HRUS Fill Colors', id: hoveredHRUId}, { hover: false});
+                        }
+                    // console.log('this is hoveredHRUID: ' + e.features[0].id)
+                        // hoveredHRUId = e.features[0].id;
+                        // map.setFeatureState({source: 'HRU', sourceLayer: 'HRUS Fill Colors', id: hoveredHRUId}, { hover: true});
+                    }
+                });
+                map.on("mouseleave", "HRUS Fill Colors", function() {
+                    console.log('this is 4: ' + hoveredHRUId)
+                    if (hoveredHRUId) {
+                        console.log('this is 5: ' + hoveredHRUId)
+                        // map.setFeatureState({source: 'HRU', sourceLayer: 'HRUS Fill Colors', id: hoveredHRUId}, { hover: false});
+                    }
+                    console.log('this is 6: ' + hoveredHRUId)
+                    hoveredHRUId =  null;
+
+                });
             }
         }
     }
