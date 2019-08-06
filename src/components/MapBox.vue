@@ -152,7 +152,7 @@
   @import"~mapbox-gl/dist/mapbox-gl.css";
 
   #map {
-    height: 900px;
+    height: 60vh;
   }
 
   /* override USWDS style to prevent title from wrapping too soon */
