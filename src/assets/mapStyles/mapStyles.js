@@ -8,11 +8,14 @@ export default {
             },
             HRU: {
                 type: "vector",
-                url: "http://localhost:8085/data/new2.json"
+                // url: "http://localhost:8085/data/new2.json"
+                // "tiles": ["https://d38anyyapxci3p.cloudfront.net/tiletemp/{z}/{x}/{y}.pbf"],
+                "tiles": ["https://d38anyyapxci3p.cloudfront.net/tiletemp_2/{z}/{x}/{y}.pbf"],
+
                 // amazon S3 "tiles": ["http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf"],
                 // locally, you can run tileserver https://www.npmjs.com/package/tileserver-gl-light
                 // host the tiles in the /tiles dir with tileserver-gl-light /path/to/repo/tiles/new2.mbtiles -p 8085
-                // then change the line above to have the map look for local tileserver instead of s3 path
+                // then, change the line above to have the map look for local tileserver instead of s3 path
                 // url: 'http://127.0.0.1:8085/data/new2.json'
             }
         },
@@ -60,7 +63,7 @@ export default {
                 id: "HRUS Fill Colors",
                 type: "fill",
                 source: "HRU",
-                "source-layer": "no_simp_prec5",
+                "source-layer": "hrus",
                 "layout": {
                     "visibility": "visible"
                 },
@@ -86,7 +89,7 @@ export default {
                 id: "HRUS Outlines",
                 type: "line",
                 source: "HRU",
-                "source-layer": "no_simp_prec5",
+                "source-layer": "hrus",
                 "layout": {
                     "visibility": "visible"
                 },
