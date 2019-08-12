@@ -7,32 +7,32 @@
     </div>
     <hr>
 
-    <nav id="menu"></nav>
-    <MglMap id="map"
-            :container="container"
-            :mapStyle="mapStyle"
-            :zoom="zoom"
-            :minZoom="minZoom"
-            :maxZoom="maxZoom"
-            :center="center"
-            @load="onMapLoaded"
+    <nav id="menu" />
+    <MglMap
+      id="map"
+      :container="container"
+      :map-style="mapStyle"
+      :zoom="zoom"
+      :min-zoom="minZoom"
+      :max-zoom="maxZoom"
+      :center="center"
+      @load="onMapLoaded"
     >
       <MglScaleControl
-          position="bottom-right"
-          unit="imperial"
+        position="bottom-right"
+        unit="imperial"
       />
       <MglNavigationControl
-          position="bottom-right"
-          :showCompass="false"
+        position="bottom-right"
+        :show-compass="false"
       />
       <MglGeolocateControl
-          position="bottom-right"
+        position="bottom-right"
       />
       <MglFullscreenControl
-          position="bottom-right"
+        position="bottom-right"
       />
     </MglMap>
-
   </div>
 </template>
 
