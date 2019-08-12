@@ -8,7 +8,7 @@ export default {
             },
             'HRU': {
                 'type': 'vector',
-                'url': 'http://localhost:8087/data/tiles_id.json'
+                'url': 'http://localhost:8085/data/tiles_id.json'
                 // "tiles": ["https://d38anyyapxci3p.cloudfront.net/tiletemp_2/{z}/{x}/{y}.pbf"],
                 // amazon S3 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf'],
                 // locally, you can run tileserver https://www.npmjs.com/package/tileserver-gl-light
