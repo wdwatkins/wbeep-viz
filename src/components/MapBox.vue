@@ -128,21 +128,16 @@
                         if (hoveredHRUId) {
                             map.setFeatureState({source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId}, { hover: false});
                         }
-                    console.log('this is hoveredHRUID: ' + e.features[0].id)
-                    console.log('this is features: ' + JSON.stringify(e.features[0]))
                         hoveredHRUId = e.features[0].id;
                         map.setFeatureState({source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId}, { hover: true});
                     }
                 });
                 map.on("mouseleave", "HRUS Fill Colors", function() {
-                    console.log('this is 4: ' + hoveredHRUId)
                     if (hoveredHRUId) {
                         console.log('this is 5: ' + hoveredHRUId)
                         map.setFeatureState({source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId}, { hover: false});
                     }
-                    console.log('this is 6: ' + hoveredHRUId)
                     hoveredHRUId =  null;
-
                 });
             }
         }
