@@ -39,7 +39,6 @@
 <script>
     import {
         MglMap,
-        MglRasterLayer,
         MglNavigationControl,
         MglGeolocateControl,
         MglFullscreenControl,
@@ -144,7 +143,6 @@
     }
 </script>
 
-
 <style scoped lang="scss">
   @import"~mapbox-gl/dist/mapbox-gl.css";
 
@@ -163,6 +161,4 @@
     margin: 2px 0 0 0;
     padding-bottom: 0;
   }
-
 </style>
-
