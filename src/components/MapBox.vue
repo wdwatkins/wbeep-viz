@@ -16,15 +16,8 @@
       :min-zoom="minZoom"
       :max-zoom="maxZoom"
       :center="center"
-      :access-token="accessToken"
       @load="onMapLoaded"
     >
-      <MglRasterLayer
-        :source-id="rasterSource.id"
-        :source="rasterSource"
-        layer-id="hillshading"
-        :layer="rasterLayer"
-      />
       <MglScaleControl
         position="bottom-right"
         unit="imperial"
@@ -58,7 +51,6 @@
         name: 'MapBox',
         components: {
             MglMap,
-            MglRasterLayer,
             MglNavigationControl,
             MglGeolocateControl,
             MglFullscreenControl,
@@ -78,16 +70,7 @@
                 minZoom: 4,
                 maxZoom: 8,
                 center: [-95.7129, 37.0902],
-                hoveredHRUId: null,
-                accessToken: 'pk.eyJ1IjoiYWJyaWdncyIsImEiOiJjandrd3J4bmMwcjNpNGFxZ2hoZGE2djR5In0.gKPNdhLzvbzui4aiIwAihA',
-                rasterSource: {'id': 'dem',
-                    "type": "raster-dem",
-                    "url": "mapbox://mapbox.terrain-rgb"
-                },
-                rasterLayer: {'id': 'hillshading',
-                    'type': 'hillshade',
-                    'source': 'dem',
-                    'showButton': true}
+                hoveredHRUId: null
             }
         },
         methods: {
