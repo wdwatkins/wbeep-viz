@@ -68,7 +68,8 @@
                 zoom: 4,
                 minZoom: 4,
                 maxZoom: 8,
-                center: [-95.7129, 37.0902]
+                center: [-95.7129, 37.0902],
+                hoveredHRUId: null
             }
         },
         methods: {
@@ -77,8 +78,8 @@
 
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
-                let toggleableLayerIds = []; // gives us a blank array for the layer ids
-                // Gets the ids of each layer
+                let toggleableLayerIds = [];
+
                 for (let index = 0; index < styleLayers.length; index++) {
                     if (styleLayers[index].showButton === true) { // note: to NOT show a layer, change the 'showButton' property in the mapStyles.js to false
                         toggleableLayerIds.push(styleLayers[index].id)
@@ -119,11 +120,28 @@
                     let layers = document.getElementById('menu');
                     layers.appendChild(link);
                 }
+
+                let hoveredHRUId = this.hoveredHRUId;
+                map.on("mousemove", "HRUS Fill Colors", function(e) {
+                    if (e.features.length > 0) {
+                        if (hoveredHRUId) {
+                            map.setFeatureState({source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId}, { hover: false});
+                        }
+                        hoveredHRUId = e.features[0].id;
+                        map.setFeatureState({source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId}, { hover: true});
+                    }
+                });
+                map.on("mouseleave", "HRUS Fill Colors", function() {
+                    if (hoveredHRUId) {
+                        console.log('this is 5: ' + hoveredHRUId)
+                        map.setFeatureState({source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId}, { hover: false});
+                    }
+                    hoveredHRUId =  null;
+                });
             }
         }
     }
 </script>
-
 
 <style scoped lang="scss">
   @import"~mapbox-gl/dist/mapbox-gl.css";
@@ -143,6 +161,4 @@
     margin: 2px 0 0 0;
     padding-bottom: 0;
   }
-
 </style>
-
