@@ -7,7 +7,11 @@
     </div>
     <hr>
 
-    <nav id="menu" />
+    <nav id="menu">
+
+    </nav>
+    <LayerToggle></LayerToggle>
+    <MapLegend :legend-title="legendTitle"></MapLegend>
     <MglMap
       id="map"
       :container="container"
@@ -18,6 +22,7 @@
       :center="center"
       @load="onMapLoaded"
     >
+
       <MglScaleControl
         position="bottom-right"
         unit="imperial"
@@ -37,6 +42,8 @@
 </template>
 
 <script>
+    import MapLegend from './MapLegend'
+    import LayerToggle from "./LayerToggle";
     import {
         MglMap,
         MglNavigationControl,
@@ -53,13 +60,15 @@
             MglNavigationControl,
             MglGeolocateControl,
             MglFullscreenControl,
-            MglScaleControl
+            MglScaleControl,
+            MapLegend,
+            LayerToggle
         },
         props: {
             title: {
                 type: String,
                 default: 'Add your title in App.vue or make this blank'
-            }
+            },
         },
         data() {
             return {
@@ -69,12 +78,19 @@
                 minZoom: 4,
                 maxZoom: 8,
                 center: [-95.7129, 37.0902],
-                hoveredHRUId: null
+                hoveredHRUId: null,
+                legendTitle:'is a title needed?'
             }
         },
         methods: {
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded
+
+                // map.fitBounds([[
+                //     -126, 49
+                // ], [
+                //     -66, 24
+                // ]]);
 
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
@@ -118,9 +134,11 @@
 
                     // Add the toggle layer buttons to the 'menu' element
                     let layers = document.getElementById('menu');
+                    console.log(layers)
                     layers.appendChild(link);
                 }
 
+                // next section controls the HRU hover effect
                 let hoveredHRUId = this.hoveredHRUId;
                 map.on("mousemove", "HRUS Fill Colors", function(e) {
                     if (e.features.length > 0) {
@@ -133,7 +151,6 @@
                 });
                 map.on("mouseleave", "HRUS Fill Colors", function() {
                     if (hoveredHRUId) {
-                        console.log('this is 5: ' + hoveredHRUId)
                         map.setFeatureState({source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId}, { hover: false});
                     }
                     hoveredHRUId =  null;
@@ -145,6 +162,11 @@
 
 <style scoped lang="scss">
   @import"~mapbox-gl/dist/mapbox-gl.css";
+  #menu {
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
 
   #map {
     height: 60vh;

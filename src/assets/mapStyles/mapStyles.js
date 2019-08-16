@@ -82,7 +82,7 @@ export default {
                             ['low', '#EDAA5F'],
                             ['average','#FED98E'],
                             ['high','#A7B9D7'],
-                            ['very high','#144873'],
+                            ['very high','#144873']
                         ]
                     },
                     'fill-opacity': ['case',
