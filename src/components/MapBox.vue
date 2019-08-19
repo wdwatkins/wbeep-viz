@@ -86,8 +86,8 @@ export default {
       this.map = new mapboxgl.Map({
         container: 'map',
         style: style,
-        zoom: 4,
-        minZoom: 4,
+        zoom: 3,
+        minZoom: 3,
         maxZoom: 8,
         center: [-95.7129, 37.0902],
       });
