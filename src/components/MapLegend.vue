@@ -79,12 +79,13 @@
 
 <style scoped lang="scss">
   .map-overlay {
+    font-family: 'merriweather',serif;
+    border-style: groove;
     position: absolute;
     bottom: 190px;
     left: 10px;
     background: rgba(255, 255, 255, 0.8);
     margin-right: 120px;
-    font-family: Arial, sans-serif;
     overflow: auto;
     border-radius: 3px;
     padding: 5px;
