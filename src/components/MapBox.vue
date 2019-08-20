@@ -13,7 +13,6 @@
         class="layer-toggle"
       />
     </div>
-    <LayerToggle />
     <MapLegend :legend-title="legendTitle" />
     <MglMap
       id="map"
@@ -45,7 +44,6 @@
 
 <script>
     import MapLegend from './MapLegend'
-    import LayerToggle from "./LayerToggle";
     import {
         MglMap,
         MglNavigationControl,
@@ -63,8 +61,7 @@
             MglGeolocateControl,
             MglFullscreenControl,
             MglScaleControl,
-            MapLegend,
-            LayerToggle
+            MapLegend
         },
         props: {
             title: {
@@ -87,12 +84,6 @@
         methods: {
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded
-
-                // map.fitBounds([[
-                //     -126, 49
-                // ], [
-                //     -66, 24
-                // ]]);
 
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
@@ -165,10 +156,6 @@
     background-color: white;
   }
 
-  nav {
-    background-color: red;
-  }
-
   #map {
     position: absolute;
     z-index: -1;
@@ -176,44 +163,6 @@
     bottom: 0;
     width: 100%;
   }
-  /*#layer-bar {*/
-  /*  width: 100%;*/
-  /*  background-color: yellow;*/
-  /*  padding: 4px 4px 5px 4px;*/
-  /*  overflow: auto;*/
-  /*}*/
-
-  /*#layer-bar a {*/
-  /*  background-color: blue;*/
-  /*  float: left;*/
-  /*  padding: 12px;*/
-  /*  color: white;*/
-  /*  text-decoration: none;*/
-  /*  font-size: 17px;*/
-  /*  width: 10%;*/
-  /*  text-align: center;*/
-  /*}*/
-
-  /*#layer-bar a:hover {*/
-  /*  background-color: #000;*/
-  /*}*/
-
-  /*#layer-bar a.active {*/
-  /*  background-color: #4CAF50;*/
-  /*}*/
-
-
-
-  /*@media screen and (max-width: 500px) {*/
-  /*  .layer-toggle a {*/
-  /*    float: none;*/
-  /*    display: block;*/
-  /*    width: 100%;*/
-  /*    text-align: left;*/
-  /*  }*/
-  /*}*/
-
-
 
   /* override USWDS style to prevent title from wrapping too soon */
   .title-text {

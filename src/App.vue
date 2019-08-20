@@ -3,7 +3,7 @@
     <HeaderUSWDSBanner />
     <HeaderUSGS />
     <!--    <HeaderUSWDSSelections title="Water Budget Estimation and Evaluation" />-->
-    <MapBox title="A Title Related to Water Availability" />
+    <MapBox title="Current status of natural water availability across the Continental U.S." />
     <FooterUSGS />
   </div>
 </template>
