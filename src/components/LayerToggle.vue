@@ -1,6 +1,9 @@
 <template>
   <div id="layer_toggle_container">
-    <font-awesome-icon icon="layer-group" class="layer-icon"/>
+    <font-awesome-icon
+      icon="layer-group"
+      class="layer-icon"
+    />
   </div>
 </template>
 

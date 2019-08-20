@@ -34,7 +34,7 @@ export default {
                     'visibility': 'visible'
                 },
                 'paint': {
-                    'background-color': 'rgba(202, 210, 211, 1)'
+                    'background-color': 'rgba(233, 245, 245, 0.5)'
                 },
                 'showButton': true
             },
@@ -52,19 +52,6 @@ export default {
                 'showButton': true
             },
             {
-                'id': 'Neighboring Countries',
-                'type': 'fill',
-                'source': 'basemap',
-                'source-layer': 'neighboringcountry',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'fill-color': 'rgba(246, 246, 244, 1)'
-                },
-                'showButton': true
-            },
-            {
                 'id': 'HRUS Fill Colors',
                 'type': 'fill',
                 'source': 'HRU',
@@ -77,12 +64,12 @@ export default {
                         'property': 'SoilMoisture',
                         'type': 'categorical',
                         'stops': [
-                            ["",'#000000'],
-                            ['very low','#CC4C02'],
-                            ['low', '#EDAA5F'],
-                            ['average','#FED98E'],
+                            ['very high','#144873'],
                             ['high','#A7B9D7'],
-                            ['very high','#144873']
+                            ['average','#FED98E'],
+                            ['low', '#EDAA5F'],
+                            ['very low','#CC4C02'],
+                            ["",'#000000'],
                         ]
                     },
                     'fill-opacity': ['case',
@@ -120,6 +107,19 @@ export default {
                 'showButton': true
             },
             {
+                'id': 'Neighboring Countries',
+                'type': 'fill',
+                'source': 'basemap',
+                'source-layer': 'neighboringcountry',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'fill-color': 'rgba(237, 236, 232, 1)'
+                },
+                'showButton': true
+            },
+            {
                 'id': 'Rivers',
                 'type': 'line',
                 'source': 'basemap',
@@ -144,7 +144,7 @@ export default {
                     'visibility': 'visible'
                 },
                 'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
+                    'line-color': 'rgba(218, 234, 240, 1)'
                 },
                 'showButton': true
             },
@@ -157,7 +157,7 @@ export default {
                     'visibility': 'visible'
                 },
                 'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)',
+                    'line-color': 'rgba(218, 234, 240, 1)',
                     'line-dasharray': [
                         2,
                         1.5

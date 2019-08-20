@@ -1,17 +1,20 @@
 <template>
   <div id="viz_container">
-    <div class="usa-prose">
-      <h2 class="title-text">
-        {{ title }}
-      </h2>
+    <div class="header-container">
+      <div class="usa-prose">
+        <h2 class="title-text">
+          {{ title }}
+        </h2>
+      </div>
+      <hr>
+
+      <nav
+        id="layer-bar"
+        class="layer-toggle"
+      />
     </div>
-    <hr>
-
-    <nav id="menu">
-
-    </nav>
-    <LayerToggle></LayerToggle>
-    <MapLegend :legend-title="legendTitle"></MapLegend>
+    <LayerToggle />
+    <MapLegend :legend-title="legendTitle" />
     <MglMap
       id="map"
       :container="container"
@@ -22,7 +25,6 @@
       :center="center"
       @load="onMapLoaded"
     >
-
       <MglScaleControl
         position="bottom-right"
         unit="imperial"
@@ -79,7 +81,7 @@
                 maxZoom: 8,
                 center: [-95.7129, 37.0902],
                 hoveredHRUId: null,
-                legendTitle:'is a title needed?'
+                legendTitle: 'Calculated Availability'
             }
         },
         methods: {
@@ -108,8 +110,7 @@
 
                     let link = document.createElement('button');
                     link.href = '#';
-                    link.className = 'active';
-                    link.className = 'usa-button--accent-cool'; // adds USWDS button style to element
+                    link.className = 'usa-button--accent-cool';
                     link.textContent = id;
 
                     // Creates a click event for each button so that when clicked by the user, the visibility property
@@ -123,18 +124,15 @@
 
                         if (visibility === 'visible') {
                             map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                            this.className = '';
-                            this.className = 'usa-button--base'; // adds USWDS button style to element
+                            this.className = 'usa-button--base';
                         } else {
-                            this.className = 'active';
                             this.className = 'usa-button--accent-cool';
                             map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
                         }
                     };
 
-                    // Add the toggle layer buttons to the 'menu' element
-                    let layers = document.getElementById('menu');
-                    console.log(layers)
+                    // Add the toggle layer buttons to the 'layer-bar' element
+                    let layers = document.getElementById('layer-bar');
                     layers.appendChild(link);
                 }
 
@@ -162,15 +160,60 @@
 
 <style scoped lang="scss">
   @import"~mapbox-gl/dist/mapbox-gl.css";
-  #menu {
-    position: relative;
-    top: 0px;
-    left: 0px;
+
+  .header-container {
+    background-color: white;
+  }
+
+  nav {
+    background-color: red;
   }
 
   #map {
-    height: 60vh;
+    position: absolute;
+    z-index: -1;
+    top: 100px;
+    bottom: 0;
+    width: 100%;
   }
+  /*#layer-bar {*/
+  /*  width: 100%;*/
+  /*  background-color: yellow;*/
+  /*  padding: 4px 4px 5px 4px;*/
+  /*  overflow: auto;*/
+  /*}*/
+
+  /*#layer-bar a {*/
+  /*  background-color: blue;*/
+  /*  float: left;*/
+  /*  padding: 12px;*/
+  /*  color: white;*/
+  /*  text-decoration: none;*/
+  /*  font-size: 17px;*/
+  /*  width: 10%;*/
+  /*  text-align: center;*/
+  /*}*/
+
+  /*#layer-bar a:hover {*/
+  /*  background-color: #000;*/
+  /*}*/
+
+  /*#layer-bar a.active {*/
+  /*  background-color: #4CAF50;*/
+  /*}*/
+
+
+
+  /*@media screen and (max-width: 500px) {*/
+  /*  .layer-toggle a {*/
+  /*    float: none;*/
+  /*    display: block;*/
+  /*    width: 100%;*/
+  /*    text-align: left;*/
+  /*  }*/
+  /*}*/
+
+
 
   /* override USWDS style to prevent title from wrapping too soon */
   .title-text {

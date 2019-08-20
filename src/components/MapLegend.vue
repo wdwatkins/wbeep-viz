@@ -1,10 +1,15 @@
 <template>
-  <div id='map_legend_container' class='map-overlay'>
+  <div
+    id="map_legend_container"
+    class="map-overlay"
+  >
     <p>{{ legendTitle }}</p>
   </div>
 </template>
 
 <script>
+  import mapStyles from '../assets/mapStyles/mapStyles';
+
   export default {
       name: 'MapLegend',
       props: {
@@ -23,20 +28,45 @@
       },
       methods: {
         createLegend() {
+            // get the style layers from the map styles object
+            let styleLayers = mapStyles.style.layers;
+            let colors = [];
+            let layers = [];
+            // look through the styles layers to find the one with the Hydrological Response Unit fill colors
+            for (let index = 0; index < styleLayers.length; index++) {
+                if (styleLayers[index].id === 'HRUS Fill Colors') {
+                    // Get the fill color values and names then put them in separate lists
+                    let hruColors = styleLayers[index].paint['fill-color'].stops;
+                    let hruColorLabel = null;
+                    for (let index = 0; index < hruColors.length; index ++) {
+                        // Make a label for the blank and missing data
+                        if (hruColors[index][0] === '') {
+                            hruColorLabel = 'no data';
+                        } else {
+                            hruColorLabel = hruColors[index][0];
+                        }
+                        colors.push(hruColors[index][1]);
+                        layers.push(hruColorLabel);
+                    }
+                }
+            }
+
             let legend = this.legend;
             legend = document.getElementById('map_legend_container');
-            let layers = ['very low', 'low', 'average', 'high', 'very high', 'no data'];
-            let colors = ['#CC4C02', '#EDAA5F', '#FED98E', '#A7B9D7', '#144873', '#000000'];
 
             for (let index = 0; index < layers.length; index++) {
                 let layer = layers[index];
                 let color = colors[index];
                 let item = document.createElement('div');
                 let key = document.createElement('span');
-                key.className = 'legend-key';
-                key.style.backgroundColor = color;
 
+                key.style.backgroundColor = color;
+                key.style.marginRight = '5px';
+                key.style.display = 'inline-block';
+                key.style.height = '10px';
+                key.style.width = '10px';
                 let value = document.createElement('span');
+
                 value.innerHTML = layer;
                 item.appendChild(key);
                 item.appendChild(value);
@@ -48,22 +78,16 @@
 </script>
 
 <style scoped lang="scss">
-  #MapLegendDiv {
-    background-color: red;
-    z-index: 1;
-    padding: 10px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    line-height: 18px;
-    height: 150px;
-    margin-bottom: 40px;
-    width: 100px;
+  .map-overlay {
+    position: absolute;
+    bottom: 190px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    margin-right: 120px;
+    font-family: Arial, sans-serif;
+    overflow: auto;
+    border-radius: 3px;
+    padding: 5px;
   }
 
-  .legend-key {
-    display: inline-block;
-    border-radius: 20%;
-    width: 10px;
-    height: 10px;
-    margin-right: 5px;
-  }
 </style>

@@ -2,7 +2,7 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <HeaderUSWDSSelections title="Water Budget Estimation and Evaluation" />
+    <!--    <HeaderUSWDSSelections title="Water Budget Estimation and Evaluation" />-->
     <MapBox title="A Title Related to Water Availability" />
     <FooterUSGS />
   </div>
@@ -20,7 +20,7 @@
         components: {
             HeaderUSWDSBanner,
             HeaderUSGS,
-            HeaderUSWDSSelections,
+            // HeaderUSWDSSelections,
             MapBox,
             FooterUSGS
         }
