@@ -308,6 +308,9 @@ Do not modify the comment lines containing BASE SOURCE INSERT or HRU SOURCE INSE
 The configuration script uses these as a reference point to insert the correct tile URLs for 
 a given build.
 
+The build process will remove all existing files from the targeted S3 bucket except for
+the basetiles and tiles directories and their contents.
+
 A variety of build scenarios are supported via build parameters in Jenkins:
 - if no build destination is selected and no tile source is specified, then the application will be deployed to test and source its tiles from test
 - if a build destination is selected but no tile source is specified, then the application will be deployed to the selected destination with tiles sourced from prod for all builds except test, which will source the tiles from test
