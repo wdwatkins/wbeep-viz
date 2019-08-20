@@ -2,7 +2,6 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <!--    <HeaderUSWDSSelections title="Water Budget Estimation and Evaluation" />-->
     <MapBox title="Current status of natural water availability across the Continental U.S." />
     <FooterUSGS />
   </div>
@@ -10,7 +9,6 @@
 
 <script>
     import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
-    import HeaderUSWDSSelections from './components/HeaderUSWDSSelections'
     import HeaderUSGS from './components/HeaderUSGS'
     import MapBox from './components/MapBox'
     import FooterUSGS from './components/FooterUSGS'
@@ -20,7 +18,6 @@
         components: {
             HeaderUSWDSBanner,
             HeaderUSGS,
-            // HeaderUSWDSSelections,
             MapBox,
             FooterUSGS
         }

@@ -67,7 +67,7 @@
             title: {
                 type: String,
                 default: 'Add your title in App.vue or make this blank'
-            },
+            }
         },
         data() {
             return {
@@ -157,11 +157,7 @@
   }
 
   #map {
-    position: absolute;
-    z-index: -1;
-    top: 100px;
-    bottom: 0;
-    width: 100%;
+    height: 60vh;
   }
 
   /* override USWDS style to prevent title from wrapping too soon */
