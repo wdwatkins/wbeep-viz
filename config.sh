@@ -29,11 +29,6 @@ globalTileSuffix='/{z}/{x}/{y}.pbf"],'
 hruTileLocation='/tiles'
 baseTileLocation='/basetiles'
 
-# Since most build cases will use tiles from prod, we'll set
-# that as the default tile source location
-hruSource="$globalTilePrefix$prodBucket$hruTileLocation$globalTileSuffix"
-baseSource="$globalTilePrefix$prodBucket$baseTileLocation$globalTileSuffix"
-
 # Most builds will use tiles from prod.  The only exceptions are if
 # the tile source (passed in $E_TILESOURCE) is manually set to "test",
 # or if we are bulding to test.  Note that if $E_TILESOURCE is not
