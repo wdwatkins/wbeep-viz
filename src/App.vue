@@ -9,22 +9,22 @@
 </template>
 
 <script>
-  import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
-  import HeaderUSWDSSelections from './components/HeaderUSWDSSelections'
-  import HeaderUSGS from './components/HeaderUSGS'
-  import MapBox from './components/MapBox'
-  import FooterUSGS from './components/FooterUSGS'
+    import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
+    import HeaderUSWDSSelections from './components/HeaderUSWDSSelections'
+    import HeaderUSGS from './components/HeaderUSGS'
+    import MapBox from './components/MapBox'
+    import FooterUSGS from './components/FooterUSGS'
 
-export default {
-  name: 'App',
-  components: {
-    HeaderUSWDSBanner,
-    HeaderUSGS,
-    HeaderUSWDSSelections,
-    MapBox,
-    FooterUSGS
-  }
-}
+    export default {
+        name: 'App',
+        components: {
+            HeaderUSWDSBanner,
+            HeaderUSGS,
+            HeaderUSWDSSelections,
+            MapBox,
+            FooterUSGS
+        }
+    }
 </script>
 
 <style lang="scss">
