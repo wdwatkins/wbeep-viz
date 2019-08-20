@@ -65,8 +65,8 @@
             return {
                 mapStyle: mapStyles.style,
                 container: 'map',
-                zoom: 4,
-                minZoom: 4,
+                zoom: 3,
+                minZoom: 3,
                 maxZoom: 8,
                 center: [-95.7129, 37.0902],
                 hoveredHRUId: null
