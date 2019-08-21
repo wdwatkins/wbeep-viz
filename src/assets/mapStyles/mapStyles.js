@@ -18,7 +18,8 @@ export default {
                 // is required.
                 // NOTE: this location is under development and may change. If you suddenly lose your HRUs from the map, it
                 // may be that we have moved the HRU tiles to a new location on S3.
-                'tiles': ['https://d38anyyapxci3p.cloudfront.net/testTiles_5/{z}/{x}/{y}.pbf']
+                'tiles': ['https://d38anyyapxci3p.cloudfront.net/tiles_10/{z}/{x}/{y}.pbf']
+                // 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 // url: 'http://localhost:8085/data/new2.json'
                 // The above URL is an example for using a local mbtiles file and a tile server. See the readme for more
                 // information: https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
