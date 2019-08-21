@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Added Legend
 - Added hover effect to HRUs
 - Changed to allow tile assets to be pulled from S3
 - Added layer toggle for all layers, and added 'showButton' property to mapStyles.js to control display of buttons
