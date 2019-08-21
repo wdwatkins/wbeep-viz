@@ -157,7 +157,7 @@
   }
 
   #map {
-    height: 60vh;
+    height: 70vh;
   }
 
   /* override USWDS style to prevent title from wrapping too soon */
