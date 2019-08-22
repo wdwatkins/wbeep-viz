@@ -16,10 +16,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
 # Create temp directory for building viz app
 RUN mkdir -p /tmp/wbeep-viz-app
 
-# Copy source code.  Note that we need to exclude the mbtiles
-# directory from the repo using .dockerignore because 
-# we're only building the viz (tiles are created separately -
-# mbtiles is included in the repo for local test builds).
+# Copy source code
 WORKDIR /tmp/wbeep-viz-app
 COPY . .
 # Set environment variables for build target and tile source and then run config.sh
