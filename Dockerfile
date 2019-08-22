@@ -22,10 +22,12 @@ RUN mkdir -p /tmp/wbeep-viz-app
 # mbtiles is included in the repo for local test builds).
 WORKDIR /tmp/wbeep-viz-app
 COPY . .
-# Set environment variable for build target and then run config.sh
-# to set the correct S3 HRU tile source in the Mapbox configuration file.
-ARG BUILDTARGET=""
+# Set environment variables for build target and tile source and then run config.sh
+# to insert the correct S3 tile source URLs in the Mapbox configuration file.
+ARG BUILDTARGET="test"
+ARG TILESOURCE="default"
 ENV E_BUILDTARGET=$BUILDTARGET
+ENV E_TILESOURCE=$TILESOURCE
 RUN chmod +x ./config.sh && ./config.sh
 
 # Build the Vue app.

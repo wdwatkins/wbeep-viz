@@ -29,17 +29,15 @@ globalTileSuffix='/{z}/{x}/{y}.pbf"],'
 hruTileLocation='/tiles'
 baseTileLocation='/basetiles'
 
-# Most builds will use tiles from prod.  The only exceptions are if
-# the tile source (passed in $E_TILESOURCE) is manually set to "test",
-# or if we are bulding to test.  Note that if $E_TILESOURCE is not
-# present or is "default" then we use default tile locations.
-if [(($E_TILESOURCE == 'default' || -z "$E_TILESOURCE") && $E_BUILDTARGET == 'test') || ($E_TILESOURCE == 'test') ]
+# Set default tile location to prod and override if we are building to
+# test or if a non-default tile source is specified.
+hruSource="$globalTilePrefix$prodBucket$hruTileLocation$globalTileSuffix"
+baseSource="$globalTilePrefix$prodBucket$baseTileLocation$globalTileSuffix" 
+
+if [ \( "$E_BUILDTARGET" = "test" -a "$E_TILESOURCE" != "prod" \) -o \( "$E_TILESOURCE" = "test" \) ];
 then
   hruSource="$globalTilePrefix$testBucket$hruTileLocation$globalTileSuffix"
   baseSource="$globalTilePrefix$testBucket$baseTileLocation$globalTileSuffix"   
-else
-  hruSource="$globalTilePrefix$prodBucket$hruTileLocation$globalTileSuffix"
-  baseSource="$globalTilePrefix$prodBucket$baseTileLocation$globalTileSuffix" 
 fi
 
 # Insert HRU and base tile URLs into Mapbox configuration file
