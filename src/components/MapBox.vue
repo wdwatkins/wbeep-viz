@@ -111,6 +111,7 @@
                     let link = document.createElement('button');
                     link.href = '#';
                     link.className = 'usa-button--accent-cool';
+                    link.width = 10;
                     link.textContent = id;
 
                     // Creates a click event for each button so that when clicked by the user, the visibility property
