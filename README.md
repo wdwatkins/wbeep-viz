@@ -296,3 +296,23 @@ the name in the in the style variable URL. The reference in the URL is to the fi
 One you have the tile servers and the Vue Development server running you are ready to check out the
 application complete with map. Enjoy!
 
+
+## Automated Builds
+
+The project includes Docker and Jenkins files as well as a configuration shell script to support 
+automated building of the Vue app via Jenkins (tiles are built in a separate process).  
+Note that the hard-coded tile URLs in src/mapStyles/mapStyles.js are commented out
+to facilitate this process.  You can uncomment them if you are doing a local build, but they
+should remain commented out in the repository.  
+
+Do not modify the comment lines containing BASE SOURCE INSERT or HRU SOURCE INSERT. 
+The configuration script uses these as a reference point to insert the correct tile URLs for 
+a given build.
+
+The build process will remove all existing files from the targeted S3 bucket except for
+the basetiles and tiles directories and their contents.
+
+A variety of build scenarios are supported via build parameters in Jenkins:
+- if no build destination is selected and no tile source is specified, then the application will be deployed to test and source its tiles from test
+- if a build destination is selected but no tile source is specified, then the application will be deployed to the selected destination with tiles sourced from prod for all builds except test, which will source the tiles from test
+- if a tile source is specified it will override the above behavior, so for example you could build to test using production tiles
