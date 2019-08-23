@@ -23,6 +23,8 @@
       :min-zoom="minZoom"
       :max-zoom="maxZoom"
       :center="center"
+      :pitch="pitch"
+      :bearing="bearing"
       @load="onMapLoaded"
     >
       <MglScaleControl
@@ -80,6 +82,8 @@
                 minZoom: 3,
                 maxZoom: 8,
                 center: [-95.7129, 37.0902],
+                pitch: 0, // tips the map from 0 to 60 degrees
+                bearing: 0, // starting rotation of the map from 0 to 360
                 hoveredHRUId: null,
                 legendTitle: 'Calculated Availability'
             }
