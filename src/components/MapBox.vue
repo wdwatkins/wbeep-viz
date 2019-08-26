@@ -8,10 +8,9 @@
       </div>
       <hr>
 
-      <nav
-        id="layer-bar"
-        class="layer-toggle"
-      ></nav>
+      <div class="mapbox_component-topnav" id="mapbox_component-layer-toggle">
+        <a href="#" class="active" id="map-layers-label">Map Layers</a>
+      </div>
     </div>
     <MapLegend :legend-title="legendTitle" />
     <MglMap
@@ -112,7 +111,6 @@
                     let link = document.createElement('a');
                     link.href = '#';
                     link.className = 'active';
-                    link.width = 10;
                     link.textContent = id;
 
                     // Creates a click event for each button so that when clicked by the user, the visibility property
@@ -133,9 +131,8 @@
                         }
                     };
 
-                    // Add the toggle layer buttons to the 'layer-bar' element
-                    let layers = document.getElementById('layer-bar');
-                    layers.appendChild(link);
+                    let layerToggleList = document.getElementById('mapbox_component-layer-toggle');
+                    layerToggleList.appendChild(link);
                 }
 
                 // next section controls the HRU hover effect
@@ -167,9 +164,11 @@
     background-color: white;
   }
 
-  .layer-toggle {
-    background-color: #333;
-    overflow: hidden;
+  #map-layers-label::after {
+    content: "|";
+    padding-left: 10px;
+    float: right;
+    color: #fff;
   }
 
   #map {
@@ -179,44 +178,6 @@
     bottom: 0;
     width: 100%;
   }
-  /*#layer-bar {*/
-  /*  width: 100%;*/
-  /*  background-color: yellow;*/
-  /*  padding: 4px 4px 5px 4px;*/
-  /*  overflow: auto;*/
-  /*}*/
-
-  /*#layer-bar a {*/
-  /*  background-color: blue;*/
-  /*  float: left;*/
-  /*  padding: 12px;*/
-  /*  color: white;*/
-  /*  text-decoration: none;*/
-  /*  font-size: 17px;*/
-  /*  width: 10%;*/
-  /*  text-align: center;*/
-  /*}*/
-
-  /*#layer-bar a:hover {*/
-  /*  background-color: #000;*/
-  /*}*/
-
-  /*#layer-bar a.active {*/
-  /*  background-color: #4CAF50;*/
-  /*}*/
-
-
-
-  /*@media screen and (max-width: 500px) {*/
-  /*  .layer-toggle a {*/
-  /*    float: none;*/
-  /*    display: block;*/
-  /*    width: 100%;*/
-  /*    text-align: left;*/
-  /*  }*/
-  /*}*/
-
-
 
   /* override USWDS style to prevent title from wrapping too soon */
   .title-text {
@@ -229,4 +190,42 @@
     margin: 2px 0 0 0;
     padding-bottom: 0;
   }
+</style>
+<style>
+  /* Add a black background color to the top navigation */
+  .mapbox_component-topnav {
+    background-color: #4574a3;
+    overflow: hidden;
+  }
+
+  /* Style the links inside the navigation bar */
+  .mapbox_component-topnav a {
+    float: left;
+    display: block;
+    color: #8cb9f2;
+    text-align: center;
+    padding: 10px 16px;
+    margin: 2px 0;
+    text-decoration: none;
+    background-color: #00264c;
+    font-size: 17px;
+  }
+
+  /* Change the color of links on hover */
+  .mapbox_component-topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  /* Add an active class to highlight the current page */
+  .mapbox_component-topnav a.active {
+    background-color: #4574a3;
+    color: white;
+  }
+
+  /* Hide the link that should open and close the topnav on small screens */
+  .mapbox_component-topnav .icon {
+    display: none;
+  }
+
 </style>
