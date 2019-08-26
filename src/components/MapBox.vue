@@ -11,7 +11,7 @@
       <nav
         id="layer-bar"
         class="layer-toggle"
-      />
+      ></nav>
     </div>
     <LayerToggle />
     <MapLegend :legend-title="legendTitle" />
@@ -80,7 +80,7 @@
                 container: 'map',
                 zoom: 3,
                 minZoom: 3,
-                maxZoom: 8,
+                maxZoom: 9,
                 center: [-95.7129, 37.0902],
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
@@ -112,9 +112,9 @@
                 for (let i = 0; i < toggleableLayerIds.length; i++) {
                     let id = toggleableLayerIds[i];
 
-                    let link = document.createElement('button');
+                    let link = document.createElement('a');
                     link.href = '#';
-                    link.className = 'usa-button--accent-cool';
+                    link.className = 'active';
                     link.width = 10;
                     link.textContent = id;
 
@@ -129,9 +129,9 @@
 
                         if (visibility === 'visible') {
                             map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                            this.className = 'usa-button--base';
+                            this.className = '';
                         } else {
-                            this.className = 'usa-button--accent-cool';
+                            this.className = 'active';
                             map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
                         }
                     };
@@ -170,8 +170,9 @@
     background-color: white;
   }
 
-  nav {
-    background-color: red;
+  .layer-toggle {
+    background-color: #333;
+    overflow: hidden;
   }
 
   #map {
