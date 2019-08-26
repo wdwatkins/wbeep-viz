@@ -13,7 +13,6 @@
         class="layer-toggle"
       ></nav>
     </div>
-    <LayerToggle />
     <MapLegend :legend-title="legendTitle" />
     <MglMap
       id="map"
@@ -47,7 +46,6 @@
 
 <script>
     import MapLegend from './MapLegend'
-    import LayerToggle from "./LayerToggle";
     import {
         MglMap,
         MglNavigationControl,
@@ -65,14 +63,13 @@
             MglGeolocateControl,
             MglFullscreenControl,
             MglScaleControl,
-            MapLegend,
-            LayerToggle
+            MapLegend
         },
         props: {
             title: {
                 type: String,
                 default: 'Add your title in App.vue or make this blank'
-            },
+            }
         },
         data() {
             return {

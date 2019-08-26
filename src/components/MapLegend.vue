@@ -82,6 +82,7 @@
     font-family: 'merriweather',serif;
     border-style: groove;
     position: absolute;
+    z-index:1000;
     bottom: 190px;
     left: 10px;
     background: rgba(255, 255, 255, 0.8);

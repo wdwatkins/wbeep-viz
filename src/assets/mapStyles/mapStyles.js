@@ -4,27 +4,47 @@ export default {
         sources: {
             basemap: {
                 type: 'vector',
-                // This URL will pull the basemap GeoJson from S3 so that no local tile server is required.
-                // NOTE: this location is under development and may change. If you suddenly lose parts of the map, it
-                // may be that we have moved the tiles to a new location on S3.
-                // 'tiles': ['https://d38anyyapxci3p.cloudfront.net/baseTiles_3/{z}/{x}/{y}.pbf']
+                // The following line is used as a reference point for automated builds
+                // to insert the correct base tile location - do not modify:
+                // BASE SOURCE INSERT
+
+                // If you are setting up a local build, you can uncomment the following
+                // URL assignment to pull the base tiles from S3 so that no local tile
+                // server is required:
+                //'tiles': ['https://d38anyyapxci3p.cloudfront.net/basetiles/{z}/{x}/{y}.pbf']
                 'tiles': ['https://delaware-basin-prod-website.s3-us-west-2.amazonaws.com/baseTiles/{z}/{x}/{y}.pbf']
+                //
+                // NOTE: this location is under development and may change. If you suddenly
+                // lose parts of the map, it may be that we have moved the tiles to a new
+                // location on S3.
+
+                // The following URL is an example of using a local mbtiles file and a
+                // tile server.  See the readme for more information:
+                // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
                 // url: 'http://localhost:8086/data/basemap.json'
-                // The above URL is an example for using a local mbtiles file and a tile server. See the readme for more
-                // information: https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
+
             },
             HRU: {
                 type: 'vector',
-                // This URL will pull the Hydrological Response Units(HRUs) GeoJson from S3 so that no local tile server
-                // is required.
-                // NOTE: this location is under development and may change. If you suddenly lose your HRUs from the map, it
-                // may be that we have moved the HRU tiles to a new location on S3.
-                // 'tiles': ['https://d38anyyapxci3p.cloudfront.net/tiles_10/{z}/{x}/{y}.pbf']
-                // 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
+                // The following line is used as a reference point for automated builds
+                // to insert the correct HRU tile location - do not modify:
+                // HRU SOURCE INSERT
+
+                // If you are setting up a local build, you can uncomment the following
+                // URL assignment to pull the HRU tiles from S3 so that no local tile
+                // server is required:
+                //'tiles': ['https://d38anyyapxci3p.cloudfront.net/tiles/{z}/{x}/{y}.pbf']
                 'tiles': ['https://delaware-basin-test-website.s3-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
+                //
+                // NOTE: this location is under development and may change. If you suddenly
+                // lose parts of the map, it may be that we have moved the tiles to a new
+                // location on S3.
+
+                // The following URL is an example of using a local mbtiles file and a
+                // tile server.  See the readme for more information:
+                // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
                 // url: 'http://localhost:8085/data/new2.json'
-                // The above URL is an example for using a local mbtiles file and a tile server. See the readme for more
-                // information: https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
+
             }
         },
         'sprite': '',
