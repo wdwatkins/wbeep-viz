@@ -163,6 +163,11 @@
   .header-container {
     background-color: white;
   }
+  /* Add a background color to the layer toggle bar */
+  .mapbox_component-topnav {
+    background-color: #4574a3;
+    overflow: hidden;
+  }
 
   #map-layers-label::after {
     content: "|";
@@ -192,27 +197,23 @@
   }
 </style>
 <style>
-  /* Add a black background color to the top navigation */
-  .mapbox_component-topnav {
-    background-color: #4574a3;
-    overflow: hidden;
-  }
+
 
   /* Style the links inside the navigation bar */
   .mapbox_component-topnav a {
     float: left;
     display: block;
-    color: #8cb9f2;
+    color: #d3d9f2;
     text-align: center;
     padding: 10px 16px;
     margin: 2px 0;
-    text-decoration: none;
     background-color: #00264c;
     font-size: 17px;
+    text-decoration: line-through;
   }
 
   /* Change the color of links on hover */
-  .mapbox_component-topnav a:hover {
+  .mapbox_component-topnav:hover {
     background-color: #ddd;
     color: black;
   }
@@ -221,6 +222,7 @@
   .mapbox_component-topnav a.active {
     background-color: #4574a3;
     color: white;
+    text-decoration: none;
   }
 
   /* Hide the link that should open and close the topnav on small screens */
