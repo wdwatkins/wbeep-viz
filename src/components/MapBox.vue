@@ -7,9 +7,21 @@
         </h2>
       </div>
       <hr>
-
-      <div class="mapbox_component-topnav" id="mapbox_component-layer-toggle">
-        <a href="#" class="active" id="map-layers-label">Map Layers</a>
+      <div
+        id="mapbox_component-layer-toggle"
+        class="mapbox_component-topnav"
+      >
+        <a
+          id="map-layers-label"
+          href="#"
+          class="active"
+        >Map Layers</a>
+        <a
+          href="javascript:void(0);"
+          class="icon"
+          @click="changeToResponsiveElement"
+        ><font-awesome-icon icon="layer-group" />
+        </a>
       </div>
     </div>
     <MapLegend :legend-title="legendTitle" />
@@ -85,14 +97,19 @@
             }
         },
         methods: {
+            changeToResponsiveElement: function() {
+                console.log('click worked');
+                let mapboxComponentLayerToggle = document.getElementById("mapbox_component-layer-toggle");
+                if (mapboxComponentLayerToggle.className === "mapbox_component-topnav") {
+                    mapboxComponentLayerToggle.className += " responsive";
+                } else {
+                    mapboxComponentLayerToggle.className = "mapbox_component-topnav";
+                }
+            },
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
-                // map.fitBounds([[
-                //     -126, 49
-                // ], [
-                //     -66, 24
-                // ]]);
+
 
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
@@ -197,8 +214,6 @@
   }
 </style>
 <style>
-
-
   /* Style the links inside the navigation bar */
   .mapbox_component-topnav a {
     float: left;
@@ -213,9 +228,15 @@
   }
 
   /* Change the color of links on hover */
-  .mapbox_component-topnav:hover {
+  .mapbox_component-topnav a.active:hover {
     background-color: #ddd;
     color: black;
+  }
+
+  /* Override the hover effect for so the 'Map Layer' label does not appear click-able. */
+  #map-layers-label:hover {
+    background-color: #4574a3;
+    color: white;
   }
 
   /* Add an active class to highlight the current page */
@@ -228,6 +249,30 @@
   /* Hide the link that should open and close the topnav on small screens */
   .mapbox_component-topnav .icon {
     display: none;
+  }
+
+  /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+  @media screen and (max-width: 600px) {
+    .mapbox_component-topnav a:not(:first-child) {display: none;}
+    .mapbox_component-topnav a.icon {
+      float: right;
+      display: block;
+    }
+  }
+
+  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+  @media screen and (max-width: 600px) {
+    .mapbox_component-topnav.responsive {position: relative;}
+    .mapbox_component-topnav.responsive a.icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .mapbox_component-topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
   }
 
 </style>
