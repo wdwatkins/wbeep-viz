@@ -11,16 +11,8 @@ water data availability values using JavaScript, the Vue framework, and Mapbox-g
 
 ## Quick Section Links
 ##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-##### [Project setup](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#project-setup)
-
-
+##### [Automated Builds](https://github.com/usgs-makerspace/wbeep-viz/blob/master/README.md#automated-builds)
+##### [Add Font Awesome Icons]()
 
 ## Project setup
 Clone the project. Then run 'npm install' to pull down the required dependencies into the node modules folder 
@@ -33,10 +25,8 @@ Starting the Vue development server at this point will show a website with heade
 ```
 npm run serve
 ```
-#### UPDATE
-#### We are working to consolidate and simplify working with the map locally. So, if  you pulled recent code, your map may just work.
-Now you can run the map locally from S3 without the need for local tile servers. This is still in the test phase
-so it still may be of benefit to read the sections after this one that explain how to set up 
+#### Get the tiles from S3 to consolidate and simplify working with the map locally. If you pulled recent code, you are only a few simple steps from having a working map.
+Now you can run the map locally from S3 without the need for local tile servers, however it still may be of benefit to read the sections after this one that explain how to set up 
 the tiles to run from a local source.
 
 But for now, here is the easy way.
@@ -70,9 +60,45 @@ tiles are DIFFERENT!' section).
             }
         },
 ```
-If you pulled the code from Github, the locations are probably correct and your map should start up with no extra effort.
-However, if you are using the S3 sources and your map is not showing, or is missing layers, it may be that 
-1) we moved the tiles on S3
+If you pulled the code from Github, there will be a tiny bit of the work you need to do to get the map running locally.
+
+Looking at the following snippet from the mapStyles.js, you will see a large amount of comments. Of interest is the '// BASE SOURCE INSERT'.
+When the application is built for deployment to S3, using the job runner called Jenkins, a script will search fot
+this comment line and replace it with the correct tile URL needed when the application is run on S3.
+
+```
+export default {
+    style: {
+        version: 8,
+        sources: {
+            basemap: {
+                type: 'vector',
+                // The following line is used as a reference point for automated builds
+                // to insert the correct base tile location - do not modify:
+                // BASE SOURCE INSERT
+
+                // If you are setting up a local build, you can uncomment the following
+                // URL assignment to pull the base tiles from S3 so that no local tile
+                // server is required:
+                //'tiles': ['https://d38anyyapxci3p.cloudfront.net/basetiles/{z}/{x}/{y}.pbf']
+                //
+                // The following URL is an example of using a local mbtiles file and a
+                // tile server.  See the readme for more information:
+                // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
+                // url: 'http://localhost:8086/data/basemap.json'
+
+            },
+```
+Locally, the build scripts used to deploy the application to S3 will not be run, so we will need tell MapBox where to find
+the map tiles we want it use. As noted in the comments above, we can use 'tiles': ['https://d38anyyapxci3p.cloudfront.net/basetiles/{z}/{x}/{y}.pbf']' as
+the tile source. This URL is for the 'beta' S3 bucket in our deployment tiers. For reference the other buckets are 'test',
+'qa', and 'prod'. At various times you may wish to use tiles from any of these buckets as a source.
+
+Once you un-comment the line mentioned above, MapBox will pull the tiles from S3 and the map will run. Note, you will have to
+un-comment every source used. At the time of writing, there are two sources used, 'basemap' and 'HRU'.
+
+So what if you map is still not working? It may be that 
+1) the tiles are located in a different location on S3
 2) you do not have the right 'source-layer' name
 
 So, about sources and layers. Each source can be the parent of many map layers. Remember, that in the sample above, we had
@@ -242,7 +268,7 @@ aws s3 cp . s3://wbeep-qa-website/tiles --recursive --content-encoding 'gzip' --
  
 A second option, which avoids the hassle of configuring the AWS-CLI credential is to use the AWS UI to upload the files. 
 Here you can drag and drop the files for uploading, just make sure to set both the 'content-encoding' and the 'content-type.'
-The content-encoding will be 'gzip', and the content-type will be application/gzip. Note that there is not
+The content-encoding will be 'gzip', and the content-type will be application/x-protobuf Note that there is not
 a specific item in the drop down menu for these choices, but they can be added in the text box.
 
 ### Check that URLs for the tiles are correct
@@ -332,3 +358,66 @@ A variety of build scenarios are supported via build parameters in Jenkins:
 - if no build destination is selected and no tile source is specified, then the application will be deployed to test and source its tiles from test
 - if a build destination is selected but no tile source is specified, then the application will be deployed to the selected destination with tiles sourced from prod for all builds except test, which will source the tiles from test
 - if a tile source is specified it will override the above behavior, so for example you could build to test using production tiles
+
+## Add Font Awesome Icons
+So you want some cool icons, but do not have time to make them yourself. This is where Font Awesome comes in. Font Awesome
+as a bunch of no free icons and also provides a Vue plugin to use them as mini Vue components.
+
+To start we need to add three NPM packages to the project.
+
+```
+npm install --save @fortawesome/fontawesome-svg-core 
+npm install --save @fortawesome/free-solid-svg-icons 
+npm install --save @fortawesome/vue-fontawesome
+``` 
+
+Once these are installed, remember to stop and restart your Vue development server, if you had it running, so that it can pick up the changes.
+ 
+Now turn your attention to 'main.js'. This is where we need to do our 'global' imports of NPM modules. If you did the 'makerspace-website-base'
+tutorial, you will recall that this is where we imported the United States Web Design System (USWDS). We can do our imports
+in any Vue component, but when we do the importing in 'main.js', we will have access to those imports in any Vue component in the 
+project. Imports in other Vue components are only accessible from the component in which they were imported.
+
+In 'main.js' we will first import the 'fontawesome' library. This will give us the 'library' object and allows us to 'add'
+icons to it.
+```
+import { library } from '@fortawesome/fontawesome-svg-core'
+```
+
+Next we will import the icon we want to use. Again we could do this in a specific Vue component, but doing it here will
+let us use the icon anywhere in the project. 
+```
+import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
+```
+The icon we are using is called 'layer-group' and I found it by browsing the Font Awesome Gallery (https://fontawesome.com/icons?d=gallery).
+Now you may have noticed that I said the icon is called 'layer-group', but we are importing 'faLayerGroup'. You may also be asking yourself,
+'what is up with that?' And if you are, that is a reasonable question. Honestly, I do not know the answer, but I can tell 
+you how to find the what you need to make the icon names work in Vue.
+
+Step one - find the icon you want to use in the gallery. Somewhere near the icon you want to use it say something like . . .
+```
+<i class="fas fa-layer-group"></i>
+```
+This is not exactly what we want to use in Vue, but we do want to make note of the name. In this case,
+'fa-layer-group'. Notice how similar that is to both our import of 'faLayerGroup' and our icon name of 
+'layer-group'. Most of the time it is probably possible to guess the information we need from the 'class' information, 
+however we can dig deeper to be sure.
+
+Step two - find the icon in the 'node_modules' folder
+
+So when we did our NPM installs, that process added a folder called '@fortawesome' (yes,'fort' not 'font') to
+the 'node-modules' folder. Inside this folder, there are (at least) three more folders, one for each of the 
+NPM installs we did earlier. In the 'free-solid-svg-icons' folder we will find a bunch of TypeScript and JavaScript
+files. These files have names like 'faAddressBook.js' and 'faAddressBook.ts'. At this point, you may have caught on to the fact that
+these files have the style of name as the one in our import statement 'import { faLayerGroup } from '@fortawesome/free-solid-svg-icons''
+
+You can safely click on one of the '.js' files such as 'faLayerGroup.js'. When this file opens, you will see that it has
+information about the layer-group icon. Specifically, it says 'var iconName = 'layer-group';'. So we now know, definitively, the name
+of our icon, which we will use when we place the icon on the page. This also confirms that we have imported our
+icon from the correct '@fortawesome' subfolder, in this case 'free-solid-svg-icons'.
+
+Alright, cool. We finally have this import stuff straightened away and can now move on to getting our little icon to work. 
+
+
+
+

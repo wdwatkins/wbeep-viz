@@ -14,10 +14,6 @@ export default {
                 //'tiles': ['https://d38anyyapxci3p.cloudfront.net/basetiles/{z}/{x}/{y}.pbf']
                 'tiles': ['https://delaware-basin-prod-website.s3-us-west-2.amazonaws.com/baseTiles/{z}/{x}/{y}.pbf']
                 //
-                // NOTE: this location is under development and may change. If you suddenly
-                // lose parts of the map, it may be that we have moved the tiles to a new
-                // location on S3.
-
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
                 // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
@@ -36,10 +32,6 @@ export default {
                 //'tiles': ['https://d38anyyapxci3p.cloudfront.net/tiles/{z}/{x}/{y}.pbf']
                 'tiles': ['https://delaware-basin-test-website.s3-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 //
-                // NOTE: this location is under development and may change. If you suddenly
-                // lose parts of the map, it may be that we have moved the tiles to a new
-                // location on S3.
-
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
                 // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
