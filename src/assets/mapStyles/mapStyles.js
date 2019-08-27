@@ -82,14 +82,12 @@ export default {
                 },
                 'paint': {
                     'fill-color': {
-                        'property': 'SoilMoisture',
+                        'property': 'value',
                         'type': 'categorical',
                         'stops': [
-                            ['very high','#144873'],
                             ['high','#A7B9D7'],
-                            ['average','#FED98E'],
+                            ['medium','#FED98E'],
                             ['low', '#EDAA5F'],
-                            ['very low','#CC4C02'],
                             ["",'#000000'],
                         ]
                     },
@@ -112,15 +110,13 @@ export default {
                 },
                 'paint': {
                     'line-color': {
-                        'property': 'SoilMoisture',
+                        'property': 'value',
                         'type': 'categorical',
                         'stops': [
+                            ['high','#A7B9D7'],
+                            ['medium','#FED98E'],
+                            ['low', '#EDAA5F'],
                             ["",'#000000'],
-                            ['very low','#823102'],
-                            ['low', '#C28C4E'],
-                            ['average','#D0B275'],
-                            ['high','#8998B0'],
-                            ['very high','#113B5F'],
                         ]
                     },
                     'line-width': 1
