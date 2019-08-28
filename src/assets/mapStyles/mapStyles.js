@@ -12,7 +12,6 @@ export default {
                 // URL assignment to pull the base tiles from S3 so that no local tile
                 // server is required:
                 //'tiles': ['https://d38anyyapxci3p.cloudfront.net/basetiles/{z}/{x}/{y}.pbf']
-                'tiles': ['http://delaware-basin-prod-website.s3-website-us-west-2.amazonaws.com/baseTiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -30,7 +29,6 @@ export default {
                 // URL assignment to pull the HRU tiles from S3 so that no local tile
                 // server is required:
                 //'tiles': ['https://d38anyyapxci3p.cloudfront.net/tiles/{z}/{x}/{y}.pbf']
-                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
