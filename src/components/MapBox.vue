@@ -214,7 +214,7 @@
   }
 </style>
 <style>
-  /* Style the links inside the navigation bar */
+  /* Style the links inside the layer toggle bar */
   .mapbox_component-topnav a {
     float: left;
     display: block;
@@ -227,7 +227,7 @@
     text-decoration: line-through;
   }
 
-  /* Change the color of links on hover */
+  /* Change the color of links in layer toggle on hover */
   .mapbox_component-topnav a.active:hover {
     background-color: #ddd;
     color: black;
@@ -239,19 +239,19 @@
     color: white;
   }
 
-  /* Add an active class to highlight the current page */
+  /* Add an active class to highlight the current toggle */
   .mapbox_component-topnav a.active {
     background-color: #4574a3;
     color: white;
     text-decoration: none;
   }
 
-  /* Hide the link that should open and close the topnav on small screens */
+  /* Hide the layer-group icon that should open and close the toggle menu on small screens */
   .mapbox_component-topnav .icon {
     display: none;
   }
 
-  /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+  /* When the screen is less than 600 pixels wide, hide all links, except for the title ("map layers"). Show the layer-group that should open and close the layer toggle bar */
   @media screen and (max-width: 600px) {
     .mapbox_component-topnav a:not(:first-child) {display: none;}
     .mapbox_component-topnav a.icon {
@@ -260,7 +260,7 @@
     }
   }
 
-  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the layer group icon. This class makes the to layer toggle menu look good on small screens (display the links vertically instead of horizontally) */
   @media screen and (max-width: 600px) {
     .mapbox_component-topnav.responsive {position: relative;}
     .mapbox_component-topnav.responsive a.icon {
