@@ -7,11 +7,22 @@
         </h2>
       </div>
       <hr>
-
-      <nav
-        id="layer-bar"
-        class="layer-toggle"
-      />
+      <div
+        id="mapbox_component-layer-toggle"
+        class="mapbox_component-topnav"
+      >
+        <a
+          id="map-layers-label"
+          href="#"
+          class="active"
+        >Map Layers</a>
+        <a
+          href="javascript:void(0);"
+          class="icon"
+          @click="changeToResponsiveElement"
+        ><font-awesome-icon icon="layer-group" />
+        </a>
+      </div>
     </div>
     <MapLegend :legend-title="legendTitle" />
     <MglMap
@@ -22,6 +33,8 @@
       :min-zoom="minZoom"
       :max-zoom="maxZoom"
       :center="center"
+      :pitch="pitch"
+      :bearing="bearing"
       @load="onMapLoaded"
     >
       <MglScaleControl
@@ -75,15 +88,28 @@
                 container: 'map',
                 zoom: 3,
                 minZoom: 3,
-                maxZoom: 8,
+                maxZoom: 9,
                 center: [-95.7129, 37.0902],
+                pitch: 0, // tips the map from 0 to 60 degrees
+                bearing: 0, // starting rotation of the map from 0 to 360
                 hoveredHRUId: null,
                 legendTitle: 'Calculated Availability'
             }
         },
         methods: {
+            changeToResponsiveElement: function() {
+                console.log('click worked');
+                let mapboxComponentLayerToggle = document.getElementById("mapbox_component-layer-toggle");
+                if (mapboxComponentLayerToggle.className === "mapbox_component-topnav") {
+                    mapboxComponentLayerToggle.className += " responsive";
+                } else {
+                    mapboxComponentLayerToggle.className = "mapbox_component-topnav";
+                }
+            },
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded
+
+
 
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
@@ -99,9 +125,9 @@
                 for (let i = 0; i < toggleableLayerIds.length; i++) {
                     let id = toggleableLayerIds[i];
 
-                    let link = document.createElement('button');
+                    let link = document.createElement('a');
                     link.href = '#';
-                    link.className = 'usa-button--accent-cool';
+                    link.className = 'active';
                     link.textContent = id;
 
                     // Creates a click event for each button so that when clicked by the user, the visibility property
@@ -115,16 +141,15 @@
 
                         if (visibility === 'visible') {
                             map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                            this.className = 'usa-button--base';
+                            this.className = '';
                         } else {
-                            this.className = 'usa-button--accent-cool';
+                            this.className = 'active';
                             map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
                         }
                     };
 
-                    // Add the toggle layer buttons to the 'layer-bar' element
-                    let layers = document.getElementById('layer-bar');
-                    layers.appendChild(link);
+                    let layerToggleList = document.getElementById('mapbox_component-layer-toggle');
+                    layerToggleList.appendChild(link);
                 }
 
                 // next section controls the HRU hover effect
@@ -155,9 +180,25 @@
   .header-container {
     background-color: white;
   }
+  /* Add a background color to the layer toggle bar */
+  .mapbox_component-topnav {
+    background-color: #4574a3;
+    overflow: hidden;
+  }
+
+  #map-layers-label::after {
+    content: "|";
+    padding-left: 10px;
+    float: right;
+    color: #fff;
+  }
 
   #map {
-    height: 70vh;
+    position: absolute;
+    z-index: -1;
+    top: 100px;
+    bottom: 0;
+    width: 100%;
   }
 
   /* override USWDS style to prevent title from wrapping too soon */
@@ -171,4 +212,67 @@
     margin: 2px 0 0 0;
     padding-bottom: 0;
   }
+</style>
+<style>
+  /* Style the links inside the layer toggle bar */
+  .mapbox_component-topnav a {
+    float: left;
+    display: block;
+    color: #d3d9f2;
+    text-align: center;
+    padding: 10px 16px;
+    margin: 2px 0;
+    background-color: #00264c;
+    font-size: 17px;
+    text-decoration: line-through;
+  }
+
+  /* Change the color of links in layer toggle on hover */
+  .mapbox_component-topnav a.active:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  /* Override the hover effect for so the 'Map Layer' label does not appear click-able. */
+  #map-layers-label:hover {
+    background-color: #4574a3;
+    color: white;
+  }
+
+  /* Add an active class to highlight the current toggle */
+  .mapbox_component-topnav a.active {
+    background-color: #4574a3;
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Hide the layer-group icon that should open and close the toggle menu on small screens */
+  .mapbox_component-topnav .icon {
+    display: none;
+  }
+
+  /* When the screen is less than 600 pixels wide, hide all links, except for the title ("map layers"). Show the layer-group that should open and close the layer toggle bar */
+  @media screen and (max-width: 600px) {
+    .mapbox_component-topnav a:not(:first-child) {display: none;}
+    .mapbox_component-topnav a.icon {
+      float: right;
+      display: block;
+    }
+  }
+
+  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the layer group icon. This class makes the to layer toggle menu look good on small screens (display the links vertically instead of horizontally) */
+  @media screen and (max-width: 600px) {
+    .mapbox_component-topnav.responsive {position: relative;}
+    .mapbox_component-topnav.responsive a.icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .mapbox_component-topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
+
 </style>
