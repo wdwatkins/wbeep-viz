@@ -6,8 +6,8 @@ pipeline {
     }
 
     parameters {
-        choice(choices: ['test', 'qa', 'beta', 'prod'], description: 's3 bucket that the build will target', name: 'BUILD_DEST'), 
-        choice(choices: ['default', test', 'prod'], description: 's3 bucket from which tiles are served', name: 'TILE_SOURCE')
+        choice(choices: ['test', 'qa', 'beta', 'prod'], description: 's3 bucket that the build will target', name: 'BUILD_DEST') 
+        choice(choices: ['default', 'test', 'prod'], description: 's3 bucket from which tiles are served', name: 'TILE_SOURCE')
     }
 
     stages {

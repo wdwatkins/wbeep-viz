@@ -23,7 +23,7 @@ prodBucket=wbeep-prod-website.s3-website-us-west-2.amazonaws.com
 testBucket=wbeep-test-website.s3-website-us-west-2.amazonaws.com
 
 # common prefix/suffix for tile URL configuration
-globalTilePrefix='"tiles": ["https://'
+globalTilePrefix='"tiles": ["http://'
 globalTileSuffix='/{z}/{x}/{y}.pbf"],'
 # tile directories
 hruTileLocation='/tiles'
