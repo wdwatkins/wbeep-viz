@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Parameterized git branch/tag in Jenkinsfile
 - Added Legend
 - Added hover effect to HRUs
 - Changed to allow tile assets to be pulled from S3
