@@ -13,10 +13,6 @@ export default {
                 // server is required:
                 //'tiles': ['https://d38anyyapxci3p.cloudfront.net/basetiles/{z}/{x}/{y}.pbf']
                 //
-                // NOTE: this location is under development and may change. If you suddenly
-                // lose parts of the map, it may be that we have moved the tiles to a new
-                // location on S3.
-
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
                 // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
@@ -34,10 +30,6 @@ export default {
                 // server is required:
                 //'tiles': ['https://d38anyyapxci3p.cloudfront.net/tiles/{z}/{x}/{y}.pbf']
                 //
-                // NOTE: this location is under development and may change. If you suddenly
-                // lose parts of the map, it may be that we have moved the tiles to a new
-                // location on S3.
-
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
                 // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
@@ -82,14 +74,12 @@ export default {
                 },
                 'paint': {
                     'fill-color': {
-                        'property': 'SoilMoisture',
+                        'property': 'value',
                         'type': 'categorical',
                         'stops': [
-                            ['very high','#144873'],
                             ['high','#A7B9D7'],
-                            ['average','#FED98E'],
+                            ['medium','#FED98E'],
                             ['low', '#EDAA5F'],
-                            ['very low','#CC4C02'],
                             ["",'#000000'],
                         ]
                     },
@@ -112,15 +102,13 @@ export default {
                 },
                 'paint': {
                     'line-color': {
-                        'property': 'SoilMoisture',
+                        'property': 'value',
                         'type': 'categorical',
                         'stops': [
+                            ['high','#A7B9D7'],
+                            ['medium','#FED98E'],
+                            ['low', '#EDAA5F'],
                             ["",'#000000'],
-                            ['very low','#823102'],
-                            ['low', '#C28C4E'],
-                            ['average','#D0B275'],
-                            ['high','#8998B0'],
-                            ['very high','#113B5F'],
                         ]
                     },
                     'line-width': 1
