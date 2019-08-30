@@ -8,6 +8,9 @@ pipeline {
     parameters {
         choice(choices: ['test', 'qa', 'beta', 'prod'], description: 's3 bucket that the build will target', name: 'BUILD_DEST') 
         choice(choices: ['default', 'test', 'prod'], description: 's3 bucket from which tiles are served', name: 'TILE_SOURCE')
+        gitParameter(name: 'BRANCH_TAG',
+                     type: 'PT_BRANCH_TAG',
+                     defaultValue: 'master')
     }
 
     stages {
@@ -18,7 +21,14 @@ pipeline {
         }
         stage('checkout'){
             steps{
-                checkout scm
+                checkout([$class: 'GitSCM',
+                          branches: [[name: "${params.BRANCH_TAG}"]],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          gitTool: 'Default',
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[url: 'https://github.com/usgs-makerspace/wbeep-viz']]
+                        ])
                 }
         }
         stage('build') {

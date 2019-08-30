@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Parameterized git branch/tag in Jenkinsfile
 - Refined layer toggle for appearance and mobile compatibility
 - Adjusted the minimum zoom level to 3 as well as the default/initial zoom level to 3
 - Added Legend
