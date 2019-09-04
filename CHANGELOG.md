@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Zoom to bounding box of the U.S.
+- Removed City Dots and HRU Outlines
 - Added Flexbox fluidity to the layout
 - Added Mapbox layers for testing 
 - Parameterized git branch/tag in Jenkinsfile
