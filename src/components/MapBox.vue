@@ -35,6 +35,7 @@
         :center="center"
         :pitch="pitch"
         :bearing="bearing"
+        :access-token="accessToken"
         @load="onMapLoaded"
       >
        <MglScaleControl
@@ -55,7 +56,6 @@
     </div>
   </div>
 </template>
-
 <script>
     import MapLegend from './MapLegend'
     import {
