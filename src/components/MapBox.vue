@@ -88,7 +88,7 @@
                 mapStyle: mapStyles.style,
                 container: 'map',
                 zoom: 3,
-                minZoom: 3,
+                minZoom: 2,
                 maxZoom: 9,
                 center: [-95.7129, 37.0902],
                 pitch: 0, // tips the map from 0 to 60 degrees
@@ -109,7 +109,10 @@
             },
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded
-
+                map.fitBounds([
+                  [-128, 23],
+                  [-65, 49]
+                ]);
 
 
                 // Next section gives us names for the layer toggle buttons
