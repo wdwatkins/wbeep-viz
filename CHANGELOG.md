@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Added Flexbox fluidity to the layout
 - Added Mapbox layers for testing 
 - Parameterized git branch/tag in Jenkinsfile
 - Refined layer toggle for appearance and mobile compatibility
