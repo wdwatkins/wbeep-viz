@@ -37,7 +37,7 @@
     width: 100vw;
   }
 
-  @media screen and (min-width: 605px){
+  @media screen and (min-width: 601px){
     body{
       height: 100vh;
     }
