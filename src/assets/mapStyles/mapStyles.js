@@ -11,7 +11,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the base tiles from S3 so that no local tile
                 // server is required:
-                // 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -28,7 +28,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the HRU tiles from S3 so that no local tile
                 // server is required:
-                // 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -265,8 +265,6 @@ export default {
                 "source-layer": "road",
                 'showButton': true
             },
-
-
             {
                 'id': 'HRUS Fill Colors',
                 'type': 'fill',
@@ -289,7 +287,7 @@ export default {
                     'fill-opacity': ['case',
                         ['boolean', ['feature-state', 'hover'], false],
                         0.1,
-                            .3
+                            .4
                     ]
                 },
                 'showButton': true
@@ -328,30 +326,6 @@ export default {
                     "fill-color": ["interpolate", ["linear"],
                         ["zoom"], 5, "hsl(205, 76%, 67%)", 7, "hsl(205, 76%, 70%)"
                     ]
-                },
-                'showButton': true
-            },
-
-            {
-                'id': 'HRUS Outlines',
-                'type': 'line',
-                'source': 'HRU',
-                'source-layer': 'hrus',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'line-color': {
-                        'property': 'value',
-                        'type': 'categorical',
-                        'stops': [
-                            ['high','#A7B9D7'],
-                            ['medium','#FED98E'],
-                            ['low', '#EDAA5F'],
-                            ["",'#000000'],
-                        ]
-                    },
-                    'line-width': 1
                 },
                 'showButton': true
             },
@@ -415,20 +389,6 @@ export default {
                 'showButton': true
             },
             {
-                'id': 'Cities Dots',
-                'type': 'circle',
-                'source': 'basemap',
-                'source-layer': 'Cities_and_Towns_NTAD',
-                'minzoom': 6,
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'circle-radius': 4
-                },
-                'showButton': true
-            },
-            {
                 'id': 'Cities Names',
                 'type': 'symbol',
                 'source': 'basemap',
@@ -442,13 +402,7 @@ export default {
                     ],
                     'text-size': 12,
                     'symbol-placement': 'point',
-                    'text-line-height': 1.2,
-                    'text-justify': 'center',
-                    'text-anchor': 'bottom',
-                    'text-offset': [
-                        0,
-                        -0.5
-                    ]
+                    'text-justify': 'center'
                 },
                 'paint': {
                     'text-color': 'rgba(255,255,255, 1)',
