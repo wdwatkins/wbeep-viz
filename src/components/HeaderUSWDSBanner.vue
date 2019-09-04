@@ -89,6 +89,7 @@
 
 </script>
 
-<style lang="sass">
-    @import '~uswds/dist/css/uswds.css'
+<style lang="scss">
+    @import '~uswds/dist/css/uswds.css';
+  
 </style>

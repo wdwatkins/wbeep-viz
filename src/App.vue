@@ -34,5 +34,18 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+    width: 100vw;
+  }
+
+  @media screen and (min-width: 605px){
+    body{
+      height: 100vh;
+    }
+    #app{
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
   }
 </style>

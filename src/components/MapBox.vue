@@ -6,7 +6,6 @@
           {{ title }}
         </h2>
       </div>
-      <hr>
       <div
         id="mapbox_component-layer-toggle"
         class="mapbox_component-topnav"
@@ -24,34 +23,36 @@
         </a>
       </div>
     </div>
-    <MapLegend :legend-title="legendTitle" />
-    <MglMap
-      id="map"
-      :container="container"
-      :map-style="mapStyle"
-      :zoom="zoom"
-      :min-zoom="minZoom"
-      :max-zoom="maxZoom"
-      :center="center"
-      :pitch="pitch"
-      :bearing="bearing"
-      @load="onMapLoaded"
-    >
-      <MglScaleControl
-        position="bottom-right"
-        unit="imperial"
-      />
-      <MglNavigationControl
-        position="bottom-right"
-        :show-compass="false"
-      />
-      <MglGeolocateControl
-        position="bottom-right"
-      />
-      <MglFullscreenControl
-        position="bottom-right"
-      />
-    </MglMap>
+    <div id="mapContainer">
+      <MapLegend :legend-title="legendTitle" />
+      <MglMap
+        id="map"
+        :container="container"
+        :map-style="mapStyle"
+        :zoom="zoom"
+        :min-zoom="minZoom"
+        :max-zoom="maxZoom"
+        :center="center"
+        :pitch="pitch"
+        :bearing="bearing"
+        @load="onMapLoaded"
+      >
+       <MglScaleControl
+          position="bottom-right"
+          unit="imperial"
+        />
+        <MglNavigationControl
+          position="top-left"
+          :show-compass="false"
+        />
+        <MglGeolocateControl
+          position="top-right"
+        />
+        <MglFullscreenControl
+          position="top-right"
+        />
+      </MglMap>
+    </div>
   </div>
 </template>
 
@@ -178,7 +179,7 @@
   @import"~mapbox-gl/dist/mapbox-gl.css";
 
   .header-container {
-    background-color: white;
+    background-color: #fff;
   }
   /* Add a background color to the layer toggle bar */
   .mapbox_component-topnav {
@@ -193,25 +194,39 @@
     color: #fff;
   }
 
-  #map {
-    position: absolute;
-    z-index: -1;
-    top: 100px;
-    bottom: 0;
-    width: 100%;
+  .usa-prose{
+    border-bottom: 1px solid rgb(100,100,100);
   }
 
   /* override USWDS style to prevent title from wrapping too soon */
   .title-text {
     margin-left: 1.5rem;
-    padding-top: 0.5rem;
+    padding: 0.5rem 0;
   }
 
-  /* make the line below the title stay off the title but snug up to the map */
-  hr {
-    margin: 2px 0 0 0;
-    padding-bottom: 0;
+  #mapContainer{
+    position: relative;
+    height:80vh;
   }
+
+  @media screen and (min-width:600px){
+    #viz_container{
+      flex:1;
+      display: flex;
+      flex-direction:column;
+    }
+
+    #mapContainer{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+    #map{
+      flex: 1;
+    }
+  }
+
 </style>
 <style>
   /* Style the links inside the layer toggle bar */
@@ -251,17 +266,20 @@
     display: none;
   }
 
-  /* When the screen is less than 600 pixels wide, hide all links, except for the title ("map layers"). Show the layer-group that should open and close the layer toggle bar */
+  /* When the screen is less than 600 pixels wide, hide all links, except for the title ("map layers"). 
+  Show the layer-group that should open and close the layer toggle bar */
   @media screen and (max-width: 600px) {
+    .usa-prose .title-text {
+      font-size: .8em;
+      margin-left: 1rem;
+    }
     .mapbox_component-topnav a:not(:first-child) {display: none;}
     .mapbox_component-topnav a.icon {
       float: right;
       display: block;
     }
-  }
-
-  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the layer group icon. This class makes the to layer toggle menu look good on small screens (display the links vertically instead of horizontally) */
-  @media screen and (max-width: 600px) {
+    /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the layer group icon. 
+    This class makes the to layer toggle menu look good on small screens (display the links vertically instead of horizontally) */
     .mapbox_component-topnav.responsive {position: relative;}
     .mapbox_component-topnav.responsive a.icon {
       position: absolute;
