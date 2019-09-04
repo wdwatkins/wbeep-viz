@@ -34,7 +34,7 @@
             let layers = [];
             // look through the styles layers to find the one with the Hydrological Response Unit fill colors
             for (let index = 0; index < styleLayers.length; index++) {
-                if (styleLayers[index].id === 'HRUS Fill Colors') {
+                if (styleLayers[index].id === 'HRUs') {
                     // Get the fill color values and names then put them in separate lists
                     let hruColors = styleLayers[index].paint['fill-color'].stops;
                     let hruColorLabel = null;
