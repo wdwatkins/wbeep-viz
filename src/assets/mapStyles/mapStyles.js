@@ -38,6 +38,11 @@ export default {
             openmaptiles: {
                 type: 'vector',
                 url: 'http://localhost:8085/data/V3.json'
+            },
+            mapbox_terrain: {
+                "type": "raster-dem",
+                "url": "mapbox://mapbox.terrain-rgb",
+                "tileSize": 256
             }
         },
         'sprite': '',
@@ -49,6 +54,33 @@ export default {
                     "background-color": "hsl(47, 26%, 88%)"
                 },
                 "type": "background",
+                'showButton': true
+            },
+            {
+                "type": "hillshade",
+                "paint": {
+                    "hillshade-shadow-color": "hsl(39, 21%, 33%)"
+                },
+                "layout": {
+                    "visibility": "visible"
+                },
+                "id": "MB Hill Shade",
+                "source": "mapbox_terrain",
+                'showButton': true
+            },
+            {
+                'id': '*Counties Borders',
+                'type': 'line',
+                'source': 'basemap',
+                'source-layer': 'counties',
+                'minzoom': 6,
+                'maxzoom': 24,
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(218, 234, 240, 1)'
+                },
                 'showButton': true
             },
             {
@@ -958,72 +990,6 @@ export default {
                 "type": "symbol",
                 'showButton': true
             },
-
-
-            {
-                "filter": ["all", ["==", "$type", "Point"],
-                    ["==", "class", "country"],
-                    ["!has", "iso_a2"]
-                ],
-                "id": "country_label-other",
-                "layout": {
-                    "text-field": "{name:latin}",
-                    "text-font": ["Noto Sans Regular"],
-                    "text-max-width": 10,
-                    "text-size": {
-                        "stops": [
-                            [3, 12],
-                            [8, 22]
-                        ]
-                    },
-                    "visibility": "visible"
-                },
-                "maxzoom": 12,
-                "paint": {
-                    "text-color": "hsl(0, 0%, 13%)",
-                    "text-halo-blur": 0,
-                    "text-halo-color": "rgba(255,255,255,0.75)",
-                    "text-halo-width": 2
-                },
-                "source": "openmaptiles",
-                "source-layer": "place",
-                "type": "symbol",
-                'showButton': true
-            },
-            {
-                "filter": ["all", ["==", "$type", "Point"],
-                    ["==", "class", "country"],
-                    ["has", "iso_a2"]
-                ],
-                "id": "country_label",
-                "layout": {
-                    "text-field": "{name:latin}",
-                    "text-font": ["Noto Sans Bold"],
-                    "text-max-width": 10,
-                    "text-size": {
-                        "stops": [
-                            [3, 12],
-                            [8, 22]
-                        ]
-                    },
-                    "visibility": "visible"
-                },
-                "maxzoom": 12,
-                "paint": {
-                    "text-color": "hsl(0, 0%, 13%)",
-                    "text-halo-blur": 0,
-                    "text-halo-color": "rgba(255,255,255,0.75)",
-                    "text-halo-width": 2
-                },
-                "source": "openmaptiles",
-                "source-layer": "place",
-                "type": "symbol",
-                'showButton': true
-            },
-
-
-
-
             {
                 'id': 'HRUs',
                 'type': 'fill',
@@ -1099,6 +1065,19 @@ export default {
                 'showButton': true
             },
             {
+                'id': '*Neighboring Countries',
+                'type': 'fill',
+                'source': 'basemap',
+                'source-layer': 'neighboringcountry',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'fill-color': 'rgba(237, 236, 232, 1)'
+                },
+                'showButton': true
+            },
+            {
                 "filter": ["all", ["==", "$type", "Point"],
                     ["==", "class", "city"]
                 ],
@@ -1119,6 +1098,66 @@ export default {
                     "text-color": "hsl(0, 0%, 0%)",
                     "text-halo-blur": 0,
                     "text-halo-color": "hsla(0, 0%, 100%, 0.75)",
+                    "text-halo-width": 2
+                },
+                "source": "openmaptiles",
+                "source-layer": "place",
+                "type": "symbol",
+                'showButton': true
+            },
+            {
+                "filter": ["all", ["==", "$type", "Point"],
+                    ["==", "class", "country"],
+                    ["!has", "iso_a2"]
+                ],
+                "id": "country_label-other",
+                "layout": {
+                    "text-field": "{name:latin}",
+                    "text-font": ["Noto Sans Regular"],
+                    "text-max-width": 10,
+                    "text-size": {
+                        "stops": [
+                            [3, 12],
+                            [8, 22]
+                        ]
+                    },
+                    "visibility": "visible"
+                },
+                "maxzoom": 12,
+                "paint": {
+                    "text-color": "hsl(0, 0%, 13%)",
+                    "text-halo-blur": 0,
+                    "text-halo-color": "rgba(255,255,255,0.75)",
+                    "text-halo-width": 2
+                },
+                "source": "openmaptiles",
+                "source-layer": "place",
+                "type": "symbol",
+                'showButton': true
+            },
+            {
+                "filter": ["all", ["==", "$type", "Point"],
+                    ["==", "class", "country"],
+                    ["has", "iso_a2"]
+                ],
+                "id": "country_label",
+                "layout": {
+                    "text-field": "{name:latin}",
+                    "text-font": ["Noto Sans Bold"],
+                    "text-max-width": 10,
+                    "text-size": {
+                        "stops": [
+                            [3, 12],
+                            [8, 22]
+                        ]
+                    },
+                    "visibility": "visible"
+                },
+                "maxzoom": 12,
+                "paint": {
+                    "text-color": "hsl(0, 0%, 13%)",
+                    "text-halo-blur": 0,
+                    "text-halo-color": "rgba(255,255,255,0.75)",
                     "text-halo-width": 2
                 },
                 "source": "openmaptiles",
@@ -1154,21 +1193,6 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "place",
                 "type": "symbol",
-                'showButton': true
-            },
-            {
-                'id': '*Counties Borders',
-                'type': 'line',
-                'source': 'basemap',
-                'source-layer': 'counties',
-                'minzoom': 6,
-                'maxzoom': 24,
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'line-color': 'rgba(218, 234, 240, 1)'
-                },
                 'showButton': true
             }
         ]
