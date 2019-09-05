@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Removed Mapbox street layers and replaced them with OpenMapTiles
 - Zoom to bounding box of the U.S.
 - Removed City Dots and HRU Outlines
 - Added Flexbox fluidity to the layout
