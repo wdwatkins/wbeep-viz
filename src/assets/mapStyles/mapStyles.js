@@ -37,7 +37,7 @@ export default {
             },
             openmaptiles: {
                 type: 'vector',
-                url: 'http://localhost:8085/data/V3.json'
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/openmaptiles/{z}/{x}/{y}.pbf']
             },
             mapbox_terrain: {
                 "type": "raster-dem",

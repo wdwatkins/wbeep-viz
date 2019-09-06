@@ -38,7 +38,7 @@
         :access-token="accessToken"
         @load="onMapLoaded"
       >
-       <MglScaleControl
+        <MglScaleControl
           position="bottom-right"
           unit="imperial"
         />
