@@ -109,11 +109,12 @@
             },
             onMapLoaded(event) {
                 let map = event.map; // This gives us access to the map as an object but only after the map has loaded
+
+                // Once map is loaded zoom in a bit more so that the map neatly fills the screen
                 map.fitBounds([
                   [-128, 23],
                   [-65, 49]
                 ]);
-
 
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
