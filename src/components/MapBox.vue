@@ -38,7 +38,7 @@
         :access-token="accessToken"
         @load="onMapLoaded"
       >
-       <MglScaleControl
+        <MglScaleControl
           position="bottom-right"
           unit="imperial"
         />
@@ -158,7 +158,8 @@
 
                 // next section controls the HRU hover effect
                 let hoveredHRUId = this.hoveredHRUId;
-                map.on("mousemove", "HRUS Fill Colors", function(e) {
+
+                map.on("mousemove", "HRUs", function(e) {
                     if (e.features.length > 0) {
                         if (hoveredHRUId) {
                             map.setFeatureState({source: 'HRU', sourceLayer: 'hrus', id: hoveredHRUId}, { hover: false});
