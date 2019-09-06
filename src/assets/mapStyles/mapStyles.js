@@ -1003,9 +1003,11 @@ export default {
                         'property': 'value',
                         'type': 'categorical',
                         'stops': [
-                            ['high','#A7B9D7'],
+                            ["very high","#144873"],
+                            ["high","#A7B9D7"],
                             ['medium','#FED98E'],
                             ['low', '#EDAA5F'],
+                            ["very low","#CC4C02"],
                             ["",'#000000'],
                         ]
                     },
