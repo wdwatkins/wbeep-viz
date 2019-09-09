@@ -174,7 +174,6 @@
 
                 // next section controls the HRU hover effect
                 let hoveredHRUId = this.hoveredHRUId;
-                // if (document.getElementById())
 
                 map.on("mousemove", "HRUs", function(e) {
                     if (e.features.length > 0) {
