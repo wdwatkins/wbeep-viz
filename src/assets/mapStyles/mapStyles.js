@@ -81,7 +81,7 @@ export default {
                 'paint': {
                     'line-color': 'rgba(218, 234, 240, 1)'
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -819,10 +819,10 @@ export default {
                         .4
                     ]
                 },
-                'showButton': true
+                'showButton': false
             },
             {
-                'id': '*Rivers',
+                'id': '*River Flow Lines',
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'USA_Rivers_and_Streams',
@@ -849,7 +849,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
@@ -866,7 +866,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 'id': '*Neighboring Countries',
@@ -880,6 +880,19 @@ export default {
                     'fill-color': 'rgba(237, 236, 232, 1)'
                 },
                 'showButton': false
+            },
+            {
+                'id': '*HRUS',
+                'type': 'line',
+                'source': 'HRU',
+                'source-layer': 'hrus',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(57, 79, 87, 1)'
+                },
+                'showButton': true
             },
             {
                 "filter": ["all", ["==", "$type", "Point"],
@@ -908,7 +921,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "place",
                 "type": "symbol",
-                'showButton': true
+                'showButton': false
             }
         ]
     }
