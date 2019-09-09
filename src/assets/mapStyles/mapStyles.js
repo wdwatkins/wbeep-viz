@@ -822,7 +822,7 @@ export default {
                 'showButton': false
             },
             {
-                'id': '*River Flow Lines',
+                'id': 'River Flow Lines',
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'USA_Rivers_and_Streams',
@@ -869,7 +869,7 @@ export default {
                 'showButton': false
             },
             {
-                'id': '*Neighboring Countries',
+                'id': 'Neighboring Countries',
                 'type': 'fill',
                 'source': 'basemap',
                 'source-layer': 'neighboringcountry',
@@ -882,7 +882,7 @@ export default {
                 'showButton': false
             },
             {
-                'id': '*HRUS',
+                'id': 'Hydrological Response Unit',
                 'type': 'line',
                 'source': 'HRU',
                 'source-layer': 'hrus',
