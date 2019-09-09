@@ -54,7 +54,7 @@ export default {
                     "background-color": "hsl(47, 26%, 88%)"
                 },
                 "type": "background",
-                'showButton': true
+                'showButton': false
             },
             {
                 "type": "hillshade",
@@ -81,137 +81,7 @@ export default {
                 'paint': {
                     'line-color': 'rgba(218, 234, 240, 1)'
                 },
-                'showButton': true
-            },
-            {
-                "filter": ["all", ["==", "$type", "Polygon"],
-                    ["in", "class", "residential", "suburb", "neighbourhood"]
-                ],
-                "id": "landuse-residential",
-                "layout": {
-                    "visibility": "visible"
-                },
-                "paint": {
-                    "fill-color": "hsl(47, 13%, 86%)",
-                    "fill-opacity": 0.7
-                },
-                "source": "openmaptiles",
-                "source-layer": "landuse",
-                "type": "fill",
-                'showButton': true
-            },
-            {
-                "filter": ["==", "class", "grass"],
-                "id": "landcover_grass",
-                "paint": {
-                    "fill-color": "hsl(82, 46%, 72%)",
-                    "fill-opacity": 0.45
-                },
-                "source": "openmaptiles",
-                "source-layer": "landcover",
-                "type": "fill",
-                'showButton': true
-            },
-            {
-                "filter": ["==", "class", "wood"],
-                "id": "landcover_wood",
-                "paint": {
-                    "fill-color": "hsl(82, 46%, 72%)",
-                    "fill-opacity": {
-                        "base": 1,
-                        "stops": [
-                            [8, 0.6],
-                            [22, 1]
-                        ]
-                    }
-                },
-                "source": "openmaptiles",
-                "source-layer": "landcover",
-                "type": "fill",
-                'showButton': true
-            },
-
-            {
-                "filter": ["==", "subclass", "ice_shelf"],
-                "id": "landcover-ice-shelf",
-                "layout": {
-                    "visibility": "visible"
-                },
-                "paint": {
-                    "fill-color": "hsl(47, 26%, 88%)",
-                    "fill-opacity": 0.8
-                },
-                "source": "openmaptiles",
-                "source-layer": "landcover",
-                "type": "fill",
-                'showButton': true
-            },
-            {
-                "filter": ["==", "subclass", "glacier"],
-                "id": "landcover-glacier",
-                "layout": {
-                    "visibility": "visible"
-                },
-                "paint": {
-                    "fill-color": "hsl(47, 22%, 94%)",
-                    "fill-opacity": {
-                        "base": 1,
-                        "stops": [
-                            [0, 1],
-                            [8, 0.5]
-                        ]
-                    }
-                },
-                "source": "openmaptiles",
-                "source-layer": "landcover",
-                "type": "fill",
-                'showButton': true
-            },
-            {
-                "filter": ["all", ["in", "class", "sand"]],
-                "id": "landcover_sand",
-                "metadata": {},
-                "paint": {
-                    "fill-antialias": false,
-                    "fill-color": "rgba(232, 214, 38, 1)",
-                    "fill-opacity": 0.3
-                },
-                "source": "openmaptiles",
-                "source-layer": "landcover",
-                "type": "fill",
-                'showButton': true
-            },
-            {
-                "filter": ["==", "class", "agriculture"],
-                "id": "landuse",
-                "layout": {
-                    "visibility": "visible"
-                },
-                "paint": {
-                    "fill-color": "#eae0d0"
-                },
-                "source": "openmaptiles",
-                "source-layer": "landuse",
-                "type": "fill",
-                'showButton': true
-            },
-            {
-                "filter": ["==", "class", "national_park"],
-                "id": "landuse_overlay_national_park",
-                "paint": {
-                    "fill-color": "#E1EBB0",
-                    "fill-opacity": {
-                        "base": 1,
-                        "stops": [
-                            [5, 0],
-                            [9, 0.75]
-                        ]
-                    }
-                },
-                "source": "openmaptiles",
-                "source-layer": "landcover",
-                "type": "fill",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -242,7 +112,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -267,7 +137,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -293,7 +163,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -320,48 +190,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
-            },
-            {
-                "id": "building",
-                "paint": {
-                    "fill-antialias": true,
-                    "fill-color": "rgba(222, 211, 190, 1)",
-                    "fill-opacity": {
-                        "base": 1,
-                        "stops": [
-                            [13, 0],
-                            [15, 1]
-                        ]
-                    },
-                    "fill-outline-color": {
-                        "stops": [
-                            [15, "rgba(212, 177, 146, 0)"],
-                            [16, "rgba(212, 177, 146, 0.5)"]
-                        ]
-                    }
-                },
-                "source": "openmaptiles",
-                "source-layer": "building",
-                "type": "fill",
-                'showButton': true
-            },
-            {
-                "filter": ["==", "$type", "Point"],
-                "id": "housenumber",
-                "layout": {
-                    "text-field": "{housenumber}",
-                    "text-font": ["Noto Sans Regular"],
-                    "text-size": 10
-                },
-                "minzoom": 17,
-                "paint": {
-                    "text-color": "rgba(212, 177, 146, 1)"
-                },
-                "source": "openmaptiles",
-                "source-layer": "housenumber",
-                "type": "symbol",
-                'showButton': true
+                'showButton': false
             },
             {
                 "id": "road_area_pier",
@@ -379,7 +208,7 @@ export default {
                     "fill-color": "hsl(47, 26%, 88%)",
                     "fill-antialias": true
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 "id": "road_pier",
@@ -404,7 +233,7 @@ export default {
                         ]
                     }
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
@@ -419,7 +248,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "fill",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -444,7 +273,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -469,7 +298,7 @@ export default {
                 "source-layer": "transportation",
                 "type": "line",
                 "minzoom": 13,
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -495,7 +324,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -521,7 +350,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
@@ -548,7 +377,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "aeroway",
                 "type": "fill",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["in", "class", "taxiway"],
@@ -578,7 +407,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "aeroway",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["in", "class", "runway"],
@@ -608,7 +437,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "aeroway",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -632,7 +461,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -656,7 +485,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -681,7 +510,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "class", "transit"],
@@ -704,7 +533,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["==", "class", "rail"],
@@ -725,7 +554,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -756,7 +585,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "waterway",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -780,7 +609,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "waterway",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -812,7 +641,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -844,7 +673,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -869,7 +698,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -894,7 +723,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["in", "admin_level", 4, 6, 8],
@@ -909,7 +738,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "boundary",
                 "type": "line",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["<=", "admin_level", 2],
@@ -933,34 +762,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "boundary",
                 "type": "line",
-                'showButton': true
-            },
-            {
-                "filter": ["all", ["==", "$type", "Point"],
-                    ["==", "rank", 1]
-                ],
-                "id": "poi_label",
-                "layout": {
-                    "icon-size": 1,
-                    "text-anchor": "top",
-                    "text-field": "{name:latin}\n{name:nonlatin}",
-                    "text-font": ["Noto Sans Regular"],
-                    "text-max-width": 8,
-                    "text-offset": [0, 0.5],
-                    "text-size": 11,
-                    "visibility": "visible"
-                },
-                "minzoom": 14,
-                "paint": {
-                    "text-color": "#666",
-                    "text-halo-blur": 1,
-                    "text-halo-color": "rgba(255,255,255,0.75)",
-                    "text-halo-width": 1
-                },
-                "source": "openmaptiles",
-                "source-layer": "poi",
-                "type": "symbol",
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["==", "$type", "LineString"],
@@ -988,7 +790,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation_name",
                 "type": "symbol",
-                'showButton': true
+                'showButton': false
             },
             {
                 'id': 'HRUs',
@@ -1017,14 +819,14 @@ export default {
                         .4
                     ]
                 },
-                'showButton': true
+                'showButton': false
             },
             {
-                'id': '*Rivers',
+                'id': 'River Flow Lines',
                 'type': 'line',
                 'source': 'basemap',
                 'source-layer': 'USA_Rivers_and_Streams',
-                'minzoom': 5,
+                'minzoom': 6,
                 'layout': {
                     'visibility': 'visible'
                 },
@@ -1047,7 +849,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': true
+                'showButton': false
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
@@ -1064,10 +866,10 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': true
+                'showButton': false
             },
             {
-                'id': '*Neighboring Countries',
+                'id': 'Neighboring Countries',
                 'type': 'fill',
                 'source': 'basemap',
                 'source-layer': 'neighboringcountry',
@@ -1076,6 +878,19 @@ export default {
                 },
                 'paint': {
                     'fill-color': 'rgba(237, 236, 232, 1)'
+                },
+                'showButton': false
+            },
+            {
+                'id': 'Hydrological Response Unit',
+                'type': 'line',
+                'source': 'HRU',
+                'source-layer': 'hrus',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'paint': {
+                    'line-color': 'rgba(57, 79, 87, 1)'
                 },
                 'showButton': true
             },
@@ -1096,6 +911,7 @@ export default {
                     }
                 },
                 "maxzoom": 16,
+                "minzoom": 5,
                 "paint": {
                     "text-color": "hsl(0, 0%, 0%)",
                     "text-halo-blur": 0,
@@ -1105,97 +921,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "place",
                 "type": "symbol",
-                'showButton': true
-            },
-            {
-                "filter": ["all", ["==", "$type", "Point"],
-                    ["==", "class", "country"],
-                    ["!has", "iso_a2"]
-                ],
-                "id": "country_label-other",
-                "layout": {
-                    "text-field": "{name:latin}",
-                    "text-font": ["Noto Sans Regular"],
-                    "text-max-width": 10,
-                    "text-size": {
-                        "stops": [
-                            [3, 12],
-                            [8, 22]
-                        ]
-                    },
-                    "visibility": "visible"
-                },
-                "maxzoom": 12,
-                "paint": {
-                    "text-color": "hsl(0, 0%, 13%)",
-                    "text-halo-blur": 0,
-                    "text-halo-color": "rgba(255,255,255,0.75)",
-                    "text-halo-width": 2
-                },
-                "source": "openmaptiles",
-                "source-layer": "place",
-                "type": "symbol",
-                'showButton': true
-            },
-            {
-                "filter": ["all", ["==", "$type", "Point"],
-                    ["==", "class", "country"],
-                    ["has", "iso_a2"]
-                ],
-                "id": "country_label",
-                "layout": {
-                    "text-field": "{name:latin}",
-                    "text-font": ["Noto Sans Bold"],
-                    "text-max-width": 10,
-                    "text-size": {
-                        "stops": [
-                            [3, 12],
-                            [8, 22]
-                        ]
-                    },
-                    "visibility": "visible"
-                },
-                "maxzoom": 12,
-                "paint": {
-                    "text-color": "hsl(0, 0%, 13%)",
-                    "text-halo-blur": 0,
-                    "text-halo-color": "rgba(255,255,255,0.75)",
-                    "text-halo-width": 2
-                },
-                "source": "openmaptiles",
-                "source-layer": "place",
-                "type": "symbol",
-                'showButton': true
-            },
-            {
-                "filter": ["all", ["==", "$type", "Point"],
-                    ["!in", "class", "city", "state", "country", "continent"]
-                ],
-                "id": "place_label_other",
-                "layout": {
-                    "text-anchor": "center",
-                    "text-field": "{name:latin}\n{name:nonlatin}",
-                    "text-font": ["Noto Sans Regular"],
-                    "text-max-width": 6,
-                    "text-size": {
-                        "stops": [
-                            [6, 10],
-                            [12, 14]
-                        ]
-                    },
-                    "visibility": "visible"
-                },
-                "minzoom": 8,
-                "paint": {
-                    "text-color": "hsl(0, 0%, 25%)",
-                    "text-halo-blur": 0,
-                    "text-halo-color": "hsl(0, 0%, 100%)",
-                    "text-halo-width": 2
-                },
-                "source": "openmaptiles",
-                "source-layer": "place",
-                "type": "symbol",
-                'showButton': true
+                'showButton': false
             }
         ]
     }
