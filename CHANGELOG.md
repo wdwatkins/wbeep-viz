@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Changed map and page title to 'National Integrated Water Availability Assessments'
+- Added attribution control for OpenMapTiles layers
 - Removed Mapbox street layers and replaced them with OpenMapTiles
 - Zoom to bounding box of the U.S.
 - Removed City Dots and HRU Outlines
