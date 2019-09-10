@@ -2,7 +2,7 @@
   <div id="app">
     <HeaderUSWDSBanner />
     <HeaderUSGS />
-    <MapBox title="Current status of natural water availability across the Continental U.S." />
+    <MapBox title="National Integrated Water Availability Assessments" />
     <FooterUSGS />
   </div>
 </template>

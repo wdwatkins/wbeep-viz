@@ -38,6 +38,11 @@
         :access-token="accessToken"
         @load="onMapLoaded"
       >
+        <MglAttributionControl
+          position="bottom-right"
+          :compact="false"
+          custom-attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+        />
         <MglScaleControl
           position="bottom-right"
           unit="imperial"
@@ -63,7 +68,8 @@
         MglNavigationControl,
         MglGeolocateControl,
         MglFullscreenControl,
-        MglScaleControl
+        MglScaleControl,
+        MglAttributionControl
     } from "vue-mapbox";
     import mapStyles from '../assets/mapStyles/mapStyles';
 
@@ -75,6 +81,7 @@
             MglGeolocateControl,
             MglFullscreenControl,
             MglScaleControl,
+            MglAttributionControl,
             MapLegend
         },
         props: {
@@ -286,7 +293,7 @@
     display: none;
   }
 
-  /* When the screen is less than 600 pixels wide, hide all links, except for the title ("map layers"). 
+  /* When the screen is less than 600 pixels wide, hide all links, except for the title ("map layers").
   Show the layer-group that should open and close the layer toggle bar */
   @media screen and (max-width: 600px) {
     .usa-prose .title-text {
@@ -298,7 +305,7 @@
       float: right;
       display: block;
     }
-    /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the layer group icon. 
+    /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the layer group icon.
     This class makes the to layer toggle menu look good on small screens (display the links vertically instead of horizontally) */
     .mapbox_component-topnav.responsive {position: relative;}
     .mapbox_component-topnav.responsive a.icon {
