@@ -56,18 +56,18 @@ export default {
                 "type": "background",
                 'showButton': false
             },
-            {
-                "type": "hillshade",
-                "paint": {
-                    "hillshade-shadow-color": "hsl(39, 21%, 33%)"
-                },
-                "layout": {
-                    "visibility": "visible"
-                },
-                "id": "MB Hill Shade",
-                "source": "mapbox_terrain",
-                'showButton': true
-            },
+            // {
+            //     "type": "hillshade",
+            //     "paint": {
+            //         "hillshade-shadow-color": "hsl(39, 21%, 33%)"
+            //     },
+            //     "layout": {
+            //         "visibility": "visible"
+            //     },
+            //     "id": "MB Hill Shade",
+            //     "source": "mapbox_terrain",
+            //     'showButton': true
+            // },
             {
                 'id': '*Counties Borders',
                 'type': 'line',
