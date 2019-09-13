@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Cleaned up mapStyles.json
 - Changed map and page title to 'National Integrated Water Availability Assessments'
 - Added attribution control for OpenMapTiles layers
 - Removed Mapbox street layers and replaced them with OpenMapTiles
