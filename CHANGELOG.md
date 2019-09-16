@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Added map subtitle and subtitle info button
 - Cleaned up mapStyles.json
 - Changed map and page title to 'National Integrated Water Availability Assessments'
 - Added attribution control for OpenMapTiles layers
