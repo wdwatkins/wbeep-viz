@@ -13,13 +13,7 @@
 
 <script>
   export default {
-      name: 'MapSubtitle',
-      props: {
-          subTitle: {
-              type: String,
-              default: 'Add your title for the legend in MapBox.vue or make this blank'
-          }
-      }
+      name: 'MapSubtitle'
   }
 </script>
 
