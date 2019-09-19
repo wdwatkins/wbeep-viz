@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Ignored NHD order tiles in Jenkins job
 - Made subtitle information modal popup
 - Made Map Subtitle component
 - Added map subtitle and subtitle info button
