@@ -36,6 +36,9 @@
         :center="center"
         :pitch="pitch"
         :bearing="bearing"
+        :pitch-with-rotate="false"
+        :drag-rotate="false"
+        :touch-zoom-rotate="false"
         :access-token="accessToken"
         @load="onMapLoaded"
       >

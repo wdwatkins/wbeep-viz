@@ -4,12 +4,20 @@
       <p>An Indicator of Natural Water Storage</p>
     </div>
     <div id="subtitleInfoButton">
-      <a href="javascript:void(0);" id="subtitleIcon" class="icon">
+      <a
+        id="subtitleIcon"
+        href="javascript:void(0);"
+        class="icon"
+      >
         <font-awesome-icon icon="info" />
       </a>
       <div id="subtitleInfoModal">
         <div id="infoContainer">
-          <a href="javascript:void(0);" id="exit" class="icon">
+          <a
+            id="exit"
+            href="javascript:void(0);"
+            class="icon"
+          >
             <font-awesome-icon icon="times" />
           </a>
           <p>
