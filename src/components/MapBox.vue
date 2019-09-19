@@ -200,6 +200,18 @@
                     }
                     hoveredHRUId =  null;
                 });
+                //Subtitle information Modal functionality
+                let infoButton = document.getElementById('subtitleInfoButton');
+                let modal = document.getElementById('subtitleInfoModal');
+                let exit = document.getElementById('exit');
+                //Info Button Click Function
+                infoButton.onclick = function(){
+                  if(modal.style.display === 'block'){
+                    modal.style.display = "none";
+                  }else{
+                    modal.style.display = "block"
+                  }
+                }
             }
         }
     }

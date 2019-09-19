@@ -1,57 +1,135 @@
 <template>
   <div id="subtitle">
-        <div id="subtitleText">
-          <p>An Indicator of Natural Water Storage</p>
-        </div>
-        <div id="subtitleInforButton">
-          <a href="#" class="icon">
-            <font-awesome-icon icon="info" />
+    <div id="subtitleText">
+      <p>An Indicator of Natural Water Storage</p>
+    </div>
+    <div id="subtitleInfoButton">
+      <a href="javascript:void(0);" id="subtitleIcon" class="icon">
+        <font-awesome-icon icon="info" />
+      </a>
+      <div id="subtitleInfoModal">
+        <div id="infoContainer">
+          <a href="javascript:void(0);" id="exit" class="icon">
+            <font-awesome-icon icon="times" />
+          </a>
+          <p>
+            This map shows daily estimates of natural water storage for 110,000 
+            regions across the continental U.S. Map shading indicates the natural 
+            water storage relative to historical conditions for this time of year.
+          </p>
+          <a href="https://www.google.com/">
+          <button>Learn More</button>
           </a>
         </div>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
-  export default {
-      name: 'MapSubtitle'
-  }
+export default {
+  name: "MapSubtitle"
+};
 </script>
 
 <style scoped lang="scss">
-  #subtitle{
-    background:rgb(255,255,255);
-    background:rgba(255,255,255,.6);
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
+#subtitle {
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  border: 1px solid rgb(200, 200, 200);
 
-    p{
-      margin: 0;
+  p {
+    margin: 0;
+    user-select: none;
+  }
+
+  #subtitleText {
+    flex: 1;
+    line-height: 30px;
+    padding: 0 0 0 10px;
+  }
+
+  #subtitleInfoButton {
+    margin: 0 0 0 10px;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border-left: 1px solid rgb(200,200,200);
+
+    a{
+      color: #000;
+      outline: none;
     }
 
-    #subtitleText{
-      flex: 1;
-      padding: 0 5px 0 0;
-      border-right: 1px solid #000;
-    }
+    #subtitleIcon{
+      display: block;
+      height: 100%;
+      border-radius: 0 5px 5px 0;
 
-    #subtitleInforButton{
-      margin: 0 0 0 5px;
-      width: 20px;
+      &:hover{
+        background: #003366;
+        color: #ffffff;
+      }
       
 
-      a{
-        color: #000;
-        display: block;
-        outline: none;
+      svg{
+        width: 18px;
+        height: 18px;
+        margin: 5px 0 0 0;
       }
     }
   }
+  #subtitleInfoModal{
+    display: none;
+    min-height: 30px;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    border-radius: 5px;
+    border: 1px solid rgb(200,200,200);
+    background: rgb(255,255,255);
+    background: rgba(255,255,255,.8);
+    
+    #infoContainer{
+      min-height: 20px;
+      width: 320px;
+      position: relative;
+      padding: 25px 10px 0 10px;
+
+      #exit{
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      p{
+        text-align: left;
+        margin: 0 0 10px 0;
+      }
+
+      button{
+        margin: 0 0 10px 0;
+        background: #003366;
+        color: #ffffff;
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: .9em;
+        font-weight: bold;
+      }
+    }
+  }
+}
 </style>
