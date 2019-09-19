@@ -17,8 +17,8 @@
             regions across the continental U.S. Map shading indicates the natural 
             water storage relative to historical conditions for this time of year.
           </p>
-          <a href="https://www.google.com/">
-          <button>Learn More</button>
+          <a href="#">
+            <button>Learn More</button>
           </a>
         </div>
       </div>
