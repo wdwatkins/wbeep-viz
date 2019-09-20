@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Created Legend Modal
 - Added new Legend text and legend info button
 - Added a stream orders toggle bar so that we can test out which stream orders we want
 - Made subtitle information modal popup

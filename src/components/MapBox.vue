@@ -281,13 +281,27 @@
                 //Subtitle information Modal functionality
                 let infoButton = document.getElementById('subtitleInfoButton');
                 let modal = document.getElementById('subtitleInfoModal');
-                let exit = document.getElementById('exit');
+                let legendInfoButton = document.getElementById('legendInfoButton');
+                let legendModal = document.getElementById('legendModal');
+                let legendExit = document.getElementById('legendExit');
                 //Info Button Click Function
                 infoButton.onclick = function(){
-                  if(modal.style.display === 'block'){
-                    modal.style.display = "none";
+                  toggle(modal);
+                }
+                //Legend Modal functionality
+                legendInfoButton.onclick =function(){
+                  toggle(legendModal);
+                }
+                legendExit.onclick = function(){
+                  toggle(legendModal);
+                }
+
+                //Toggle function
+                let toggle = function(name){
+                  if(name.style.display === 'block'){
+                    name.style.display = "none";
                   }else{
-                    modal.style.display = "block"
+                    name.style.display = "block"
                   }
                 }
             }
