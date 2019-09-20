@@ -70,23 +70,26 @@ export default {
     createLegend() {
       // get the style layers from the map styles object
       let styleLayers = mapStyles.style.layers;
-      let colors = [];
-      let layers = [];
+      let legendColorValues = [];
+      let styleSheetCategories = [];
+      let selectedLayerStyle = null;
       // look through the styles layers to find the one with the Hydrological Response Unit fill colors
       for (let index = 0; index < styleLayers.length; index++) {
         if (styleLayers[index].id === "HRUs") {
+          // save the layer style we want, so we can use it later
+          selectedLayerStyle = styleLayers[index];
           // Get the fill color values and names then put them in separate lists
-          let hruColors = styleLayers[index].paint["fill-color"].stops;
-          let hruColorLabel = null;
-          for (let index = 0; index < hruColors.length; index++) {
+          let styleSheetColorStops = styleLayers[index].paint["fill-color"].stops;
+          let styleSheetColorLable = null;
+          for (let index = 0; index < styleSheetColorStops.length; index++) {
             // Make a label for the blank and missing data
-            if (hruColors[index][0] === "") {
-              hruColorLabel = "no data";
+            if (styleSheetColorStops[index][0] === "") {
+              styleSheetColorLable = "no data";
             } else {
-              hruColorLabel = hruColors[index][0];
+              styleSheetColorLable = styleSheetColorStops[index][0];
             }
-            colors.push(hruColors[index][1]);
-            layers.push(hruColorLabel);
+            legendColorValues.push(styleSheetColorStops[index][1]);
+            styleSheetCategories.push(styleSheetColorLable);
           }
         }
       }
@@ -94,9 +97,9 @@ export default {
       let legend = this.legend;
       legend = document.getElementById("map_legend_container");
 
-      for (let index = 0; index < layers.length; index++) {
-        let layer = layers[index];
-        let color = colors[index];
+      for (let index = 0; index < styleSheetCategories.length; index++) {
+        let legendMainText = styleSheetCategories[index];
+        let color = legendColorValues[index];
         let item = document.createElement("div");
         let keyContainer = document.createElement("div");
         let textContainer = document.createElement("div");
@@ -120,37 +123,10 @@ export default {
         highlight.style.fontWeight = "bold";
         highlight.style.textShadow = "1px 1px 0 rgba(0,0,0,.25)";
 
-        let options = {
-          "very high": {
-            category: "Uncommonly Wet",
-            text: " - it's typically drier than it is today in this region"
-          },
-          medium: {
-            category: "Common",
-            text: " - today is normal for this region"
-          },
-          "very low": {
-            category: "Uncommonly Dry",
-            text: " - its typically wetter than it is today in this region"
-          }
-        };
-
-        let fillInContent = function(option) {
-          highlight.innerHTML = options[option].category;
-          text.innerHTML = options[option].text;
-          value.appendChild(highlight);
-          value.appendChild(text);
-        };
-
-        if (layer === "very high") {
-          fillInContent(layer);
-        } else if (layer === "medium") {
-          fillInContent(layer);
-        } else if (layer === "very low") {
-          fillInContent(layer);
-        } else if (layer === "no data") {
-          value.innerHTML = layer;
-        }
+        highlight.innerHTML = selectedLayerStyle.legendText[legendMainText][0];
+        text.innerHTML = selectedLayerStyle.legendText[legendMainText][1];
+        value.appendChild(highlight);
+        value.appendChild(text);
 
         keyContainer.appendChild(key);
         textContainer.appendChild(value);

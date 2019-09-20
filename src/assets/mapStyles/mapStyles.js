@@ -11,7 +11,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the base tiles from S3 so that no local tile
                 // server is required:
-                // 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -28,7 +28,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the HRU tiles from S3 so that no local tile
                 // server is required:
-                // 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -297,7 +297,15 @@ export default {
                         .4
                     ]
                 },
-                'showButtonLayerToggle': false
+                'showButtonLayerToggle': false,
+                'legendText': {
+                    'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
+                    'high': ['',''],
+                    'medium': ['Common',' \- today is normal for this region'],
+                    'low': ['',''],
+                    'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
+                    'no data': ['','']
+                }
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
