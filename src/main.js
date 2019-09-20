@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faInfo } from '@fortawesome/free-solid-svg-icons'
 import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { faWater } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -16,6 +18,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(faInfo)
 library.add(faLayerGroup)
 library.add(faTimes)
+library.add(faThumbsUp)
+library.add(faThumbsDown)
 library.add(faWater)
 
 Vue.config.productionTip = false
