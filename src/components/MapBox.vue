@@ -107,7 +107,7 @@
                 pitch: 0, // tips the map from 0 to 60 degrees
                 bearing: 0, // starting rotation of the map from 0 to 360
                 hoveredHRUId: null,
-                legendTitle: 'Calculated Availability',
+                legendTitle: 'Current Water Status',
                 accessToken: 'pk.eyJ1IjoiYWJyaWdncyIsImEiOiJjandrd3J4bmMwcjNpNGFxZ2hoZGE2djR5In0.gKPNdhLzvbzui4aiIwAihA'
             }
         },
