@@ -18,8 +18,24 @@
         <a
           href="javascript:void(0);"
           class="icon"
-          @click="changeToResponsiveElement"
+          @click="changeToResponsiveElement('mapbox_component-layers-toggle')"
         ><font-awesome-icon icon="layer-group" />
+        </a>
+      </div>
+      <div
+        id="mapbox_component-streams-toggle"
+        class="mapbox_component-topnav"
+      >
+        <a
+          id="map-streams-label"
+          href="#"
+          class="active"
+        >Stream Orders</a>
+        <a
+          href="javascript:void(0);"
+          class="icon"
+          @click="changeToResponsiveElement('mapbox_component-streams-toggle')"
+        ><font-awesome-icon icon="water" />
         </a>
       </div>
     </div>
@@ -112,8 +128,8 @@
             }
         },
         methods: {
-            changeToResponsiveElement: function() {
-                let mapboxComponentLayerToggle = document.getElementById("mapbox_component-layer-toggle");
+            changeToResponsiveElement: function(targetElement) {
+                let mapboxComponentLayerToggle = document.getElementById(targetElement);
                 if (mapboxComponentLayerToggle.className === "mapbox_component-topnav") {
                     mapboxComponentLayerToggle.className += " responsive";
                 } else {
@@ -129,13 +145,17 @@
                   [-65, 49]
                 ]);
 
+
+                // For now, I am going to duplicate this code section for each set of toggles (currently layers and streams), ideally this would be
+                // in separate components, but for prototyping purposes this is fine for now.
+
                 // Next section gives us names for the layer toggle buttons
                 let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
                 let toggleableLayerIds = [];
                 let layersTurnedOffAtStart = [];
 
                 for (let index = 0; index < styleLayers.length; index++) {
-                    if (styleLayers[index].showButton === true) { // note: to NOT show a button for layer, change the 'showButton' property in the mapStyles.js to false
+                    if (styleLayers[index].showButtonLayerToggle === true) { // note: to NOT show a button for layer, change the 'showButtonLayerToggle' property in the mapStyles.js to false
                         toggleableLayerIds.push(styleLayers[index].id);
 
                         // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
@@ -185,6 +205,61 @@
                     layerToggleList.appendChild(link);
                 }
 
+                // Next section gives us names for the streams toggle buttons
+                let toggleableStreamsIds = [];
+                let streamsTurnedOffAtStart = [];
+
+                for (let index = 0; index < styleLayers.length; index++) {
+                    if (styleLayers[index].showButtonStreamToggle === true) { // note: to NOT show a button for layer, change the 'showButtonStreamToggle' property in the mapStyles.js to false
+                        toggleableStreamsIds.push(styleLayers[index].id);
+
+                        // Make a list if ids of any layers that we do not want to show when the page loads (layers that are toggleable but are off by default)
+                        // These layers that are off by default have a visibility of 'none' in the style sheet.
+                        if (styleLayers[index].layout.visibility === 'none') {
+                            streamsTurnedOffAtStart.push(styleLayers[index].id);
+                        }
+                    }
+                }
+
+                // Go through each streams id that is in the array and make a button element for it
+                for (let i = 0; i < toggleableStreamsIds.length; i++) {
+                    let id = toggleableStreamsIds[i];
+
+                    let link = document.createElement('a');
+                    link.href = '#';
+                    // If the layer is not set to visible when first loaded, then do not mark it as active.
+                    // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
+                    if (streamsTurnedOffAtStart.includes(id)) {
+                        link.className = '';
+                    } else {
+                        link.className = 'active';
+                    }
+
+                    // Set the wording (label) for the streams toggle button to match the 'id' listed in the style sheet
+                    link.textContent = id;
+
+                    // Creates a click event for each button so that when clicked by the user, the visibility property
+                    // is changed as is the class (color) of the button
+                    link.onclick = function (e) {
+                        let clickedLayer = this.textContent;
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        let visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+                        if (visibility === 'visible') {
+                            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                            this.className = '';
+                        } else {
+                            this.className = 'active';
+                            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+                        }
+                    };
+
+                    let streamsToggleList = document.getElementById('mapbox_component-streams-toggle');
+                    streamsToggleList.appendChild(link);
+                }
+
                 // next section controls the HRU hover effect
                 let hoveredHRUId = this.hoveredHRUId;
 
@@ -232,7 +307,14 @@
     overflow: hidden;
   }
 
-  #map-layers-label::after {
+   #map-layers-label::after {
+    content: "|";
+    padding-left: 10px;
+    float: right;
+    color: #fff;
+  }
+
+  #map-streams-label::after {
     content: "|";
     padding-left: 10px;
     float: right;
@@ -293,8 +375,14 @@
     color: black;
   }
 
-  /* Override the hover effect for so the 'Map Layer' label does not appear click-able. */
+  /* Override the hover effect for so the 'Map Layers' label does not appear click-able. */
   #map-layers-label:hover {
+    background-color: #4574a3;
+    color: white;
+  }
+
+  /* Override the hover effect for so the 'Stream Orders' label does not appear click-able. */
+  #map-streams-label:hover {
     background-color: #4574a3;
     color: white;
   }
