@@ -11,7 +11,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the base tiles from S3 so that no local tile
                 // server is required:
-                //'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -28,12 +28,18 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the HRU tiles from S3 so that no local tile
                 // server is required:
-                //'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
                 // https://github.com/usgs-makerspace/wbeep-viz#start-run-the-tile-server
                 // url: 'http://localhost:8085/data/new2.json'
+            },
+            nhd_streams: {
+                type: 'vector',
+                'tiles':['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/nhd_order_tiles/{z}/{x}/{y}.pbf'],
+                "minzoom": 2, // setting this to equal the minzoom of main map, real tile extent is 0
+                "maxzoom": 9  // setting this to equal the maxzoom of main map, real tile extent is 10
             },
             openmaptiles: {
                 type: 'vector',
@@ -269,7 +275,7 @@ export default {
                 'source': 'HRU',
                 'source-layer': 'hrus',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'fill-color': {
@@ -291,20 +297,6 @@ export default {
                     ]
                 },
                 'showButton': false
-            },
-            {
-                'id': 'River Flow Lines',
-                'type': 'line',
-                'source': 'basemap',
-                'source-layer': 'USA_Rivers_and_Streams',
-                'minzoom': 6,
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'line-color': 'rgba(115, 255, 255, 1)'
-                },
-                'showButton': true
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
@@ -339,6 +331,150 @@ export default {
                 },
                 'showButton': false
             },
+            {
+                "id": "stream_order_1",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_1',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_2",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_2',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_3",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_3',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_4",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_4',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_5",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_5',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_6",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_6',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_7",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_7',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_8",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_8',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_9",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_9',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+            {
+                "id": "stream_order_minus_9",
+                'type': 'line',
+                'source': 'nhd_streams',
+                'source-layer': 'nhdplus_order_minus_9',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'line-color': 'rgba(115, 255, 255, 1)'
+                },
+                'showButton': true
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             {
                 'id': 'Neighboring Countries',
                 'type': 'fill',
