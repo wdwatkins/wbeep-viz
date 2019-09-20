@@ -472,20 +472,6 @@ export default {
                 'showButtonLayerToggle': false,
                 'showButtonStreamToggle': true
             },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             {
                 'id': 'Neighboring Countries',
                 'type': 'fill',
