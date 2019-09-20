@@ -60,7 +60,7 @@ export default {
                     "background-color": "hsl(47, 26%, 88%)"
                 },
                 "type": "background",
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "type": "hillshade",
@@ -72,7 +72,8 @@ export default {
                 },
                 "id": "MB Hill Shade",
                 "source": "mapbox_terrain",
-                'showButton': true
+                'showButtonLayerToggle': true,
+                'showButtonStreamToggle': false,
             },
             {
                 'id': '*Counties Borders',
@@ -87,7 +88,7 @@ export default {
                 'paint': {
                     'line-color': 'rgba(218, 234, 240, 1)'
                 },
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -118,7 +119,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -143,7 +144,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -169,7 +170,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -194,7 +195,7 @@ export default {
                 "source-layer": "transportation",
                 "type": "line",
                 "minzoom": 13,
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -218,7 +219,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -242,7 +243,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "LineString"],
@@ -267,7 +268,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "transportation",
                 "type": "line",
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 'id': 'HRUs',
@@ -275,7 +276,7 @@ export default {
                 'source': 'HRU',
                 'source-layer': 'hrus',
                 'layout': {
-                    'visibility': 'none'
+                    'visibility': 'visible'
                 },
                 'paint': {
                     'fill-color': {
@@ -296,7 +297,7 @@ export default {
                         .4
                     ]
                 },
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
@@ -312,7 +313,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
@@ -329,7 +330,7 @@ export default {
                 "layout": {
                     "visibility": "visible"
                 },
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 "id": "stream_order_1",
@@ -337,12 +338,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_1',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true,
             },
             {
                 "id": "stream_order_2",
@@ -350,12 +352,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_2',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
             {
                 "id": "stream_order_3",
@@ -363,12 +366,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_3',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
             {
                 "id": "stream_order_4",
@@ -376,12 +380,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_4',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
             {
                 "id": "stream_order_5",
@@ -389,12 +394,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_5',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
             {
                 "id": "stream_order_6",
@@ -402,12 +408,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_6',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
             {
                 "id": "stream_order_7",
@@ -415,12 +422,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_7',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
             {
                 "id": "stream_order_8",
@@ -428,12 +436,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_8',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
             {
                 "id": "stream_order_9",
@@ -441,12 +450,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_9',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
             {
                 "id": "stream_order_minus_9",
@@ -454,12 +464,13 @@ export default {
                 'source': 'nhd_streams',
                 'source-layer': 'nhdplus_order_minus_9',
                 'layout': {
-                    'visibility': 'visible'
+                    'visibility': 'none'
                 },
                 'paint': {
                     'line-color': 'rgba(115, 255, 255, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': false,
+                'showButtonStreamToggle': true
             },
 
 
@@ -486,7 +497,7 @@ export default {
                 'paint': {
                     'fill-color': 'rgba(237, 236, 232, 1)'
                 },
-                'showButton': false
+                'showButtonLayerToggle': false
             },
             {
                 'id': 'Hydrological Response Unit',
@@ -499,7 +510,8 @@ export default {
                 'paint': {
                     'line-color': 'rgba(57, 79, 87, 1)'
                 },
-                'showButton': true
+                'showButtonLayerToggle': true,
+                'showButtonStreamToggle': false
             },
             {
                 "filter": ["all", ["==", "$type", "Point"],
@@ -528,7 +540,7 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "place",
                 "type": "symbol",
-                'showButton': false
+                'showButtonLayerToggle': false
             }
         ]
     }
