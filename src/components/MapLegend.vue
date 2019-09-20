@@ -1,5 +1,8 @@
 <template>
-  <div id="map_legend_container" class="map-overlay">
+  <div
+    id="map_legend_container"
+    class="map-overlay"
+  >
     <div id="legendTitleInfoContainer">
       <p>{{ legendTitle }}</p>
       <div id="legendInfoButton">
@@ -10,22 +13,38 @@
       <div id="legendModal">
         <div id="legendModalContent">
           <div id="exitlegendModal">
-            <font-awesome-icon id="legendExit" icon="times" />
+            <font-awesome-icon
+              id="legendExit"
+              icon="times"
+            />
           </div>
-          <p class="example">Q: Can I compare Florida to Arizona?</p>
-          <p class="example">A: Sort Of.</p>
+          <p class="example">
+            Q: Can I compare Florida to Arizona?
+          </p>
+          <p class="example">
+            A: Sort Of.
+          </p>
           <p>
             The daily water status is determined based on the water norms of each region.
             So, if the following were statuses for Arizona and Florida.
           </p>
           <div id="states">
-            <div id="florida" class="state"></div>
-            <div id="arizona" class="state"></div>
+            <div
+              id="florida"
+              class="state"
+            />
+            <div
+              id="arizona"
+              class="state"
+            />
           </div>
           <p>Then below are incorrect and correct interpretations</p>
         </div>
         <div id="interpretations">
-          <div id="incorrect" class="interpretation">
+          <div
+            id="incorrect"
+            class="interpretation"
+          >
             <div class="interpretationIcon">
               <font-awesome-icon icon="thumbs-down" />
             </div>
@@ -33,7 +52,10 @@
               Florida has less water than Arizona.
             </div>
           </div>
-          <div id="correct" class="interpretation">
+          <div
+            id="correct"
+            class="interpretation"
+          >
             <div class="interpretationIcon">
               <font-awesome-icon icon="thumbs-up" />
             </div>
@@ -80,16 +102,16 @@ export default {
           selectedLayerStyle = styleLayers[index];
           // Get the fill color values and names then put them in separate lists
           let styleSheetColorStops = styleLayers[index].paint["fill-color"].stops;
-          let styleSheetColorLable = null;
+          let styleSheetColorLabel = null;
           for (let index = 0; index < styleSheetColorStops.length; index++) {
             // Make a label for the blank and missing data
             if (styleSheetColorStops[index][0] === "") {
-              styleSheetColorLable = "no data";
+              styleSheetColorLabel = "no data";
             } else {
-              styleSheetColorLable = styleSheetColorStops[index][0];
+              styleSheetColorLabel = styleSheetColorStops[index][0];
             }
             legendColorValues.push(styleSheetColorStops[index][1]);
-            styleSheetCategories.push(styleSheetColorLable);
+            styleSheetCategories.push(styleSheetColorLabel);
           }
         }
       }
