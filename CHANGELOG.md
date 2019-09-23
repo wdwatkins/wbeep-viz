@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Edited Legend modal to better fit a mobile experience
+- Added vue-svg-loader package
+- Added Florida and Arizona SVGS
 - Created Legend Modal
 - Added new Legend text and legend info button
 - Added a stream orders toggle bar so that we can test out which stream orders we want

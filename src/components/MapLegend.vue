@@ -29,14 +29,12 @@
             So, if the following were statuses for Arizona and Florida.
           </p>
           <div id="states">
-            <div
-              id="florida"
-              class="state"
-            />
-            <div
-              id="arizona"
-              class="state"
-            />
+            <div id="florida" class="state">
+              <floridaSVG id="floridaSVG" class="statesvg" />
+            </div>
+            <div id="arizona" class="state">
+              <arizonaSVG id="arizonaSVG" class="statesvg" />
+            </div>
           </div>
           <p>Then below are incorrect and correct interpretations</p>
         </div>
@@ -71,9 +69,15 @@
 
 <script>
 import mapStyles from "../assets/mapStyles/mapStyles";
+import floridaSVG from "../images/states/florida.svg";
+import arizonaSVG from "../images/states/arizona.svg";
 
 export default {
   name: "MapLegend",
+  components: {
+    floridaSVG,
+    arizonaSVG
+  },
   props: {
     legendTitle: {
       type: String,
@@ -118,6 +122,10 @@ export default {
 
       let legend = this.legend;
       legend = document.getElementById("map_legend_container");
+      let florida = document.getElementById("floridaSVG");
+      let arizona = document.getElementById("arizonaSVG");
+      florida.style.fill = legendColorValues[0];
+      arizona.style.fill = legendColorValues[4];
 
       for (let index = 0; index < styleSheetCategories.length; index++) {
         let legendMainText = styleSheetCategories[index];
@@ -163,8 +171,10 @@ export default {
 
 <style scoped lang="scss">
 $border: 1px solid rgb(200, 200, 200);
-$background: rgba(255, 255, 255, 0.8);
+$background: rgba(255, 255, 255, 0.9);
 $borderRadius: 5px;
+$fontSizeMobile: .8em;
+$fontSizeDesktop: .9em;
 .map-overlay {
   position: absolute;
   z-index: 1000;
@@ -212,7 +222,7 @@ $borderRadius: 5px;
   border-radius: 0 5px 0 0;
   cursor: pointer;
 
-  &:hover {
+  &:active {
     background: #003366;
     color: #ffffff;
   }
@@ -229,23 +239,24 @@ $borderRadius: 5px;
   border: $border;
   border-radius: $borderRadius;
   min-height: 100px;
-  width: 310px;
+  max-width: 280px;
   position: absolute;
-  left: 290px;
-  bottom: 0;
+  left: 0;
+  bottom: 40px;
   padding: 5px 10px;
   display: none;
+  
 
   p {
-    line-height: 1.4em;
-    font-size: 0.8em;
+    line-height: 1.1em;
+    font-size: $fontSizeMobile;
     padding: 0;
   }
 
   .example {
     margin: 0 0 5px 0;
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: $fontSizeMobile;
   }
 }
 
@@ -260,26 +271,31 @@ $borderRadius: 5px;
 }
 
 #states {
-  background: red;
   min-height: 10px;
   margin: 10px 0;
   display: flex;
+  align-content: space-between;
 }
 
 .state {
   flex: 1;
+  height: 80px;
 }
 
-#florida {
-  background: green;
+#florida{
+  margin-right: 10px;
 }
 
-#arizona {
-  background: aqua;
+.statesvg{
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin: auto;
 }
 
 #interpretations {
   margin: 10px 0;
+  font-size: $fontSizeMobile;
 
   #incorrect{
     margin: 0 0 15px 0;
@@ -314,4 +330,23 @@ $borderRadius: 5px;
     }
   }
 }
+
+@media screen and (min-width: 600px){
+  #legendModal{
+    p{
+      font-size: $fontSizeDesktop;
+    }
+    .example{
+      font-size: $fontSizeDesktop;
+    }
+  }
+  #interpretations{
+    font-size: $fontSizeDesktop;
+  }
+
+  .state{
+    height: 100px;
+  }
+}
+
 </style>
