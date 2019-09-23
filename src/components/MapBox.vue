@@ -79,6 +79,7 @@
         />
       </MglMap>
     </div>
+    <div>Current Zoom Level (listed for development purposes): <span id="zoomlevel" /></div>
   </div>
 </template>
 <script>
@@ -304,6 +305,14 @@
                     name.style.display = "block"
                   }
                 }
+
+                // This section adds a indicator so that we can see the current zoom level
+                // This is for development and should be removed before sending to production
+                function onZoomend() {
+                    let currentZoom = map.getZoom();
+                    document.getElementById("zoomlevel").innerHTML=currentZoom;
+                };
+                map.on('zoomend', onZoomend);
             }
         }
     }
