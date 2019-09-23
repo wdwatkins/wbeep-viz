@@ -297,7 +297,15 @@ export default {
                         .4
                     ]
                 },
-                'showButtonLayerToggle': false
+                'showButtonLayerToggle': false,
+                'legendText': {
+                    'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
+                    'high': ['',''],
+                    'medium': ['Common',' \- today is normal for this region'],
+                    'low': ['',''],
+                    'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
+                    'no data': ['','']
+                }
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
