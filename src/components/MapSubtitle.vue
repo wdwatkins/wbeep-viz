@@ -54,10 +54,12 @@ export default {
   flex-direction: row;
   text-align: center;
   border: 1px solid rgb(200, 200, 200);
+  width:270px;
 
   p {
     margin: 0;
     user-select: none;
+    font-size:.8em;
   }
 
   #subtitleText {
@@ -83,7 +85,7 @@ export default {
       height: 100%;
       border-radius: 0 5px 5px 0;
 
-      &:hover{
+      &:active{
         background: #003366;
         color: #ffffff;
       }
@@ -109,7 +111,7 @@ export default {
     
     #infoContainer{
       min-height: 20px;
-      width: 320px;
+      width: 270px;
       position: relative;
       padding: 25px 10px 0 10px;
 
@@ -139,5 +141,22 @@ export default {
       }
     }
   }
+}
+
+@media screen and (min-width: 600px){
+  #subtitle{
+    width: 320px;
+
+    p{
+      font-size: .9em;
+    }
+    #subtitleInfoModal{
+      #infoContainer{
+        width: 318px;
+      }
+    }
+  }
+  
+  
 }
 </style>

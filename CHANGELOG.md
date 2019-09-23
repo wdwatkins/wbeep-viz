@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Made Subtitle more mobile friendly
 - Edited Legend modal to better fit a mobile experience
 - Added vue-svg-loader package
 - Added Florida and Arizona SVGS
