@@ -77,9 +77,9 @@
         <MglFullscreenControl
           position="top-right"
         />
-        </MglMap>
+      </MglMap>
     </div>
-    <div >Current Zoom Level (listed for development purposes): <span id="zoomlevel"></span></div>
+    <div>Current Zoom Level (listed for development purposes): <span id="zoomlevel" /></div>
   </div>
 </template>
 <script>
