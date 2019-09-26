@@ -20,14 +20,35 @@
           >
             <font-awesome-icon icon="times" />
           </a>
+ 
+          <h3>About This Map</h3>
           <p>
             This map shows daily estimates of natural water storage for 110,000 
             regions across the continental U.S. Map shading indicates the natural 
             water storage relative to historical conditions for this time of year.
           </p>
-          <a href="#">
-            <button>Learn More</button>
-          </a>
+          
+          <h3>About IWAAs</h3>
+          <p>
+          The <a href="https://www.usgs.gov/mission-areas/water-resources/science/integrated-water-availability-assessments-iwaas">USGS Integrated Water Availability Assessments (IWAAs)</a>
+          are a multi-extent, stakeholder driven, near real-time census and seasonal
+          prediction of water availability for both human and ecological uses at
+          regional and national extents.
+          </p>
+
+          <p>
+          The USGS IWAAs combine resources and knowledge gained from previous and
+          ongoing USGS efforts such as <a href="https://water.usgs.gov/watercensus/focusarea.html">Focus Area Studies</a>,
+          <a href="https://water.usgs.gov/watercensus/groundwater.html">Regional Groundwater Availability Studies</a>,
+          <a href="https://water.usgs.gov/watercensus/water-use.html">Water Use estimation</a>,
+          <a href="https://water.usgs.gov/watercensus/ecowater.html">Ecological Water Needs</a>,
+          and <a href="https://water.usgs.gov/watercensus/streamflow.html">Streamflow estimation</a>,
+          in addition to utilizing and providing feedback to the
+          <a href="http://water.noaa.gov/about/nwm">National Water Model</a>. The IWAAs
+          are designed to provide information to meet the goals of the
+          <a href="https://water.usgs.gov/watercensus/index.html">National Water Census</a> as established through the SECURE Water Act.
+          </p>
+
         </div>
       </div>
     </div>
@@ -101,9 +122,11 @@ export default {
   #subtitleInfoModal{
     display: none;
     min-height: 30px;
+    height: 40vh;
+    overflow: scroll;
     position: absolute;
     top: 40px;
-    right: 0;
+    right: -25px;
     border-radius: 5px;
     border: 1px solid rgb(200,200,200);
     background: rgb(255,255,255);
@@ -111,7 +134,7 @@ export default {
     
     #infoContainer{
       min-height: 20px;
-      width: 270px;
+      width: 350px;
       position: relative;
       padding: 25px 10px 0 10px;
 
@@ -126,6 +149,13 @@ export default {
       p{
         text-align: left;
         margin: 0 0 10px 0;
+      }
+      
+      h3{
+        font-size: 1.1em;
+        font-weight: bold;
+        padding: 0;
+        margin: 8px 0;
       }
 
       button{
@@ -152,7 +182,7 @@ export default {
     }
     #subtitleInfoModal{
       #infoContainer{
-        width: 318px;
+        width: 350px;
       }
     }
   }
