@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Min-height for map
+- Added footer email
 - topNavToggle icon adjustment and mobile adjustment
 - Map Options layers dynamic toggle functionality first added
 - Made Subtitle more mobile friendly
