@@ -57,10 +57,12 @@
         <MglFullscreenControl position="top-right" />
       </MglMap>
     </div>
-    <div>
-      Current Zoom Level (listed for development purposes):
-      <span id="zoomlevel" />
-    </div>
+<!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
+<!--    and the ZOOM LEVEL code section. Hint, search for 'ZOOM LEVEL' to find the needed code section. -->
+<!--    <div>-->
+<!--      Current Zoom Level (listed for development purposes):-->
+<!--      <span id="zoomlevel" />-->
+<!--    </div>-->
   </div>
 </template>
 <script>
@@ -281,13 +283,14 @@ export default {
         }
       };
 
+      // To see the current ZOOM LEVEL of the map during development, uncomment the next section.
       // This section adds a indicator so that we can see the current zoom level
       // This is for development and should be removed before sending to production
-      function onZoomend() {
-        let currentZoom = map.getZoom();
-        document.getElementById("zoomlevel").innerHTML = currentZoom;
-      }
-      map.on("zoomend", onZoomend);
+      // function onZoomend() {
+      //   let currentZoom = map.getZoom();
+      //   document.getElementById("zoomlevel").innerHTML = currentZoom;
+      // }
+      // map.on("zoomend", onZoomend);
     }
   }
 };
