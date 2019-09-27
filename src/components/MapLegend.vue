@@ -1,29 +1,23 @@
 <template>
-  <div
-    id="map_legend_container"
-    class="map-overlay"
-  >
+<div id="legend">
+  <div id="map_legend_container" class="map-overlay expandedLegend">
     <div id="legendTitleInfoContainer">
       <p>{{ legendTitle }}</p>
-      <div id="legendInfoButton">
-        <a id="legendInfo">
+      <div class="legendButton">
+        <a id="legendInfoButton" class="legendIcon">
           <font-awesome-icon icon="info" />
+        </a>
+        <a id="legendMinus" class="legendIcon">
+          <font-awesome-icon icon="minus" />
         </a>
       </div>
       <div id="legendModal">
         <div id="legendModalContent">
           <div id="exitlegendModal">
-            <font-awesome-icon
-              id="legendExit"
-              icon="times"
-            />
+            <font-awesome-icon id="legendExit" icon="times" />
           </div>
-          <p class="example">
-            Q: Can I compare Florida to Arizona?
-          </p>
-          <p class="example">
-            A: Sort Of.
-          </p>
+          <p class="example">Q: Can I compare Florida to Arizona?</p>
+          <p class="example">A: Sort Of.</p>
           <p>
             The daily water status is determined based on the water norms of each region.
             So, if the following were statuses for Arizona and Florida.
@@ -37,34 +31,35 @@
             </div>
           </div>
           <p>Then below are incorrect and correct interpretations</p>
-        </div>
-        <div id="interpretations">
-          <div
-            id="incorrect"
-            class="interpretation"
-          >
-            <div class="interpretationIcon">
-              <font-awesome-icon icon="thumbs-down" />
+          <div id="interpretations">
+            <div id="incorrect" class="interpretation">
+              <div class="interpretationIcon">
+                <font-awesome-icon icon="thumbs-down" />
+              </div>
+              <div class="interpretationText">Florida has less water than Arizona.</div>
             </div>
-            <div class="interpretationText">
-              Florida has less water than Arizona.
-            </div>
-          </div>
-          <div
-            id="correct"
-            class="interpretation"
-          >
-            <div class="interpretationIcon">
-              <font-awesome-icon icon="thumbs-up" />
-            </div>
-            <div class="interpretationText">
-              Florida is usually wetter than it is today, whereas Arizona is usually drier than it is today.
+            <div id="correct" class="interpretation">
+              <div class="interpretationIcon">
+                <font-awesome-icon icon="thumbs-up" />
+              </div>
+              <div
+                class="interpretationText"
+              >Florida is usually wetter than it is today, whereas Arizona is usually drier than it is today.</div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div id="collapsedLegend">
+      <span>Legend</span>
+      <div class="legendButton">
+        <a id="legendPlus" class="legendIcon">
+          <font-awesome-icon icon="plus" />
+        </a>
+      </div>
+    </div>
+</div>
 </template>
 
 <script>
@@ -105,7 +100,8 @@ export default {
           // save the layer style we want, so we can use it later
           selectedLayerStyle = styleLayers[index];
           // Get the fill color values and names then put them in separate lists
-          let styleSheetColorStops = styleLayers[index].paint["fill-color"].stops;
+          let styleSheetColorStops =
+            styleLayers[index].paint["fill-color"].stops;
           let styleSheetColorLabel = null;
           for (let index = 0; index < styleSheetColorStops.length; index++) {
             // Make a label for the blank and missing data
@@ -173,9 +169,9 @@ export default {
 $border: 1px solid rgb(200, 200, 200);
 $background: rgba(255, 255, 255, 0.9);
 $borderRadius: 5px;
-$fontSizeMobile: .8em;
-$fontSizeDesktop: .9em;
-.map-overlay {
+$fontSizeMobile: 0.8em;
+$fontSizeDesktop: 0.9em;
+#legend {
   position: absolute;
   z-index: 1000;
   bottom: 10px;
@@ -194,6 +190,21 @@ $fontSizeDesktop: .9em;
   }
 }
 
+#map_legend_container{
+  display: none;
+}
+
+#collapsedLegend{
+  width: 105px;
+  background: $background;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 0 0 10px;
+  border-radius: $borderRadius;
+  border: $border;
+  position: relative;
+}
+
 #legendTitleInfoContainer {
   position: relative;
   margin: 0 0 5px 0;
@@ -204,22 +215,22 @@ $fontSizeDesktop: .9em;
   }
 }
 
-#legendInfoButton {
-  width: 30px;
+.legendButton {
+  width: auto;
   height: 30px;
   position: absolute;
   top: 0;
   right: 0;
-  border-left: $border;
+  display: flex;
 }
 
-#legendInfo {
+.legendIcon {
   display: block;
   width: 30px;
   height: 30px;
   text-align: center;
   outline: none;
-  border-radius: 0 5px 0 0;
+  border-left: $border;
   cursor: pointer;
 
   &:active {
@@ -245,7 +256,6 @@ $fontSizeDesktop: .9em;
   bottom: 40px;
   padding: 5px 10px;
   display: none;
-  
 
   p {
     line-height: 1.1em;
@@ -263,8 +273,8 @@ $fontSizeDesktop: .9em;
 #exitlegendModal {
   text-align: right;
 
-  svg{
-    &:hover{
+  svg {
+    &:hover {
       cursor: pointer;
     }
   }
@@ -282,11 +292,11 @@ $fontSizeDesktop: .9em;
   height: 80px;
 }
 
-#florida{
+#florida {
   margin-right: 10px;
 }
 
-.statesvg{
+.statesvg {
   height: 100%;
   width: 100%;
   display: block;
@@ -297,16 +307,16 @@ $fontSizeDesktop: .9em;
   margin: 10px 0;
   font-size: $fontSizeMobile;
 
-  #incorrect{
+  #incorrect {
     margin: 0 0 15px 0;
 
-    .interpretationIcon{
+    .interpretationIcon {
       color: #e54b4b;
     }
   }
 
-  #correct{
-    .interpretationIcon{
+  #correct {
+    .interpretationIcon {
       color: #b9d7a7;
     }
   }
@@ -319,7 +329,7 @@ $fontSizeDesktop: .9em;
       height: 25px;
       margin: 0 5px 0 0;
 
-      svg{
+      svg {
         width: 25px;
         height: 25px;
       }
@@ -331,22 +341,28 @@ $fontSizeDesktop: .9em;
   }
 }
 
-@media screen and (min-width: 600px){
-  #legendModal{
-    p{
+@media screen and (min-width: 600px) {
+
+  #map_legend_container{
+    display: block;
+  }
+  #collapsedLegend{
+    display: none;
+  }
+  #legendModal {
+    p {
       font-size: $fontSizeDesktop;
     }
-    .example{
+    .example {
       font-size: $fontSizeDesktop;
     }
   }
-  #interpretations{
+  #interpretations {
     font-size: $fontSizeDesktop;
   }
 
-  .state{
+  .state {
     height: 100px;
   }
 }
-
 </style>

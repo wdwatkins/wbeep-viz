@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Legend Toggle functionality
 - Min-height for map
 - Added footer email
 - topNavToggle icon adjustment and mobile adjustment
