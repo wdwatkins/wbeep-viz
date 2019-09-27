@@ -1,7 +1,7 @@
 <template>
     <div id="footerEmailContainer">
         <p>
-            Have feedback? Let us know by sending an email to <a href="gs-w_onhm@usgs.gov">gs-w_onhm@usgs.gov</a>
+            Have feedback? Let us know by sending an email to <a href="mailto:gs-w_onhm@usgs.gov">gs-w_onhm@usgs.gov</a>
         </p>
     </div>
 </template>
@@ -24,6 +24,7 @@ export default {
             color: #003366;
             text-decoration: none;
             font-weight: bold; 
+            white-space: nowrap;
         }
     }
 </style>
