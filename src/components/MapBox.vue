@@ -259,24 +259,39 @@ export default {
       let legendInfoButton = document.getElementById("legendInfoButton");
       let legendModal = document.getElementById("legendModal");
       let legendExit = document.getElementById("legendExit");
+      let legendCollapseButton = document.getElementById("legendMinus");
+      let legendExpandButton = document.getElementById("legendPlus");
+      let legend = document.getElementById("map_legend_container");
+      let collapsedLegend = document.getElementById("collapsedLegend");
+
       //Info Button Click Function
       infoButton.onclick = function() {
-        toggle(modal);
+        legendToggle(modal);
       };
       //Legend Modal functionality
       legendInfoButton.onclick = function() {
-        toggle(legendModal);
+        legendToggle(legendModal);
       };
       legendExit.onclick = function() {
-        toggle(legendModal);
+        legendToggle(legendModal);
       };
 
-      //Toggle function
-      let toggle = function(name) {
+      legendCollapseButton.onclick = function(){
+        legendToggle(collapsedLegend, legend)
+      };
+
+      legendExpandButton.onclick = function(){
+        legendToggle(collapsedLegend, legend)
+      };
+
+      //legendModalToggle function
+      let legendToggle = function(name, flip) {
         if (name.style.display === "block") {
           name.style.display = "none";
+          flip.style.display = "block";
         } else {
           name.style.display = "block";
+          flip.style.display = "none";
         }
       };
 
