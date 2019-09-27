@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- topNavToggle icon adjustment and mobile adjustment
+- Map Options layers dynamic toggle functionality first added
 - Made Subtitle more mobile friendly
 - Edited Legend modal to better fit a mobile experience
 - Added vue-svg-loader package
