@@ -11,7 +11,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the base tiles from S3 so that no local tile
                 // server is required:
-                //'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -28,7 +28,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the HRU tiles from S3 so that no local tile
                 // server is required:
-                //'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
+                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -37,17 +37,21 @@ export default {
             },
             nhd_streams: {
                 type: 'vector',
-                'tiles':['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/nhd_order_tiles/{z}/{x}/{y}.pbf'],
+                'tiles':['http://maptiles-prod-website.s3-us-west-2.amazonaws.com/nhdstreams/{z}/{x}/{y}.pbf'],
                 "minzoom": 2, // setting this to equal the minzoom of main map, real tile extent is 0
                 "maxzoom": 9  // setting this to equal the maxzoom of main map, real tile extent is 10
             },
             openmaptiles: {
                 type: 'vector',
-                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/openmaptiles/{z}/{x}/{y}.pbf']
+                'tiles': ['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/openmaptiles/baselayers/{z}/{x}/{y}.pbf'],
+                "minzoom": 2,
+                "maxzoom": 14
             },
-            mapbox_terrain: {
-                "type": "raster-dem",
-                "url": "mapbox://mapbox.terrain-rgb",
+            hillshade: {
+                type: 'raster',
+                'tiles': ['https://maptiles-prod-website.s3-us-west-2.amazonaws.com/openmaptiles/omthillshade/{z}/{x}/{y}.png'],
+                "minzoom": 2,
+                "maxzoom": 12,
                 "tileSize": 256
             }
         },
@@ -63,15 +67,12 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
-                "type": "hillshade",
-                "paint": {
-                    "hillshade-shadow-color": "hsl(39, 21%, 33%)"
-                },
+                "id": "hill shade",
+                "type": "raster",
+                "source": "hillshade",
                 "layout": {
                     "visibility": "visible"
                 },
-                "id": "MB Hill Shade",
-                "source": "mapbox_terrain",
                 'showButtonLayerToggle': true,
                 'showButtonStreamToggle': false,
             },
