@@ -375,6 +375,7 @@ $border: 1px solid #fff;
   }
   #map {
     flex: 1;
+    min-height: 70vh;
   }
 }
 </style>
@@ -398,6 +399,7 @@ $border: 1px solid #fff;
   flex-wrap: wrap;
   a {
     flex: 1;
+    min-width: 100px;
     font-size: 0.8em;
     color: $color;
     text-decoration: line-through;
