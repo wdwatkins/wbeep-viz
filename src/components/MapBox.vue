@@ -309,18 +309,21 @@ $border: 1px solid #fff;
 }
 
 #topNavText {
-  width: 110px;
   border-right: $border;
+  width: 110px;
   a {
     width: 100%;
     font-size: 0.9em;
     color: $color;
     background: #00264c;
+    vertical-align: center;
   }
 }
 
 #iconToggleContainer {
   display: flex;
+  width: 120px;
+  border-left: $border;
   a {
     flex: 1;
     background: #00264c;
@@ -333,7 +336,9 @@ $border: 1px solid #fff;
     }
 
   .icon {
-    border-left: $border;
+    &:nth-child(2){
+      border-left: $border;
+    }
   }
 }
 
@@ -373,6 +378,7 @@ $border: 1px solid #fff;
 <style lang="scss">
 $color: #fff;
 $blue: #4574a3;
+$border: 1px solid #fff;
 #mapbox_component-layer-toggle a {
   text-decoration: none;
   padding: 5px 10px;
@@ -385,10 +391,12 @@ $blue: #4574a3;
 
 #ToggleOptions {
   display: flex;
+  flex: 10;
+  flex-wrap: wrap;
   a {
-    font-size: 0.9em;
+    flex: 1;
+    font-size: 0.8em;
     color: $color;
-    width: auto;
     text-decoration: line-through;
 
     &:hover {
