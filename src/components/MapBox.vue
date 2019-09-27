@@ -43,7 +43,6 @@
         :pitch-with-rotate="false"
         :drag-rotate="false"
         :touch-zoom-rotate="false"
-        :access-token="accessToken"
         @load="onMapLoaded"
       >
         <MglAttributionControl
@@ -102,14 +101,12 @@ export default {
       container: "map",
       zoom: 3,
       minZoom: 2,
-      maxZoom: 9,
+      maxZoom: 11,
       center: [-95.7129, 37.0902],
       pitch: 0, // tips the map from 0 to 60 degrees
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
-      legendTitle: "Current Water Status",
-      accessToken:
-        "pk.eyJ1IjoiYWJyaWdncyIsImEiOiJjandrd3J4bmMwcjNpNGFxZ2hoZGE2djR5In0.gKPNdhLzvbzui4aiIwAihA"
+      legendTitle: "Current Water Status"
     };
   },
   methods: {
