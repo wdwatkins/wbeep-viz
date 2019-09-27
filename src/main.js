@@ -10,6 +10,8 @@ import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import { faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faWater } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -20,6 +22,8 @@ library.add(faLayerGroup)
 library.add(faTimes)
 library.add(faThumbsUp)
 library.add(faThumbsDown)
+library.add(faMinus)
+library.add(faPlus)
 library.add(faWater)
 
 Vue.config.productionTip = false
