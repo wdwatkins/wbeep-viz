@@ -11,12 +11,14 @@
         <div id="ToggleOptions"></div>
         <div id="iconToggleContainer">
           <a
+            href="javascript:void(0);"
             class="icon"
             id="layerToggle"
           >
             <font-awesome-icon icon="layer-group" />
           </a>
           <a
+            href="javascript:void(0);"
             class="icon"
             id="streamToggle"
           >
