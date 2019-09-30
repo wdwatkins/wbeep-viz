@@ -55,6 +55,7 @@
         <MglGeolocateControl position="top-right" />
         <MglFullscreenControl position="top-right" />
       </MglMap>
+      <div>{{ dataDate }}</div>
     </div>
 <!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
 <!--    and the ZOOM LEVEL code section. Hint, search for 'ZOOM LEVEL' to find the needed code section. -->
@@ -106,12 +107,24 @@ export default {
       pitch: 0, // tips the map from 0 to 60 degrees
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
-      legendTitle: "Current Water Status"
+      legendTitle: "Current Water Status",
+      dataDate: ""
     };
   },
   methods: {
     onMapLoaded(event) {
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
+
+      // Get the date the model data was received
+      // fetch('https://wbeep-test-website.s3-us-west-2.amazonaws.com/date/date.txt').then(response => response.text()).then(data => this.dataDate = data)
+
+        fetch('https://wbeep-test-website.s3-us-west-2.amazonaws.com/date/date.txt')
+                .then(response => {
+                    if (!response.ok) { throw Error(response.statusText + ' The call to retrieve the model date has failed.') }
+                    return response
+                })
+                .then(response => response.text())
+                .then(data => this.dataDate = data);
 
       // Once map is loaded zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.88991], [-65.7421, 49.4325]]);

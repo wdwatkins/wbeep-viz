@@ -3,7 +3,7 @@
     <HeaderUSWDSBanner />
     <HeaderUSGS />
     <MapBox title="National Integrated Water Availability Assessments" />
-    <footerEmail />
+    <FooterEmail />
     <FooterUSGS />
   </div>
 </template>
@@ -12,7 +12,7 @@
     import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
     import HeaderUSGS from './components/HeaderUSGS'
     import MapBox from './components/MapBox'
-    import footerEmail from './components/footerEmail'
+    import FooterEmail from './components/FooterEmail'
     import FooterUSGS from './components/FooterUSGS'
 
     export default {
@@ -21,7 +21,7 @@
             HeaderUSWDSBanner,
             HeaderUSGS,
             MapBox,
-            footerEmail,
+            FooterEmail,
             FooterUSGS
         }
     }
