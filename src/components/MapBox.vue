@@ -114,7 +114,7 @@ export default {
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
       // Once map is loaded zoom in a bit more so that the map neatly fills the screen
-      map.fitBounds([[-128, 23], [-65, 49]]);
+      map.fitBounds([[-125.3321, 23.88991], [-65.7421, 49.4325]]);
 
       // For now, I am going to duplicate this code section for each set of toggles (currently layers and streams), ideally this would be
       // in separate components, but for prototyping purposes this is fine for now.
