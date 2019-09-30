@@ -11,7 +11,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the base tiles from S3 so that no local tile
                 // server is required:
-                // 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
+                //'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/basetiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -28,7 +28,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the HRU tiles from S3 so that no local tile
                 // server is required:
-                // 'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
+                //'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -67,6 +67,43 @@ export default {
                 'showButtonLayerToggle': false
             },
             {
+                'id': 'HRUs',
+                'type': 'fill',
+                'source': 'HRU',
+                'source-layer': 'hrus',
+                'layout': {
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'fill-color': {
+                        'property': 'value',
+                        'type': 'categorical',
+                        'stops': [
+                            ["very high","#144873"],
+                            ["high","#A7B9D7"],
+                            ['medium','#FED98E'],
+                            ['low', '#EDAA5F'],
+                            ["very low","#CC4C02"],
+                            ["",'#000000'],
+                        ]
+                    },
+                    'fill-opacity': ['case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        0.1,
+                        1
+                    ]
+                },
+                'showButtonLayerToggle': false,
+                'legendText': {
+                    'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
+                    'high': ['',''],
+                    'medium': ['Common',' \- today is normal for this region'],
+                    'low': ['',''],
+                    'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
+                    'no data': ['','No Data']
+                }
+            },
+            {
                 "id": "hill shade",
                 "type": "raster",
                 "source": "hillshade",
@@ -87,89 +124,7 @@ export default {
                     'visibility': 'visible'
                 },
                 'paint': {
-                    'line-color': 'rgba(218, 234, 240, 1)'
-                },
-                'showButtonLayerToggle': false
-            },
-            {
-                "filter": ["all", ["==", "$type", "LineString"],
-                    ["==", "brunnel", "tunnel"]
-                ],
-                "id": "waterway-tunnel",
-                "paint": {
-                    "line-color": "hsl(205, 56%, 73%)",
-                    "line-dasharray": [3, 3],
-                    "line-gap-width": {
-                        "stops": [
-                            [12, 0],
-                            [20, 6]
-                        ]
-                    },
-                    "line-opacity": 1,
-                    "line-width": {
-                        "base": 1.4,
-                        "stops": [
-                            [8, 1],
-                            [20, 2]
-                        ]
-                    }
-                },
-                "source": "openmaptiles",
-                "source-layer": "waterway",
-                "type": "line",
-                "layout": {
-                    "visibility": "visible"
-                },
-                'showButtonLayerToggle': false
-            },
-            {
-                "filter": ["all", ["==", "$type", "LineString"],
-                    ["!in", "brunnel", "tunnel", "bridge"],
-                    ["!=", "intermittent", 1]
-                ],
-                "id": "waterway",
-                "paint": {
-                    "line-color": "hsl(205, 56%, 73%)",
-                    "line-opacity": 1,
-                    "line-width": {
-                        "base": 1.4,
-                        "stops": [
-                            [8, 1],
-                            [20, 8]
-                        ]
-                    }
-                },
-                "source": "openmaptiles",
-                "source-layer": "waterway",
-                "type": "line",
-                "layout": {
-                    "visibility": "visible"
-                },
-                'showButtonLayerToggle': false
-            },
-            {
-                "filter": ["all", ["==", "$type", "LineString"],
-                    ["!in", "brunnel", "tunnel", "bridge"],
-                    ["==", "intermittent", 1]
-                ],
-                "id": "waterway_intermittent",
-                "paint": {
-                    "line-color": "hsl(205, 56%, 73%)",
-                    "line-opacity": 1,
-                    "line-width": {
-                        "base": 1.4,
-                        "stops": [
-                            [8, 1],
-                            [20, 8]
-                        ]
-                    },
-                    "line-dasharray": [2, 1]
-                },
-                "source": "openmaptiles",
-                "source-layer": "waterway",
-                "type": "line",
-                "layout": {
-                    "visibility": "visible"
+                    'line-color': 'rgba(0,0,0, 1)'
                 },
                 'showButtonLayerToggle': false
             },
@@ -251,6 +206,7 @@ export default {
                     ["==", "class", "motorway"]
                 ],
                 "id": "road_major_motorway",
+                "minzoom": 5,
                 "layout": {
                     "line-cap": "round",
                     "line-join": "round"
@@ -270,43 +226,6 @@ export default {
                 "source-layer": "transportation",
                 "type": "line",
                 'showButtonLayerToggle': false
-            },
-            {
-                'id': 'HRUs',
-                'type': 'fill',
-                'source': 'HRU',
-                'source-layer': 'hrus',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'paint': {
-                    'fill-color': {
-                        'property': 'value',
-                        'type': 'categorical',
-                        'stops': [
-                            ["very high","#144873"],
-                            ["high","#A7B9D7"],
-                            ['medium','#FED98E'],
-                            ['low', '#EDAA5F'],
-                            ["very low","#CC4C02"],
-                            ["",'#000000'],
-                        ]
-                    },
-                    'fill-opacity': ['case',
-                        ['boolean', ['feature-state', 'hover'], false],
-                        0.1,
-                        .4
-                    ]
-                },
-                'showButtonLayerToggle': false,
-                'legendText': {
-                    'very high': ['Uncommonly Wet',' \- it\'s typically drier than it is today in this region'],
-                    'high': ['',''],
-                    'medium': ['Common',' \- today is normal for this region'],
-                    'low': ['',''],
-                    'very low': ['Uncommonly Dry',' \- it\'s typically wetter than it is today in this region'],
-                    'no data': ['','No Data']
-                }
             },
             {
                 "filter": ["all", ["==", "$type", "Polygon"],
@@ -336,6 +255,88 @@ export default {
                 "source": "openmaptiles",
                 "source-layer": "water",
                 "type": "fill",
+                "layout": {
+                    "visibility": "visible"
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                "filter": ["all", ["==", "$type", "LineString"],
+                    ["==", "brunnel", "tunnel"]
+                ],
+                "id": "waterway-tunnel",
+                "paint": {
+                    "line-color": "hsl(205, 56%, 73%)",
+                    "line-dasharray": [3, 3],
+                    "line-gap-width": {
+                        "stops": [
+                            [12, 0],
+                            [20, 6]
+                        ]
+                    },
+                    "line-opacity": 1,
+                    "line-width": {
+                        "base": 1.4,
+                        "stops": [
+                            [8, 1],
+                            [20, 2]
+                        ]
+                    }
+                },
+                "source": "openmaptiles",
+                "source-layer": "waterway",
+                "type": "line",
+                "layout": {
+                    "visibility": "visible"
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                "filter": ["all", ["==", "$type", "LineString"],
+                    ["!in", "brunnel", "tunnel", "bridge"],
+                    ["!=", "intermittent", 1]
+                ],
+                "id": "waterway",
+                "paint": {
+                    "line-color": "hsl(205, 56%, 73%)",
+                    "line-opacity": 1,
+                    "line-width": {
+                        "base": 1.4,
+                        "stops": [
+                            [8, 1],
+                            [20, 8]
+                        ]
+                    }
+                },
+                "source": "openmaptiles",
+                "source-layer": "waterway",
+                "type": "line",
+                "layout": {
+                    "visibility": "visible"
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                "filter": ["all", ["==", "$type", "LineString"],
+                    ["!in", "brunnel", "tunnel", "bridge"],
+                    ["==", "intermittent", 1]
+                ],
+                "id": "waterway_intermittent",
+                "paint": {
+                    "line-color": "hsl(205, 56%, 73%)",
+                    "line-opacity": 1,
+                    "line-width": {
+                        "base": 1.4,
+                        "stops": [
+                            [8, 1],
+                            [20, 8]
+                        ]
+                    },
+                    "line-dasharray": [2, 1]
+                },
+                "source": "openmaptiles",
+                "source-layer": "waterway",
+                "type": "line",
                 "layout": {
                     "visibility": "visible"
                 },
@@ -493,6 +494,19 @@ export default {
                     'fill-color': 'rgba(237, 236, 232, 1)'
                 },
                 'showButtonLayerToggle': false
+            },
+            {
+                "id": "states",
+                "type": "line",
+                "source": "basemap",
+                "source-layer": "states",
+                "layout": {
+                    "visibility": "visible",
+                },
+                "paint": {
+                    "line-color": "rgb(0,0,0)"
+                }
+
             },
             {
                 'id': 'Hydrological Response Unit',
