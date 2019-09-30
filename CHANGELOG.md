@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Adjusted mapStyles to have HRU's solid colors
 - Legend Toggle functionality
 - Min-height for map
 - Added footer email
