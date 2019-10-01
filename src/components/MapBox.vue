@@ -2,25 +2,34 @@
   <div id="viz_container">
     <div class="header-container">
       <div class="usa-prose">
-        <h2 class="title-text">{{ title }}</h2>
+        <h2 class="title-text">
+          {{ title }}
+        </h2>
       </div>
-      <div id="mapbox_component-layer-toggle" class="mapbox_component-topnav">
+      <div
+        id="mapbox_component-layer-toggle"
+        class="mapbox_component-topnav"
+      >
         <div id="topNavText">
-          <a id="map-layers-label" href="#" class="active">Map Options</a>
+          <a
+            id="map-layers-label"
+            href="#"
+            class="active"
+          >Map Options</a>
         </div>
-        <div id="ToggleOptions"></div>
+        <div id="ToggleOptions" />
         <div id="iconToggleContainer">
           <a
+            id="layerToggle"
             href="javascript:void(0);"
             class="icon"
-            id="layerToggle"
           >
             <font-awesome-icon icon="layer-group" />
           </a>
           <a
+            id="streamToggle"
             href="javascript:void(0);"
             class="icon"
-            id="streamToggle"
           >
             <font-awesome-icon icon="water" />
           </a>
@@ -29,6 +38,7 @@
     </div>
     <div id="mapContainer">
       <MapSubtitle />
+      <MapAvailableDataDate />
       <MapLegend :legend-title="legendTitle" />
       <MglMap
         id="map"
@@ -50,23 +60,29 @@
           :compact="false"
           custom-attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         />
-        <MglScaleControl position="bottom-right" unit="imperial" />
-        <MglNavigationControl position="top-left" :show-compass="false" />
+        <MglScaleControl
+          position="bottom-right"
+          unit="imperial"
+        />
+        <MglNavigationControl
+          position="top-left"
+          :show-compass="false"
+        />
         <MglGeolocateControl position="top-right" />
         <MglFullscreenControl position="top-right" />
       </MglMap>
-      <div>{{ dataDate }}</div>
     </div>
-<!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
-<!--    and the ZOOM LEVEL code section. Hint, search for 'ZOOM LEVEL' to find the needed code section. -->
-<!--    <div>-->
-<!--      Current Zoom Level (listed for development purposes):-->
-<!--      <span id="zoomlevel" />-->
-<!--    </div>-->
+    <!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
+    <!--    and the ZOOM LEVEL code section. Hint, search for 'ZOOM LEVEL' to find the needed code section. -->
+    <!--    <div>-->
+    <!--      Current Zoom Level (listed for development purposes):-->
+    <!--      <span id="zoomlevel" />-->
+    <!--    </div>-->
   </div>
 </template>
 <script>
 import MapSubtitle from "./MapSubtitle";
+import MapAvailableDataDate from "./MapAvailableDataDate";
 import MapLegend from "./MapLegend";
 
 import {
@@ -84,6 +100,7 @@ export default {
   components: {
     MglMap,
     MapSubtitle,
+    MapAvailableDataDate,
     MglNavigationControl,
     MglGeolocateControl,
     MglFullscreenControl,
@@ -108,22 +125,13 @@ export default {
       pitch: 0, // tips the map from 0 to 60 degrees
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
-      legendTitle: "Current Water Status",
+      legendTitle: "Latest Available Water Status",
       dataDate: ""
     };
   },
   methods: {
     onMapLoaded(event) {
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
-
-      // Get the date the model data was received and add it to the component data
-      fetch('https://wbeep-test-website.s3-us-west-2.amazonaws.com/date/date.txt')
-              .then(response => {
-                  if (!response.ok) { throw Error(response.statusText + ' The call to retrieve the model date has failed.') }
-                  return response
-              })
-              .then(response => response.text())
-              .then(data => this.dataDate = data);
 
       // Once map is loaded zoom in a bit more so that the map neatly fills the screen
       map.fitBounds([[-125.3321, 23.88991], [-65.7421, 49.4325]]);

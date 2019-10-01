@@ -1,6 +1,8 @@
 <template>
-  <div id="dataDateContainer">
-    <div>Showing Latest Available Data: {{ dataDate }}</div>
+  <div id="dataDateContainer" class="subtitle">
+    <div class="subtitleText">
+      <p>Showing Latest Available Data: {{ dataDate }}</p>
+    </div>
   </div>
 </template>
 <script>
@@ -8,7 +10,7 @@
       name: "MapAvailableDataDate",
       data() {
           return {
-              dataDate: "test"
+              dataDate: "unavailable"
           };
       },
       mounted() {
@@ -26,5 +28,20 @@
 
 </script>
 <style scoped lang="scss">
+  .subtitle {
 
+
+
+    p {
+      margin: 0;
+      user-select: none;
+      font-size: .8em;
+    }
+
+    .subtitleText {
+      flex: 1;
+      line-height: 30px;
+      padding: 0 0 0 10px;
+    }
+  }
 </style>
