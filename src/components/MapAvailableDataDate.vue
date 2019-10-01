@@ -14,7 +14,6 @@
           };
       },
       mounted() {
-          console.log('Component has been created!');
           // Get the date the model data was received and add it to the component data
           fetch('https://wbeep-test-website.s3-us-west-2.amazonaws.com/date/date.txt')
                   .then(response => {
@@ -29,19 +28,31 @@
 </script>
 <style scoped lang="scss">
   .subtitle {
-
+    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 43px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    border: 1px solid rgb(200, 200, 200);
+    width:270px;
 
 
     p {
       margin: 0;
       user-select: none;
-      font-size: .8em;
+      font-size: .75em;
     }
 
     .subtitleText {
       flex: 1;
-      line-height: 30px;
-      padding: 0 0 0 10px;
+      line-height: 25px;
+      padding: 0;
     }
   }
 </style>
