@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-    name: "footerEmail"
+    name: "FooterEmail"
 }
 </script>
 <style scoped lang="scss">
