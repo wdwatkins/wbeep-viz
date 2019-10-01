@@ -37,7 +37,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    width: 100vw;
+    width: 100%;
   }
 
   @media screen and (min-width: 601px){
