@@ -35,7 +35,6 @@ hruSource="$globalTilePrefix$prodBucket$hruTileLocation$globalTileSuffix"
 if [ \( "$E_BUILDTARGET" = "test" -a "$E_TILESOURCE" != "prod" \) -o \( "$E_TILESOURCE" = "test" \) ];
 then
   hruSource="$globalTilePrefix$testBucket$hruTileLocation$globalTileSuffix"
-  baseSource="$globalTilePrefix$testBucket$baseTileLocation$globalTileSuffix"   
 fi
 
 # Insert HRU and base tile URLs into Mapbox configuration file
