@@ -53,7 +53,7 @@
         :pitch-with-rotate="false"
         :drag-rotate="false"
         :touch-zoom-rotate="false"
-        :max-bounds="bounds"
+        :max-bounds="maxBounds"
         @load="onMapLoaded"
       >
         <MglAttributionControl
@@ -126,21 +126,19 @@ export default {
       pitch: 0, // tips the map from 0 to 60 degrees
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
-      bounds: [[-125.3321, 23.88991], [-65.7421, 49.4325]], // The coordinates needed to make a bounding box for the continental United States.
-      legendTitle: "Latest Available Water Status",
-      dataDate: ""
+      maxBounds: [[-179.56055624999985, 9.838930211369288], [-11.865243750001127, 57.20768307316615]], // The coordinates needed to make a bounding box for the continental United States.
+      legendTitle: "Latest Available Water Status"
     };
   },
   methods: {
     onMapLoaded(event) {
       let map = event.map; // This gives us access to the map as an object but only after the map has loaded
 
-      // Once map is loaded zoom in a bit more so that the map neatly fills the screen
-      map.fitBounds(this.bounds);
+      // Once map is loaded, zoom in a bit more so that the map neatly fills the screen
+      map.fitBounds([[-125.3321, 23.8991], [-65.7421, 49.4325]]);
 
       // For now, I am going to duplicate this code section for each set of toggles (currently layers and streams), ideally this would be
       // in separate components, but for prototyping purposes this is fine for now.
-
       // Next section gives us names for the layer toggle buttons
       let styleLayers = Object.values(mapStyles.style.layers); // Pulls the layers out of the styles object as an array
       let toggleableLayerIds = [];
