@@ -203,22 +203,6 @@ export default {
             },
             {
                 'filter': ['all', ['==', '$type', 'Polygon'],
-                    ['!=', 'intermittent', 1]
-                ],
-                'id': 'water',
-                'paint': {
-                    'fill-color': 'hsl(205, 56%, 73%)'
-                },
-                'source': 'openmaptiles',
-                'source-layer': 'water',
-                'type': 'fill',
-                'layout': {
-                    'visibility': 'visible'
-                },
-                'showButtonLayerToggle': false
-            },
-            {
-                'filter': ['all', ['==', '$type', 'Polygon'],
                     ['==', 'intermittent', 1]
                 ],
                 'id': 'water_intermittent',
@@ -468,6 +452,22 @@ export default {
                 },
                 'paint': {
                     'fill-color': 'rgba(237, 236, 232, 1)'
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                'filter': ['all', ['==', '$type', 'Polygon'],
+                    ['!=', 'intermittent', 1]
+                ],
+                'id': 'water',
+                'paint': {
+                    'fill-color': 'hsl(205, 56%, 73%)'
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'water',
+                'type': 'fill',
+                'layout': {
+                    'visibility': 'visible'
                 },
                 'showButtonLayerToggle': false
             },
