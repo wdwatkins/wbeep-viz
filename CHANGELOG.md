@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Restricted user ability to zoom out past the continental United States
 - Added sub-subtitle with date of last available data
 - Adjusted mapStyles to have HRU's solid colors
 - Legend Toggle functionality
