@@ -17,7 +17,7 @@ export default {
                 // If you are setting up a local build, you can uncomment the following
                 // URL assignment to pull the HRU tiles from S3 so that no local tile
                 // server is required:
-                'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
+                //'tiles': ['http://wbeep-test-website.s3-website-us-west-2.amazonaws.com/tiles/{z}/{x}/{y}.pbf']
                 //
                 // The following URL is an example of using a local mbtiles file and a
                 // tile server.  See the readme for more information:
@@ -199,22 +199,6 @@ export default {
                 'source': 'openmaptiles',
                 'source-layer': 'transportation',
                 'type': 'line',
-                'showButtonLayerToggle': false
-            },
-            {
-                'filter': ['all', ['==', '$type', 'Polygon'],
-                    ['!=', 'intermittent', 1]
-                ],
-                'id': 'water',
-                'paint': {
-                    'fill-color': 'hsl(205, 56%, 73%)'
-                },
-                'source': 'openmaptiles',
-                'source-layer': 'water',
-                'type': 'fill',
-                'layout': {
-                    'visibility': 'visible'
-                },
                 'showButtonLayerToggle': false
             },
             {
@@ -468,6 +452,22 @@ export default {
                 },
                 'paint': {
                     'fill-color': 'rgba(237, 236, 232, 1)'
+                },
+                'showButtonLayerToggle': false
+            },
+            {
+                'filter': ['all', ['==', '$type', 'Polygon'],
+                    ['!=', 'intermittent', 1]
+                ],
+                'id': 'water',
+                'paint': {
+                    'fill-color': 'hsl(205, 56%, 73%)'
+                },
+                'source': 'openmaptiles',
+                'source-layer': 'water',
+                'type': 'fill',
+                'layout': {
+                    'visibility': 'visible'
                 },
                 'showButtonLayerToggle': false
             },
