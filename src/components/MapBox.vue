@@ -2,25 +2,34 @@
   <div id="viz_container">
     <div class="header-container">
       <div class="usa-prose">
-        <h2 class="title-text">{{ title }}</h2>
+        <h2 class="title-text">
+          {{ title }}
+        </h2>
       </div>
-      <div id="mapbox_component-layer-toggle" class="mapbox_component-topnav">
+      <div
+        id="mapbox_component-layer-toggle"
+        class="mapbox_component-topnav"
+      >
         <div id="topNavText">
-          <a id="map-layers-label" href="#" class="active">Map Options</a>
+          <a
+            id="map-layers-label"
+            href="#"
+            class="active"
+          >Map Options</a>
         </div>
-        <div id="ToggleOptions"></div>
+        <div id="ToggleOptions" />
         <div id="iconToggleContainer">
           <a
+            id="layerToggle"
             href="javascript:void(0);"
             class="icon"
-            id="layerToggle"
           >
             <font-awesome-icon icon="layer-group" />
           </a>
           <a
+            id="streamToggle"
             href="javascript:void(0);"
             class="icon"
-            id="streamToggle"
           >
             <font-awesome-icon icon="water" />
           </a>
@@ -29,6 +38,7 @@
     </div>
     <div id="mapContainer">
       <MapSubtitle />
+      <MapAvailableDataDate />
       <MapLegend :legend-title="legendTitle" />
       <MglMap
         id="map"
@@ -50,23 +60,31 @@
           :compact="false"
           custom-attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         />
-        <MglScaleControl position="bottom-right" unit="imperial" />
-        <MglNavigationControl position="top-left" :show-compass="false" />
+        <MglScaleControl
+          position="bottom-right"
+          unit="imperial"
+        />
+        <MglNavigationControl
+          position="top-left"
+          :show-compass="false"
+        />
         <MglGeolocateControl position="top-right" />
         <MglFullscreenControl position="top-right" />
       </MglMap>
     </div>
-<!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
-<!--    and the ZOOM LEVEL code section. Hint, search for 'ZOOM LEVEL' to find the needed code section. -->
-<!--    <div>-->
-<!--      Current Zoom Level (listed for development purposes):-->
-<!--      <span id="zoomlevel" />-->
-<!--    </div>-->
+    <!--    If  you would like to see a current zoom level while doing development un-comment the following section,  -->
+    <!--    and the ZOOM LEVEL code section. Hint, search for 'ZOOM LEVEL' to find the needed code section. -->
+    <!--    <div>-->
+    <!--      Current Zoom Level (listed for development purposes):-->
+    <!--      <span id="zoomlevel" />-->
+    <!--    </div>-->
   </div>
 </template>
 <script>
 import MapSubtitle from "./MapSubtitle";
+import MapAvailableDataDate from "./MapAvailableDataDate";
 import MapLegend from "./MapLegend";
+
 import {
   MglMap,
   MglNavigationControl,
@@ -82,6 +100,7 @@ export default {
   components: {
     MglMap,
     MapSubtitle,
+    MapAvailableDataDate,
     MglNavigationControl,
     MglGeolocateControl,
     MglFullscreenControl,
@@ -106,7 +125,8 @@ export default {
       pitch: 0, // tips the map from 0 to 60 degrees
       bearing: 0, // starting rotation of the map from 0 to 360
       hoveredHRUId: null,
-      legendTitle: "Current Water Status"
+      legendTitle: "Latest Available Water Status",
+      dataDate: ""
     };
   },
   methods: {

@@ -1,13 +1,13 @@
 <template>
-    <div id="footerEmailContainer">
-        <p>
-            Have feedback? Let us know by sending an email to <a href="mailto:gs-w_onhm@usgs.gov">gs-w_onhm@usgs.gov</a>
-        </p>
-    </div>
+  <div id="footerEmailContainer">
+    <p>
+      Have feedback? Let us know by sending an email to <a href="mailto:gs-w_onhm@usgs.gov">gs-w_onhm@usgs.gov</a>
+    </p>
+  </div>
 </template>
 <script>
 export default {
-    name: "footerEmail"
+    name: "FooterEmail"
 }
 </script>
 <style scoped lang="scss">

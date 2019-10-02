@@ -1,65 +1,106 @@
 <template>
-<div id="legend">
-  <div id="map_legend_container" class="map-overlay expandedLegend">
-    <div id="legendTitleInfoContainer">
-      <p>{{ legendTitle }}</p>
-      <div class="legendButton">
-        <a id="legendInfoButton" class="legendIcon">
-          <font-awesome-icon icon="info" />
-        </a>
-        <a id="legendMinus" class="legendIcon">
-          <font-awesome-icon icon="minus" />
-        </a>
-      </div>
-      <div id="legendModal">
-        <div id="legendModalContent">
-          <div id="exitlegendModal">
-            <font-awesome-icon id="legendExit" icon="times" />
-          </div>
-          <p class="example">Q: Can I compare Florida to Arizona?</p>
-          <p class="example">A: Sort Of.</p>
-          <p>
-            The daily water status is determined based on the water norms of each region.
-            So, if the following were statuses for Arizona and Florida.
-          </p>
-          <div id="states">
-            <div id="florida" class="state">
-              <floridaSVG id="floridaSVG" class="statesvg" />
+  <div id="legend">
+    <div
+      id="map_legend_container"
+      class="map-overlay expandedLegend"
+    >
+      <div id="legendTitleInfoContainer">
+        <p>{{ legendTitle }}</p>
+        <div class="legendButton">
+          <a
+            id="legendInfoButton"
+            class="legendIcon"
+          >
+            <font-awesome-icon icon="info" />
+          </a>
+          <a
+            id="legendMinus"
+            class="legendIcon"
+          >
+            <font-awesome-icon icon="minus" />
+          </a>
+        </div>
+        <div id="legendModal">
+          <div id="legendModalContent">
+            <div id="exitlegendModal">
+              <font-awesome-icon
+                id="legendExit"
+                icon="times"
+              />
             </div>
-            <div id="arizona" class="state">
-              <arizonaSVG id="arizonaSVG" class="statesvg" />
-            </div>
-          </div>
-          <p>Then below are incorrect and correct interpretations</p>
-          <div id="interpretations">
-            <div id="incorrect" class="interpretation">
-              <div class="interpretationIcon">
-                <font-awesome-icon icon="thumbs-down" />
-              </div>
-              <div class="interpretationText">Florida has less water than Arizona.</div>
-            </div>
-            <div id="correct" class="interpretation">
-              <div class="interpretationIcon">
-                <font-awesome-icon icon="thumbs-up" />
+            <p class="example">
+              Q: Can I compare Florida to Arizona?
+            </p>
+            <p class="example">
+              A: Sort Of.
+            </p>
+            <p>
+              The daily water status is determined based on the water norms of each region.
+              So, if the following were statuses for Arizona and Florida.
+            </p>
+            <div id="states">
+              <div
+                id="florida"
+                class="state"
+              >
+                <floridaSVG
+                  id="floridaSVG"
+                  class="statesvg"
+                />
               </div>
               <div
-                class="interpretationText"
-              >Florida is usually wetter than it is today, whereas Arizona is usually drier than it is today.</div>
+                id="arizona"
+                class="state"
+              >
+                <arizonaSVG
+                  id="arizonaSVG"
+                  class="statesvg"
+                />
+              </div>
+            </div>
+            <p>Then below are incorrect and correct interpretations</p>
+            <div id="interpretations">
+              <div
+                id="incorrect"
+                class="interpretation"
+              >
+                <div class="interpretationIcon">
+                  <font-awesome-icon icon="thumbs-down" />
+                </div>
+                <div class="interpretationText">
+                  Florida has less water than Arizona.
+                </div>
+              </div>
+              <div
+                id="correct"
+                class="interpretation"
+              >
+                <div class="interpretationIcon">
+                  <font-awesome-icon icon="thumbs-up" />
+                </div>
+                <div
+                  class="interpretationText"
+                >
+                  Florida is usually wetter than it is today, whereas Arizona is usually drier than it is today.
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="collapsedLegend">
+    <div id="collapsedLegend">
       <span>Legend</span>
       <div class="legendButton">
-        <a id="legendPlus" class="legendIcon">
+        <a
+          id="legendPlus"
+          class="legendIcon"
+        >
           <font-awesome-icon icon="plus" />
         </a>
       </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
