@@ -24,7 +24,7 @@ testBucket=wbeep-test-website.s3-website-us-west-2.amazonaws.com
 
 # common prefix/suffix for tile URL configuration
 globalTilePrefix='"tiles": ["http://'
-globalTileSuffix='/{z}/{x}/{y}.pbf"],'
+globalTileSuffix='/{z}/{x}/{y}.pbf?fresh=true"],'
 # tile directories
 hruTileLocation='/tiles'
 
