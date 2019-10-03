@@ -18,8 +18,8 @@
           >Map Options</a>
         </div>
         <div id="ToggleOptions">
-          <div id="layers"></div>
-          <div id="streams"></div>
+          <div id="layers" />
+          <div id="streams" />
         </div>
         <div id="iconToggleContainer">
           <a
