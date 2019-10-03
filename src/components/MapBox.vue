@@ -17,17 +17,20 @@
             class="active"
           >Map Options</a>
         </div>
-        <div id="ToggleOptions" />
+        <div id="ToggleOptions">
+          <div id="layers"></div>
+          <div id="streams"></div>
+        </div>
         <div id="iconToggleContainer">
           <a
-            id="layerToggle"
+            id="layersIcon"
             href="javascript:void(0);"
             class="icon"
           >
             <font-awesome-icon icon="layer-group" />
           </a>
           <a
-            id="streamToggle"
+            id="streamsIcon"
             href="javascript:void(0);"
             class="icon"
           >
@@ -147,6 +150,9 @@ export default {
       let toggleableStreamsIds = [];
       let streamsTurnedOffAtStart = [];
 
+      let assembledIdSets = [];
+      let assembledOffAtStartSets = [];
+
       for (let index = 0; index < styleLayers.length; index++) {
         if (styleLayers[index].showButtonLayerToggle === true) {
           // note: to NOT show a button for layer, change the 'showButtonLayerToggle' property in the mapStyles.js to false
@@ -166,84 +172,88 @@ export default {
           }
         }
       }
-      //Creates toggles based on which arrays are pushed to this function
-      let createToggles = function(layers, off) {
+      assembledIdSets.push(toggleableLayerIds);
+      assembledIdSets.push(toggleableStreamsIds);
+      assembledOffAtStartSets.push(layersTurnedOffAtStart);
+      assembledOffAtStartSets.push(streamsTurnedOffAtStart);
+
+      let elementTargets = ['layers', 'streams'];
+      let countup = 0;
+      assembledIdSets.forEach(function(idSet) {
         // Go through each layer id that is in the array and make a button element for it
-        for (let i = 0; i < layers.length; i++) {
-          let id = layers[i];
-          let link = document.createElement("a");
-          link.href = "#";
-          // If the layer is not set to visible when first loaded, then do not mark it as active.
-          // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
-          if (off.includes(id)) {
-            link.className = "";
-          } else {
-            link.className = "active";
-          }
-
-          // Set the wording (label) for the layer toggle button to match the 'id' listed in the style sheet
-          link.textContent = id;
-
-          // Creates a click event for each button so that when clicked by the user, the visibility property
-          // is changed as is the class (color) of the button
-          link.onclick = function(e) {
-            let clickedLayer = this.textContent;
-            e.preventDefault();
-            e.stopPropagation();
-
-            let visibility = map.getLayoutProperty(clickedLayer, "visibility");
-
-            if (visibility === "visible") {
-              map.setLayoutProperty(clickedLayer, "visibility", "none");
-              this.className = "";
+        for (let index = 0; index < idSet.length; index++) {
+            let id = idSet[index];
+            let link = document.createElement('a');
+            link.href = '#';
+            // If the layer is not set to visible when first loaded, then do not mark it as active.
+            // In other words, if the layer is not visible on page load, make the button look like the layer is toggled off
+            if (assembledOffAtStartSets[countup].includes(id)) {
+                link.className = '';
             } else {
-              this.className = "active";
-              map.setLayoutProperty(clickedLayer, "visibility", "visible");
+                link.className = 'active';
             }
-          };
-
-          let layerToggleList = document.getElementById("ToggleOptions");
-          layerToggleList.appendChild(link);
+            // Set the wording (label) for the layer toggle button to match the 'id' listed in the style sheet
+            link.textContent = id;
+            // Creates a click event for each button so that when clicked by the user, the visibility property
+            // is changed as is the class (color) of the button
+            link.onclick = function (e) {
+                let clickedLayer = this.textContent;
+                e.preventDefault();
+                e.stopPropagation();
+                let visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+                if (visibility === 'visible') {
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                    this.className = '';
+                } else {
+                    this.className = 'active';
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+                }
+            };
+            let layerToggleList = document.getElementById(elementTargets[countup]);
+            layerToggleList.appendChild(link);
         }
-      };
+        countup++;
+      });
 
-      let layer = document.getElementById('layerToggle');
-      let streams = document.getElementById('streamToggle');
-      //Create the toggles dynamically based on which icon is clicked
-      let dynamic = function(icon, ids, offAtStart){
+      let layersIcon = document.getElementById("layersIcon");
+      let streamsIcon = document.getElementById("streamsIcon");
+
+      //Toggle which options are shown based on what icon is clicked
+      let toggle = function(clicked, show){
         let toggleOptions = document.getElementById("ToggleOptions");
+        let option = document.getElementById(show);
         let icons = document.getElementById("iconToggleContainer").childNodes;
-        if(toggleOptions.classList.contains("active") && icon.classList.contains("active")){
-          while(toggleOptions.firstChild){
-            toggleOptions.removeChild(toggleOptions.firstChild);
-          }
+        if(toggleOptions.classList.contains("active") && clicked.classList.contains("active")){
           toggleOptions.classList.remove("active");
-          icon.classList.remove("active");
+          clicked.classList.remove("active");
+          option.style.display = "none";
         }else if(toggleOptions.classList.contains("active")){
-          while(toggleOptions.firstChild){
-            toggleOptions.removeChild(toggleOptions.firstChild);
-          }
-          //Check to see which icon is already active and deactivate
-          for(let i = 0; i < icons.length; i++){
-            if(icons[i].classList.contains("active")){
-              icons[i].classList.remove("active");
+          //Check toggle options to see if any options are currently showing
+          for(let i = 0; i < toggleOptions.childNodes.length; i++){
+            if(toggleOptions.childNodes[i].style.display === "flex"){
+              toggleOptions.childNodes[i].style.display = "none";
             }
           }
-          icon.classList.add("active");
-          createToggles(ids, offAtStart);
-        }
-        else{
+          //Check to see if any icons are active and deactivate them
+          for(let j = 0; j < icons.length; j++){
+            if(icons[j].classList.contains("active")){
+              icons[j].classList.remove("active");
+            }
+          }
+          clicked.classList.add("active");
+          option.style.display = "flex";
+        }else{
           toggleOptions.classList.add("active");
-          icon.classList.add("active");
-          createToggles(ids, offAtStart);
+          clicked.classList.add("active");
+          option.style.display = "flex";
         }
       }
 
-      layer.onclick = function(){
-        dynamic(layer, toggleableLayerIds, layersTurnedOffAtStart);
+      layersIcon.onclick = function(){
+        toggle(this, "layers");
       }
-      streams.onclick = function(){
-        dynamic(streams, toggleableStreamsIds, streamsTurnedOffAtStart);
+      streamsIcon.onclick = function(){
+        toggle(this, "streams");
       }
 
       // next section controls the HRU hover effect
@@ -377,6 +387,11 @@ $border: 1px solid #fff;
   }
 }
 
+#layers,
+#streams{
+  display: none;
+}
+
 .usa-prose {
   border-bottom: 1px solid rgb(100, 100, 100);
 }
@@ -427,23 +442,39 @@ $border: 1px solid #fff;
 
 #ToggleOptions {
   display: flex;
-  flex: 10;
+  flex: 8;
   flex-wrap: wrap;
-  a {
+  height: 30px;
+  div {
     flex: 1;
-    min-width: 100px;
-    font-size: 0.8em;
-    color: $color;
-    text-decoration: line-through;
-
-    &:hover {
-      text-decoration: none;
-      background: $blue;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 90000;
+      a{
+        width: 100%;
+        font-size: 0.8em;
+        color: $color;
+        text-decoration: line-through;
+        &:hover {
+          text-decoration: none;
+          background:#00bf26;
+        }
+      }
   }
   .active {
     text-decoration: none;
     background: $blue;
+  }
+}
+@media screen and (min-width:960px) {
+  #ToggleOptions {
+    div{
+      a{
+        flex-grow: 1;
+        width: auto;
+      }
+    }
   }
 }
 </style>

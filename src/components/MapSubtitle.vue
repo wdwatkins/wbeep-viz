@@ -156,7 +156,7 @@
     height: 40vh;
     overflow: scroll;
     position: absolute;
-    top: 40px;
+    top: 65px;
     right: -25px;
     border-radius: 5px;
     border: 1px solid rgb(200,200,200);
