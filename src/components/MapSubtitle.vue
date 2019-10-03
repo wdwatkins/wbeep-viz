@@ -82,8 +82,7 @@
         </div>
       </div>
     </div>
-    <div id="data-date-div">
-    </div>
+    <div id="data-date-div" />
   </div>
 </template>
 
