@@ -1,5 +1,8 @@
 <template>
-  <div id="dataDateContainer" class="subtitle">
+  <div
+    id="dataDateContainer"
+    class="subtitle"
+  >
     <div class="subtitleText">
       <p>Showing Latest Available Data: {{ dataDate }}</p>
     </div>
