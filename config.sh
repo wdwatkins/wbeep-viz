@@ -24,22 +24,18 @@ testBucket=wbeep-test-website.s3-website-us-west-2.amazonaws.com
 
 # common prefix/suffix for tile URL configuration
 globalTilePrefix='"tiles": ["http://'
-globalTileSuffix='/{z}/{x}/{y}.pbf"],'
+globalTileSuffix='/{z}/{x}/{y}.pbf?fresh=true"],'
 # tile directories
 hruTileLocation='/tiles'
-baseTileLocation='/basetiles'
 
 # Set default tile location to prod and override if we are building to
 # test or if a non-default tile source is specified.
 hruSource="$globalTilePrefix$prodBucket$hruTileLocation$globalTileSuffix"
-baseSource="$globalTilePrefix$prodBucket$baseTileLocation$globalTileSuffix" 
 
 if [ \( "$E_BUILDTARGET" = "test" -a "$E_TILESOURCE" != "prod" \) -o \( "$E_TILESOURCE" = "test" \) ];
 then
   hruSource="$globalTilePrefix$testBucket$hruTileLocation$globalTileSuffix"
-  baseSource="$globalTilePrefix$testBucket$baseTileLocation$globalTileSuffix"   
 fi
 
 # Insert HRU and base tile URLs into Mapbox configuration file
 sed -i "/HRU SOURCE INSERT/a $hruSource" "$mbconfig"
-sed -i "/BASE SOURCE INSERT/a $baseSource" "$mbconfig"

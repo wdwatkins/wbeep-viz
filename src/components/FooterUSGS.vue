@@ -64,7 +64,7 @@
                 href="https://twitter.com/usgs"
                 target="_blank"
               >
-                <i class="fa fa-twitter-square"><span class="only">Twitter</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'twitter-square' }" class="social-icon"><span class="only">Twitter</span></font-awesome-icon>
               </a>
             </li>
             <li class="facebook">
@@ -72,15 +72,15 @@
                 href="https://facebook.com/usgeologicalsurvey"
                 target="_blank"
               >
-                <i class="fa fa-facebook-square"><span class="only">Facebook</span></i>
-              </a>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }" class="social-icon"><span class="only">Facebook</span></font-awesome-icon>
+                </a>
             </li>
             <li class="github">
               <a
                 href="https://github.com/usgs"
                 target="_blank"
               >
-                <i class="fa fa-github"><span class="only">GitHub</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'github' }" class="social-icon"><span class="only">GitHub</span></font-awesome-icon>
               </a>
             </li>
             <li class="flickr">
@@ -88,7 +88,7 @@
                 href="https://flickr.com/usgeologicalsurvey"
                 target="_blank"
               >
-                <i class="fa fa-flickr"><span class="only">Flickr</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'flickr' }"  class="social-icon"><span class="only">Flickr</span></font-awesome-icon>
               </a>
             </li>
             <li class="youtube">
@@ -96,7 +96,7 @@
                 href="http://youtube.com/usgs"
                 target="_blank"
               >
-                <i class="fa fa-youtube-play"><span class="only">YouTube</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'youtube-square' }" class="social-icon"><span class="only">YouTube</span></font-awesome-icon>
               </a>
             </li>
             <li class="instagram">
@@ -104,7 +104,7 @@
                 href="https://instagram.com/usgs"
                 target="_blank"
               >
-                <i class="fa fa-instagram"><span class="only">Instagram</span></i>
+                <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }" class="social-icon"><span class="only">Instagram</span></font-awesome-icon>
               </a>
             </li>
           </ul>
@@ -124,5 +124,11 @@
 
 <style scoped lang="scss">
   @import"../style/usgsHeaderFooter/combinedLoad.css";
+
+  .social-icon {
+    color: white;
+    height: 24px;
+    width: 21px;
+  }
   
 </style>

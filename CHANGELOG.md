@@ -2,7 +2,26 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- Ignored NHD order tiles in Jenkins job
+- Changed footer icons to Vue components
+- New Map Layers Toggle Functionality
+- Water layer above neighboring countires
+- Restricted user ability to zoom out past the continental United States
+- Added sub-subtitle with date of last available data
+- Adjusted mapStyles to have HRU's solid colors
+- Legend Toggle functionality
+- Min-height for map
+- Added footer email
+- topNavToggle icon adjustment and mobile adjustment
+- Changed URLs to use new tile server
+- Map Options layers dynamic toggle functionality first added
+- Made Subtitle more mobile friendly
+- Edited Legend modal to better fit a mobile experience
+- Added vue-svg-loader package
+- Added Florida and Arizona SVGS
+- Created Legend Modal
+- Added new Legend text and legend info button
+- Added a stream orders toggle bar so that we can test out which stream orders we want
+>>>>>>> 59045ebf3f74c5e8620f4a5cbbe3f4de0bbd312e
 - Made subtitle information modal popup
 - Made Map Subtitle component
 - Added map subtitle and subtitle info button

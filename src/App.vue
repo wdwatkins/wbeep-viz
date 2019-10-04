@@ -3,6 +3,7 @@
     <HeaderUSWDSBanner />
     <HeaderUSGS />
     <MapBox title="National Integrated Water Availability Assessments" />
+    <FooterEmail />
     <FooterUSGS />
   </div>
 </template>
@@ -11,6 +12,7 @@
     import HeaderUSWDSBanner from './components/HeaderUSWDSBanner'
     import HeaderUSGS from './components/HeaderUSGS'
     import MapBox from './components/MapBox'
+    import FooterEmail from './components/FooterEmail'
     import FooterUSGS from './components/FooterUSGS'
 
     export default {
@@ -19,6 +21,7 @@
             HeaderUSWDSBanner,
             HeaderUSGS,
             MapBox,
+            FooterEmail,
             FooterUSGS
         }
     }
@@ -34,7 +37,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    width: 100vw;
+    width: 100%;
   }
 
   @media screen and (min-width: 601px){
